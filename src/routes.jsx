@@ -10,6 +10,7 @@ import StandardUserRegister from "./authentication/StandardUserRegister.jsx";
 import Login from "./authentication/Login.jsx";
 import PowerUserProfile from "./pages/profiles/PowerUserProfile.jsx";
 import StandardUserProfile from "./pages/profiles/StandardUserProfile.jsx";
+import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -30,27 +31,13 @@ export const router = createBrowserRouter([
         path: "/",
         element: <HomePage></HomePage>,
       },
+
+      // power_user routes
       {
         path: "/power_user_register",
         element: (
           <LazyLoad>
             <PowerUserRegister></PowerUserRegister>
-          </LazyLoad>
-        ),
-      },
-      {
-        path: "/standard_user_register",
-        element: (
-          <LazyLoad>
-            <StandardUserRegister></StandardUserRegister>
-          </LazyLoad>
-        ),
-      },
-      {
-        path: "/login",
-        element: (
-          <LazyLoad>
-            <Login></Login>
           </LazyLoad>
         ),
       },
@@ -62,11 +49,39 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
+
+      // standard_user routes
+      {
+        path: "/standard_user_register",
+        element: (
+          <LazyLoad>
+            <StandardUserRegister></StandardUserRegister>
+          </LazyLoad>
+        ),
+      },
       {
         path: "/standard_user_profile",
         element: (
           <LazyLoad>
             <StandardUserProfile></StandardUserProfile>
+          </LazyLoad>
+        ),
+      },
+
+      // common routes both for power_user & standard_user
+      {
+        path: "/login",
+        element: (
+          <LazyLoad>
+            <Login></Login>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/entry_new_employee",
+        element: (
+          <LazyLoad>
+            <EntryNewEmployee></EntryNewEmployee>
           </LazyLoad>
         ),
       },

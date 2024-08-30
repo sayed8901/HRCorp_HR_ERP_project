@@ -12,6 +12,7 @@ const StandardUserRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [powerUsers, setPowerUsers] = useState([]);
+  
   const [formData, setFormData] = useState({
     username: "",
     first_name: "",

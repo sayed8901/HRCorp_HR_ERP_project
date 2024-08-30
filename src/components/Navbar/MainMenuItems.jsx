@@ -39,7 +39,7 @@ const MainMenuItems = ({ user }) => {
                 to="/entry_new_employee"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
-                Entry new employee
+                Entry_new employee
               </NavLink>
             </li>
           )}
@@ -61,7 +61,7 @@ const MainMenuItems = ({ user }) => {
                   to="/all_employee"
                   className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                 >
-                  All employee
+                  All_employee
                 </NavLink>
               </li>
               <li>
@@ -147,7 +147,7 @@ const MainMenuItems = ({ user }) => {
                     to="/update_transfer"
                     className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                   >
-                    Update transfer
+                    Update_transfer
                   </NavLink>
                 </li>
                 <li>
@@ -155,7 +155,7 @@ const MainMenuItems = ({ user }) => {
                     to="/transfer_withdraw"
                     className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                   >
-                    Transfer withdraw
+                    Transfer_withdraw
                   </NavLink>
                 </li>
               </>
@@ -269,7 +269,7 @@ const MainMenuItems = ({ user }) => {
                   to="/entry_leave_data"
                   className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                 >
-                  Entry leave data
+                  Entry leave_data
                 </NavLink>
               </li>
             )}

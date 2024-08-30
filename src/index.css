@@ -28,6 +28,7 @@ body {
 
 
 
+
 /* for lazy-loading */
 .LazyLoad {
   opacity: 0;
@@ -37,6 +38,8 @@ body {
 .is-visible {
   opacity: 1;
 }
+
+
 
 
 
@@ -55,3 +58,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+
+
+
