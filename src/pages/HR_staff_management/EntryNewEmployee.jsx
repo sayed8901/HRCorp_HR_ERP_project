@@ -147,7 +147,7 @@ const EntryNewEmployee = () => {
         // Show success toast
         toast.success("New employee data successfully added.");
         console.log(successMessage);
-        navigate("/login");
+        navigate("/all_employee");
       }
     } catch (error) {
       // Display error message
@@ -229,6 +229,7 @@ const EntryNewEmployee = () => {
                     id="educational_degree"
                     name="educational_degree"
                     onChange={handleChange}
+                    value={formData.educational_degree}
                     required
                     autoComplete="educational_degree"
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
@@ -268,6 +269,7 @@ const EntryNewEmployee = () => {
                     id="blood_group"
                     name="blood_group"
                     onChange={handleChange}
+                    value={formData.blood_group}
                     required
                     autoComplete="blood_group"
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
@@ -338,6 +340,7 @@ const EntryNewEmployee = () => {
                     id="gender"
                     name="gender"
                     onChange={handleChange}
+                    value={formData.gender}
                     required
                     autoComplete="gender"
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
@@ -362,6 +365,7 @@ const EntryNewEmployee = () => {
                     id="marital_status"
                     name="marital_status"
                     onChange={handleChange}
+                    value={formData.marital_status}
                     required
                     autoComplete="marital_status"
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
@@ -531,6 +535,7 @@ const EntryNewEmployee = () => {
                     id="probation_period_months"
                     name="probation_period_months"
                     onChange={handleChange}
+                    value={formData.probation_period_months}
                     required
                     autoComplete="marital_status"
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
@@ -557,7 +562,7 @@ const EntryNewEmployee = () => {
                     id="department"
                     name="department"
                     required
-                    // value={formData.department}
+                    value={formData.department}
                     onChange={handleChange}
                     className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
                   >
@@ -585,7 +590,7 @@ const EntryNewEmployee = () => {
                     id="designation"
                     name="designation"
                     required
-                    // value={formData.designation}
+                    value={formData.designation}
                     onChange={handleChange}
                     className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
                   >
@@ -613,7 +618,7 @@ const EntryNewEmployee = () => {
                     id="job_location"
                     name="job_location"
                     required
-                    // value={formData.job_location}
+                    value={formData.job_location}
                     onChange={handleChange}
                     className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
                   >
@@ -650,6 +655,7 @@ const EntryNewEmployee = () => {
                     id="salary_grade"
                     name="salary_grade"
                     onChange={handleChange}
+                    value={formData.salary_grade}
                     required
                     autoComplete="salary_grade"
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
@@ -685,6 +691,7 @@ const EntryNewEmployee = () => {
                     id="salary_step"
                     name="salary_step"
                     onChange={handleChange}
+                    value={formData.salary_step}
                     required
                     autoComplete="salary_step"
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"

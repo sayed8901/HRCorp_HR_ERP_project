@@ -50,18 +50,18 @@ const MainMenuItems = ({ user }) => {
             <>
               <li>
                 <NavLink
-                  to="/employee_details"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-                >
-                  Employee details
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
                   to="/all_employee"
                   className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                 >
                   All_employee
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/employee_details"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Employee details
                 </NavLink>
               </li>
               <li>

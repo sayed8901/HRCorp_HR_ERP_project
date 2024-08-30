@@ -11,6 +11,7 @@ import Login from "./authentication/Login.jsx";
 import PowerUserProfile from "./pages/profiles/PowerUserProfile.jsx";
 import StandardUserProfile from "./pages/profiles/StandardUserProfile.jsx";
 import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
+import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <EntryNewEmployee></EntryNewEmployee>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/all_employee",
+        element: (
+          <LazyLoad>
+            <AllEmployeeList></AllEmployeeList>
           </LazyLoad>
         ),
       },
