@@ -3,7 +3,7 @@ import FAQs from '../../public/FAQ_Animation.json'
 
 const FAQSection = () => {
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-11/12 mx-auto my-28">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mb-10 text-center text-2xl sm:text-3xl font-semibold leading-9 tracking-tight">
           Got some query on your mind!

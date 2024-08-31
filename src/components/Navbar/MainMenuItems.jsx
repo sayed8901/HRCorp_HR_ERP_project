@@ -120,14 +120,6 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
-                to="/transfer"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Transfer
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/training"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
@@ -140,6 +132,14 @@ const MainMenuItems = ({ user }) => {
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Separation
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/transfer"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Transfer
               </NavLink>
             </li>
             {user.userType === "power_user" && (
