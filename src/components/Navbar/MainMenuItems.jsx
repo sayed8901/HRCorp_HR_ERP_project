@@ -34,20 +34,15 @@ const MainMenuItems = ({ user }) => {
         >
           {(user.userType === "standard_user" ||
             user.userType === "power_user") && (
-            <li>
-              <NavLink
-                to="/entry_new_employee"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Entry_new employee
-              </NavLink>
-            </li>
-          )}
-          {(user.userType === "standard_user" ||
-            user.userType === "power_user" ||
-            user.userType === "employee" ||
-            !user.userType) && (
             <>
+              <li>
+                <NavLink
+                  to="/entry_new_employee"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Entry_new employee
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/all_employee"
@@ -56,6 +51,13 @@ const MainMenuItems = ({ user }) => {
                   All_employee
                 </NavLink>
               </li>
+            </>
+          )}
+          {(user.userType === "standard_user" ||
+            user.userType === "power_user" ||
+            user.userType === "employee" ||
+            !user.userType) && (
+            <>
               <li>
                 <NavLink
                   to="/employee_details"

@@ -47,7 +47,7 @@ const useEmployeesData = () => {
         const profileInfo = await profileInfoResponse.json();
         setAllJobProfileHistory(profileInfo);
 
-        // Combine data
+        // Combine data (via searching by employee_ID)
         const combinedData = employeeIDs.map((employee) => {
           const personal =
             personalInfo.find(
@@ -61,18 +61,24 @@ const useEmployeesData = () => {
             salaryInfo.find((info) => info.employee === employee.employee_id) ||
             {};
 
-          // Aggregate details text from all job profile entries with serial number
-          const jobProfileDetails = profileInfo
-            .filter((info) => info.employee === employee.employee_id)
-            .map((info, index) => `${index + 1}. ${info.details}`) // Add serial number
-            .join(" , "); // Combine all details with a separator
+          // Aggregate details text from all job profile entries
+          // Step 1: Filter job profile entries by employee ID
+          const filteredProfileInfo = profileInfo.filter(
+            (info) => info.employee === employee.employee_id
+          );
+          // Step 2: Add serial number to each profile detail
+          const numberedProfileDetails = filteredProfileInfo.map(
+            (info, index) => `${index + 1}. ${info.details}`
+          );
+          // Step 3: Combine all details with a comma separator
+          const jobProfileDetails = numberedProfileDetails.join(" , ");
 
           return {
             ...employee,
             personal_info: personal,
             employment_info: employment,
             salary_info: salary,
-            job_profile_details: jobProfileDetails, // Single field for concatenated details with serial numbers
+            job_profile_details: jobProfileDetails, // Single field (details field) for concatenated details with serial numbers
           };
         });
 

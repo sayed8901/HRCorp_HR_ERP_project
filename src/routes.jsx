@@ -12,6 +12,7 @@ import PowerUserProfile from "./pages/profiles/PowerUserProfile.jsx";
 import StandardUserProfile from "./pages/profiles/StandardUserProfile.jsx";
 import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
 import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
+import SingleEmployeeDetails from "./pages/HR_staff_management/SingleEmployeeDetails.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -91,6 +92,16 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <AllEmployeeList></AllEmployeeList>
+          </LazyLoad>
+        ),
+      },
+
+      // accessible routes for power_user, standard_user, general employee or no logged_in_user
+      {
+        path: "/employee_details/:employee_id",
+        element: (
+          <LazyLoad>
+            <SingleEmployeeDetails></SingleEmployeeDetails>
           </LazyLoad>
         ),
       },
