@@ -104,38 +104,6 @@ const MainMenuItems = ({ user }) => {
           >
             <li>
               <NavLink
-                to="/confirmation"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Confirmation
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/promotion"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Promotion
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/training"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Training
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/separation"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Separation
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/transfer"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
@@ -162,6 +130,38 @@ const MainMenuItems = ({ user }) => {
                 </li>
               </>
             )}
+            <li>
+              <NavLink
+                to="/training"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Training
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/confirmation"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Confirmation
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/promotion"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Promotion
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/separation"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Separation
+              </NavLink>
+            </li>
           </ul>
         </div>
       )}

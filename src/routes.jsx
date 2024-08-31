@@ -13,6 +13,7 @@ import StandardUserProfile from "./pages/profiles/StandardUserProfile.jsx";
 import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
 import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
 import EmployeeDetails from "./pages/HR_staff_management/EmployeeDetails/EmployeeDetails.jsx";
+import Transfer from "./pages/HR_operation/Transfer/Transfer.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -96,17 +97,25 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/view_employee_details",
+        path: "/transfer",
+        element: (
+          <LazyLoad>
+            <Transfer></Transfer>
+          </LazyLoad>
+        ),
+      },
+      
+      // accessible routes for power_user, standard_user, general employee or no logged_in_user
+      {
+        path: "/employee_details/:employee_id",
         element: (
           <LazyLoad>
             <EmployeeDetails></EmployeeDetails>
           </LazyLoad>
         ),
       },
-
-      // accessible routes for power_user, standard_user, general employee or no logged_in_user
       {
-        path: "/employee_details/:employee_id",
+        path: "/view_employee_details",
         element: (
           <LazyLoad>
             <EmployeeDetails></EmployeeDetails>

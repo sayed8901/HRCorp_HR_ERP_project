@@ -4,7 +4,7 @@ import LoadingSpinner from "../utilities/LoadingSpinner";
 import userIcon from "../../src/assets/profile_img.png";
 
 const AllEmployeeSlider = () => {
-  const { allEmployeesFullInfo, loading, error } = useEmployeesData();
+  const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
 
   return (
     <div className="my-28">
@@ -26,7 +26,7 @@ const AllEmployeeSlider = () => {
         pauseOnHover={true}
         className="py-3 py-lg-4 bg-base-200"
       >
-        {allEmployeesFullInfo?.map((employee) => (
+        {allActiveEmployeesInfo?.map((employee) => (
           <div key={employee?.employee_id} className="px-4 mask mask-hexagon-2">
             <div className="card bg-base-100 w-72 shadow-xl p-2">
               <div className="card-body text-center">

@@ -87,7 +87,7 @@ const AllEmployeeList = () => {
                   <td>{employee?.employment_info?.job_location}</td>
                   <td>{employee?.employment_info?.joining_date}</td>
                   <td>{employee?.employment_info?.probation_period_months}</td>
-                  <td>{employee?.employment_info?.is_active}</td>
+                  <td>{employee?.employment_info?.is_confirmed}</td>
 
                   <td>{employee?.salary_info?.salary_grade}</td>
                   <td>{employee?.salary_info?.starting_basic}</td>

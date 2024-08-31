@@ -93,9 +93,14 @@ const useEmployeesData = () => {
     fetchAndCombineData();
   }, []);
 
+  const allActiveEmployeesInfo = allEmployeesFullInfo.filter(
+    (employee) => employee?.employment_info?.status === "Active"
+  );
+
   if (loading)
     return {
       allEmployeesFullInfo: [],
+      allActiveEmployeesInfo: [],
       allPersonalInfo: [],
       allEmploymentInfo: [],
       allSalaryInfo: [],
@@ -106,6 +111,7 @@ const useEmployeesData = () => {
   if (error)
     return {
       allEmployeesFullInfo: [],
+      allActiveEmployeesInfo: [],
       allPersonalInfo: [],
       allEmploymentInfo: [],
       allSalaryInfo: [],
@@ -116,6 +122,7 @@ const useEmployeesData = () => {
 
   return {
     allEmployeesFullInfo,
+    allActiveEmployeesInfo,
     allPersonalInfo,
     allEmploymentInfo,
     allSalaryInfo,

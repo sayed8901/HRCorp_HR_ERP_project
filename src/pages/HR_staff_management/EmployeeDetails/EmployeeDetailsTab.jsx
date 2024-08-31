@@ -358,7 +358,7 @@ const EmployeeDetailsTab = ({ employee_id }) => {
                         <strong>{jobProfile.effective_date}</strong>
                       </p>
                       <p>
-                        <strong>- {jobProfile.event_type}</strong>
+                        <strong>-- {jobProfile.event_type}</strong>
                       </p>
                     </div>
                     <p>{jobProfile.details}</p>
