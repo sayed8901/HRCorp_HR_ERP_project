@@ -4,6 +4,7 @@ import "./App.css";
 import { useContext } from "react";
 import { ThemeContext } from "./contextProviders/ThemeContextProvider";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   const { themeClassName } = useContext(ThemeContext);
@@ -17,7 +18,7 @@ function App() {
       <div className="flex-grow">
         <Outlet></Outlet>
       </div>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </div>
   );
 }

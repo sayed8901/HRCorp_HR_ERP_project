@@ -1,42 +1,60 @@
+import { Link } from "react-router-dom";
+import logo from "../../public/front_page-icon.jpg";
+
 const Footer = () => {
-    return (
-      <div className="relative isolate overflow-hidden bg-gray-900 py-6 sm:py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 lg:max-w-none lg:grid-cols-2">
-            <div className="max-w-xl lg:max-w-lg">
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
-                Need support ? Call <span className="text-red-500">16427</span> to
-                get in touch.
-              </h2>
-              <p className="mt-4 text-md leading-8 text-gray-300">
-                Our Contact Centre is available from 9 am to 8 pm (Saturday to
-                Thursday).
-              </p>
+  return (
+    <div>
+      <footer className="footer bg-neutral text-neutral-content px-10 py-6">
+        <aside>
+          <Link to={"/"} className="flex items-center gap-5 sm:px-5">
+            <img src={logo} className="w-16" alt="HRCorp Logo" />
+            <div className="space-y-3">
+              <h5 className="text-2xl sm:text-3xl">HRCorp</h5>
+              <p>A Complete HR Management Solution</p>
             </div>
-            <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
-              <div className="flex flex-col items-start">
-                <dt className="font-semibold text-white">Job Seeker</dt>
-                <dd className="mt-2 leading-7 text-gray-400">
-                  Job seeker can find their next suitable jobs by applying
-                  through our site.
-                </dd>
-                <dd className="mt-2 leading-7 text-gray-400">Good luck !</dd>
-              </div>
-              <div className="flex flex-col items-start">
-                <dt className="font-semibold text-white">Employer</dt>
-                <dd className="mt-2 leading-7 text-gray-400">
-                  Employer can search & select perfect candidate for their
-                  organization.
-                </dd>
-                <dd className="mt-2 leading-7 text-gray-400">
-                  Thanks for being with us !
-                </dd>
-              </div>
-            </dl>
+          </Link>
+        </aside>
+        <nav>
+          <h6 className="footer-title">Social</h6>
+          <div className="grid grid-flow-col gap-4">
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="fill-current"
+              >
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+              </svg>
+            </a>
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="fill-current"
+              >
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+              </svg>
+            </a>
+            <a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="fill-current"
+              >
+                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+              </svg>
+            </a>
           </div>
-        </div>
-      </div>
-    );
+        </nav>
+      </footer>
+    </div>
+  );
 };
 
 export default Footer;

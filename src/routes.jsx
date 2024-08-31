@@ -95,18 +95,18 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
-
-      // accessible routes for power_user, standard_user, general employee or no logged_in_user
       {
-        path: "/employee_details/:employee_id",
+        path: "/view_employee_details",
         element: (
           <LazyLoad>
             <EmployeeDetails></EmployeeDetails>
           </LazyLoad>
         ),
       },
+
+      // accessible routes for power_user, standard_user, general employee or no logged_in_user
       {
-        path: "/view_employee_details",
+        path: "/employee_details/:employee_id",
         element: (
           <LazyLoad>
             <EmployeeDetails></EmployeeDetails>

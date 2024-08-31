@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar glass h-12 bg-opacity-50 sticky top-0 z-10 rounded
+      className={`navbar h-12 bg-neutral text-neutral-content sticky top-0 z-10 rounded
       ${isNavbarVisible ? "opacity-100" : "opacity-0"}
       transition-opacity duration-300`}
     >
@@ -99,7 +99,7 @@ const Navbar = () => {
 
         <Link to={"/"} className="flex items-center gap-5 sm:px-5">
           <img src={logo} className="w-10" alt="HRCorp Logo" />
-          <h5 className="text-xl">HRCorp</h5>
+          <h5 className="text-xl sm:text-2xl font-bold">HRCorp</h5>
         </Link>
       </div>
 
