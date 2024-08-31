@@ -1,7 +1,7 @@
 const StatDashboard = () => {
   return (
-    <div className="flex flex-col justify-center items-center my-20">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex flex-col justify-center items-center my-28">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mb-10 text-center text-2xl sm:text-3xl font-semibold leading-9 tracking-tight">
           View
           <span className="text-gradient"> Live Dashboard</span> of Regular HR
