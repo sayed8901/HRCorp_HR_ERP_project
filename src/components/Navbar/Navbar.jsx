@@ -61,9 +61,8 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar h-12 bg-neutral text-neutral-content sticky top-0 z-10 rounded
-      ${isNavbarVisible ? "opacity-100" : "opacity-0"}
-      transition-opacity duration-300`}
+      className={`navbar bg-base-200 h-12 sticky top-0 z-10 rounded transition-opacity duration-300
+      ${isNavbarVisible ? "opacity-100" : "opacity-0"}}`}
     >
       <div className="navbar-start">
         <div className="lg:hidden dropdown">
