@@ -11,10 +11,10 @@ const AllEmployeeList = () => {
   };
 
   return (
-    <div className="container mx-auto px-2 sm:px-0 mb-10">
+    <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
       <div className="w-full mx-auto px-5 my-10">
         <div className="px-4 sm:px-0">
-          <h2 className="text-center text-3xl font-semibold leading-8 mb-8">
+          <h2 className="text-center text-3xl font-semibold leading-8 mb-10">
             <span className="text-gradient">
               All ({allEmployeesFullInfo?.length}) Employee
             </span>{" "}

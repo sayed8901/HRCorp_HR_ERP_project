@@ -12,7 +12,7 @@ import PowerUserProfile from "./pages/profiles/PowerUserProfile.jsx";
 import StandardUserProfile from "./pages/profiles/StandardUserProfile.jsx";
 import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
 import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
-import SingleEmployeeDetails from "./pages/HR_staff_management/SingleEmployeeDetails.jsx";
+import EmployeeDetails from "./pages/HR_staff_management/EmployeeDetails/EmployeeDetails.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -101,7 +101,15 @@ export const router = createBrowserRouter([
         path: "/employee_details/:employee_id",
         element: (
           <LazyLoad>
-            <SingleEmployeeDetails></SingleEmployeeDetails>
+            <EmployeeDetails></EmployeeDetails>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/view_employee_details",
+        element: (
+          <LazyLoad>
+            <EmployeeDetails></EmployeeDetails>
           </LazyLoad>
         ),
       },

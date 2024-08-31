@@ -60,10 +60,10 @@ const MainMenuItems = ({ user }) => {
             <>
               <li>
                 <NavLink
-                  to="/employee_details"
+                  to="/view_employee_details"
                   className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                 >
-                  Employee details
+                  Employee details view
                 </NavLink>
               </li>
               <li>
