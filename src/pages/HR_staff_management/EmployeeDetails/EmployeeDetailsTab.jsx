@@ -89,6 +89,12 @@ const EmployeeDetailsTab = ({ employee_id }) => {
               </dd>
             </div>
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">Gender</dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.personal_info?.gender}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">Marital Status</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
                 {employee?.personal_info?.marital_status}
@@ -156,6 +162,12 @@ const EmployeeDetailsTab = ({ employee_id }) => {
               </dd>
             </div>
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">Is Confirmed</dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">Designation</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
                 {employee?.employment_info?.designation}
@@ -187,6 +199,30 @@ const EmployeeDetailsTab = ({ employee_id }) => {
                 {employee?.employment_info?.probation_period_months}
               </dd>
             </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">
+                Tentative Confirmation Date
+              </dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.employment_info?.tentative_confirmation_date}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">
+                Confirmation Effective Date
+              </dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.employment_info?.confirmation_effective_date}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">
+                Last Promotion Date
+              </dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.last_promotion?.promotion_effective_date}
+              </dd>
+            </div>
           </dl>
         </div>
 
@@ -204,12 +240,6 @@ const EmployeeDetailsTab = ({ employee_id }) => {
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
           <dl className="divide-y divide-gray-200 w-full sm:w-5/6 md:w-4/6 mx-auto">
-            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-              <dt className="text-sm font-medium leading-6">Is Confirmed</dt>
-              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
-                {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
-              </dd>
-            </div>
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">Salary Grade</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
@@ -268,6 +298,12 @@ const EmployeeDetailsTab = ({ employee_id }) => {
               <dt className="text-sm font-medium leading-6">PF Contribution</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
                 {employee?.salary_info?.pf_contribution}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">Festival Bonus</dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.salary_info?.festival_bonus}
               </dd>
             </div>
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

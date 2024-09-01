@@ -13,6 +13,7 @@ const Promotion = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [modalError, setModalError] = useState("");
 
+  //   console.log(allActiveEmployeesInfo);
 
   const handleOpenModal = async (employee) => {
     setSelectedEmployee(employee);
@@ -51,8 +52,7 @@ const Promotion = () => {
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
-          errorData.detail ||
-            "Failed to make job promotion for the employee."
+          errorData.detail || "Failed to make job promotion for the employee."
         );
       }
 
@@ -65,8 +65,7 @@ const Promotion = () => {
       }, 1000); // Adjust delay as needed
     } catch (error) {
       setModalError(
-        error.message ||
-          "An error occurred while processing the job promotion."
+        error.message || "An error occurred while processing the job promotion."
       );
       toast.error("Failed to make job promotion for the employee."); // Show error toast message
     } finally {
@@ -112,6 +111,8 @@ const Promotion = () => {
                   <td>Is Confirmed</td>
                   <td>Confirmation Effective Date</td>
 
+                  <td>Last Promotion Date</td>
+
                   <td>Salary Grade</td>
                   <td>Starting Basic</td>
                   <td>Salary Step</td>
@@ -151,7 +152,11 @@ const Promotion = () => {
                     <td>
                       {employee?.employment_info?.confirmation_effective_date}
                     </td>
-                    
+
+                    <td>
+                      {employee?.last_promotion?.promotion_effective_date}
+                    </td>
+
                     <td>{employee?.salary_info?.salary_grade}</td>
                     <td>{employee?.salary_info?.starting_basic}</td>
                     <td>{employee?.salary_info?.salary_step}</td>

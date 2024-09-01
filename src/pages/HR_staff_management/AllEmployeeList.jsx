@@ -6,6 +6,8 @@ const AllEmployeeList = () => {
   const { allEmployeesFullInfo, loading, error } = useEmployeesData();
   const navigate = useNavigate();
 
+    console.log(allEmployeesFullInfo);
+
   const handleViewDetails = (employee_id) => {
     navigate(`/employee_details/${employee_id}`);
   };
@@ -46,6 +48,8 @@ const AllEmployeeList = () => {
                 <td>Is_confirmed</td>
                 <td>confirm_effective_date</td>
 
+                <td>Last Promotion Date</td>
+
                 <td>Salary Grade</td>
                 <td>Starting Basic</td>
                 <td>Salary Step</td>
@@ -75,7 +79,10 @@ const AllEmployeeList = () => {
                 <td>Permanent Address</td>
                 <td>Present Address</td>
 
-                <td>Job Profile Details of The Employee Describing The Full History of The Employee</td>
+                <td>
+                  Job Profile Details of The Employee Describing The Full
+                  History of The Employee
+                </td>
                 <th>Details</th>
               </tr>
             </thead>
@@ -97,6 +104,8 @@ const AllEmployeeList = () => {
                   <td>
                     {employee?.employment_info?.confirmation_effective_date}
                   </td>
+
+                  <td>{employee?.last_promotion?.promotion_effective_date}</td>
 
                   <td>{employee?.salary_info?.salary_grade}</td>
                   <td>{employee?.salary_info?.starting_basic}</td>
