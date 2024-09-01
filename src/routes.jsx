@@ -15,6 +15,7 @@ import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
 import EmployeeDetails from "./pages/HR_staff_management/EmployeeDetails/EmployeeDetails.jsx";
 import Transfer from "./pages/HR_operation/Transfer/Transfer.jsx";
 import Confirmation from "./pages/HR_operation/Job_confirmation/Confirmation.jsx";
+import Promotion from "./pages/HR_operation/Promotion/Promotion.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -112,6 +113,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <Confirmation></Confirmation>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/promotion",
+        element: (
+          <LazyLoad>
+            <Promotion></Promotion>
           </LazyLoad>
         ),
       },

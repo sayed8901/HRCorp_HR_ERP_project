@@ -31,12 +31,16 @@ const Confirmation = () => {
   const token = localStorage.getItem("authToken");
 
   const handleConfirm = async (employee_id, confirmationData) => {
+    // console.log("confirm btn clicked");
+
     setIsProcessing(true);
     setModalError(""); // Clear any previous errors
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/confirmation/confirm/?employee_id=${employee_id}`,
+        `${
+          import.meta.env.VITE_API_URL
+        }/confirmation/confirm/?employee_id=${employee_id}`,
         {
           method: "POST",
           headers: {
@@ -112,6 +116,7 @@ const Confirmation = () => {
                     <td>Tentative Confirm Date</td>
                     <td>Is Confirmed</td>
                     <td>Confirmation Effective Date</td>
+
                     <td>Salary Grade</td>
                     <td>Starting Basic</td>
                     <td>Salary Step</td>
@@ -127,7 +132,11 @@ const Confirmation = () => {
                     <td>Tax Deduction</td>
                     <td>Net Salary</td>
                     <td>Consolidated Salary</td>
-                    <td>Job Profile History Details</td>
+
+                    <td>
+                      Job Profile Details of The Employee Describing The Full
+                      History of The Employee
+                    </td>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -153,6 +162,7 @@ const Confirmation = () => {
                       <td>
                         {employee?.employment_info?.confirmation_effective_date}
                       </td>
+
                       <td>{employee?.salary_info?.salary_grade}</td>
                       <td>{employee?.salary_info?.starting_basic}</td>
                       <td>{employee?.salary_info?.salary_step}</td>
@@ -168,6 +178,7 @@ const Confirmation = () => {
                       <td>{employee?.salary_info?.tax_deduction}</td>
                       <td>{employee?.salary_info?.net_salary}</td>
                       <td>{employee?.salary_info?.consolidated_salary}</td>
+
                       <td>{employee?.job_profile_details}</td>
                       <th>
                         <button

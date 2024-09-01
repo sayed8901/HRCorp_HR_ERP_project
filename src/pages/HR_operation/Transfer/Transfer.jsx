@@ -105,7 +105,10 @@ const Transfer = () => {
                 <td>Permanent Address</td>
                 <td>Present Address</td>
 
-                <td>Job Profile History Details of The Employee</td>
+                <td>
+                  Job Profile Details of The Employee Describing The Full
+                  History of The Employee
+                </td>
                 <th>Action</th>
               </tr>
             </thead>
