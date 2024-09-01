@@ -36,6 +36,7 @@ const AllEmployeeList = () => {
               <tr>
                 <th>ID</th>
                 <td>Status</td>
+                <td>Name</td>
                 <td>Designation</td>
                 <td>Department</td>
                 <td>Location</td>
@@ -59,7 +60,6 @@ const AllEmployeeList = () => {
                 <td>Net Salary</td>
                 <td>Consolidated Salary</td>
 
-                <td>Name</td>
                 <td>Father</td>
                 <td>Mother</td>
                 <td>Gender</td>
@@ -82,6 +82,7 @@ const AllEmployeeList = () => {
                 <tr key={employee?.employee_id} className="hover">
                   <th>{employee?.employee_id}</th>
                   <td>{employee?.employment_info?.status}</td>
+                  <td>{employee?.personal_info?.name}</td>
                   <td>{employee?.employment_info?.designation}</td>
                   <td>{employee?.employment_info?.department}</td>
                   <td>{employee?.employment_info?.job_location}</td>
@@ -105,7 +106,6 @@ const AllEmployeeList = () => {
                   <td>{employee?.salary_info?.net_salary}</td>
                   <td>{employee?.salary_info?.consolidated_salary}</td>
 
-                  <td>{employee?.personal_info?.name}</td>
                   <td>{employee?.personal_info?.father_name}</td>
                   <td>{employee?.personal_info?.mother_name}</td>
                   <td>{employee?.personal_info?.gender}</td>

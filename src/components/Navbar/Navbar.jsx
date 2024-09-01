@@ -62,7 +62,9 @@ const Navbar = () => {
   return (
     <div
       className={`navbar bg-base-200 h-12 sticky top-0 z-10 rounded transition-opacity duration-300
-      ${isNavbarVisible ? "opacity-100" : "opacity-0"}}`}
+      ${
+        isNavbarVisible ? "opacity-100" : "opacity-0"
+      } transition-opacity duration-300}`}
     >
       <div className="navbar-start">
         <div className="lg:hidden dropdown">
@@ -96,7 +98,7 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <Link to={"/"} className="flex items-center gap-5 sm:px-5">
+        <Link to={"/"} className="flex items-center gap-2 sm:gap-5 sm:px-5">
           <img src={logo} className="w-10" alt="HRCorp Logo" />
           <h5 className="text-xl sm:text-2xl font-bold">HRCorp</h5>
         </Link>

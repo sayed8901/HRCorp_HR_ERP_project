@@ -639,7 +639,7 @@ const EntryNewEmployee = () => {
           {/* salary info */}
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base md:text-xl font-semibold leading-7  ">
-              Employment Information
+              Salary Information
             </h2>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-8">

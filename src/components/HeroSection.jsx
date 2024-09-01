@@ -8,7 +8,7 @@ const HeroSection = () => {
         className="hero min-h-screen"
         style={{
           backgroundImage: `url(${banner})`,
-          minHeight: "calc(100vh - 65px)",
+          minHeight: "calc(100vh - 60px)",
         }}
       >
         <div className="hero-overlay bg-opacity-70"></div>

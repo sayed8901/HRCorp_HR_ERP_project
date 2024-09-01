@@ -41,7 +41,7 @@ const AuthMenuItems = ({ user, handleLogout }) => {
     );
   } else {
     return (
-      <div className="flex gap-3 items-center mr-3">
+      <div className="flex gap-0 sm:gap-3 items-center mr-1 sm:mr-3">
         <NavLink
           to="/login"
           className="rounded-md p-2 text-sm font-medium btn-ghost border-0"
@@ -55,7 +55,7 @@ const AuthMenuItems = ({ user, handleLogout }) => {
             role="button"
             className="rounded-md p-2 text-sm font-medium btn-ghost border-0"
           >
-            Registration
+            Register
           </div>
           <ul
             tabIndex={0}

@@ -63,7 +63,7 @@ const MainMenuItems = ({ user }) => {
                   to="/view_employee_details"
                   className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                 >
-                  Employee details view
+                  Employee details_view
                 </NavLink>
               </li>
               <li>
