@@ -10,14 +10,6 @@ const TransferModal = ({
   isProcessing,
   error,
 }) => {
-  const [formData, setTransferData] = useState({
-    transfer_from_location: "",
-    transfer_from_department: "",
-    transfer_to_location: "",
-    transfer_to_department: "",
-    transfer_effective_date: "",
-  });
-
   const [departments, setDepartments] = useState([]);
   const [job_Locations, setJobLocation] = useState([]);
 
@@ -38,6 +30,15 @@ const TransferModal = ({
       })
       .catch((err) => console.log("Error fetching designations:", err));
   }, []);
+
+  // declaring a initial state for transfer data
+  const [formData, setTransferData] = useState({
+    transfer_from_location: "",
+    transfer_from_department: "",
+    transfer_to_location: "",
+    transfer_to_department: "",
+    transfer_effective_date: "",
+  });
 
   useEffect(() => {
     if (isOpen && employee) {
@@ -61,15 +62,18 @@ const TransferModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // getting 'transfer_to_location' from modal form data
     const selectedToLocation = job_Locations.find(
       (location) => location.id === parseInt(formData.transfer_to_location)
     )?.name;
 
+    // getting 'transfer_to_department' from modal form data
     const selectedToDepartment = departments.find(
       (department) =>
         department.id === parseInt(formData.transfer_to_department)
     )?.name;
 
+    // preparing the final modal data to submit
     const finalData = {
       transfer_from_location: formData.transfer_from_location,
       transfer_from_department: formData.transfer_from_department,
@@ -80,6 +84,7 @@ const TransferModal = ({
 
     console.log(finalData);
 
+    // calling the handleTransfer function (in the Transfer.jsx) triggering from the transfer BTN to call the Transfer_Processing API method
     onTransfer(employee.employee_id, finalData);
   };
 
@@ -131,7 +136,6 @@ const TransferModal = ({
                   onChange={handleChange}
                   required
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-5 py-2"
-                  disabled={isProcessing}
                 >
                   <option value="" disabled>
                     Select job location
@@ -180,7 +184,6 @@ const TransferModal = ({
                   onChange={handleChange}
                   required
                   className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-5 py-2"
-                  disabled={isProcessing}
                 >
                   <option value="" disabled>
                     Select department
@@ -211,7 +214,6 @@ const TransferModal = ({
                 onChange={handleChange}
                 required
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-5 py-2"
-                disabled={isProcessing}
               />
             </div>
           </div>
@@ -243,7 +245,7 @@ TransferModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onTransfer: PropTypes.func.isRequired,
-  employee: PropTypes.object.isRequired,
+  employee: PropTypes.object,
   isProcessing: PropTypes.bool.isRequired,
   error: PropTypes.string,
 };

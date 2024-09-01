@@ -14,6 +14,7 @@ import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
 import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
 import EmployeeDetails from "./pages/HR_staff_management/EmployeeDetails/EmployeeDetails.jsx";
 import Transfer from "./pages/HR_operation/Transfer/Transfer.jsx";
+import Confirmation from "./pages/HR_operation/Job_confirmation/Confirmation.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -35,24 +36,6 @@ export const router = createBrowserRouter([
         element: <HomePage></HomePage>,
       },
 
-      // power_user routes
-      {
-        path: "/power_user_register",
-        element: (
-          <LazyLoad>
-            <PowerUserRegister></PowerUserRegister>
-          </LazyLoad>
-        ),
-      },
-      {
-        path: "/power_user_profile",
-        element: (
-          <LazyLoad>
-            <PowerUserProfile></PowerUserProfile>
-          </LazyLoad>
-        ),
-      },
-
       // standard_user routes
       {
         path: "/standard_user_register",
@@ -71,6 +54,24 @@ export const router = createBrowserRouter([
         ),
       },
 
+      // power_user routes
+      {
+        path: "/power_user_register",
+        element: (
+          <LazyLoad>
+            <PowerUserRegister></PowerUserRegister>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/power_user_profile",
+        element: (
+          <LazyLoad>
+            <PowerUserProfile></PowerUserProfile>
+          </LazyLoad>
+        ),
+      },
+
       // common routes both for power_user & standard_user
       {
         path: "/login",
@@ -80,6 +81,7 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
+
       {
         path: "/entry_new_employee",
         element: (
@@ -96,6 +98,7 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
+
       {
         path: "/transfer",
         element: (
@@ -104,7 +107,15 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
-      
+      {
+        path: "/confirmation",
+        element: (
+          <LazyLoad>
+            <Confirmation></Confirmation>
+          </LazyLoad>
+        ),
+      },
+
       // accessible routes for power_user, standard_user, general employee or no logged_in_user
       {
         path: "/employee_details/:employee_id",

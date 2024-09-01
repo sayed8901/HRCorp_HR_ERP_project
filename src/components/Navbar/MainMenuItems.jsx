@@ -132,14 +132,6 @@ const MainMenuItems = ({ user }) => {
             )}
             <li>
               <NavLink
-                to="/training"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Training
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/confirmation"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
@@ -160,6 +152,14 @@ const MainMenuItems = ({ user }) => {
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Separation
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/training"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Training
               </NavLink>
             </li>
           </ul>
@@ -191,7 +191,7 @@ const MainMenuItems = ({ user }) => {
           >
             <li>
               <NavLink
-                to="/joining"
+                to="/joining_report"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Joining
@@ -199,7 +199,7 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
-                to="/separation"
+                to="/separation_report"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Separation
@@ -207,7 +207,7 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
-                to="/confirmation"
+                to="/confirmation_report"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Confirmation
@@ -215,7 +215,7 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
-                to="/promotion"
+                to="/promotion_report"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Promotion
@@ -223,7 +223,7 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
-                to="/transfer"
+                to="/transfer_report"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Transfer
@@ -231,7 +231,7 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
-                to="/training"
+                to="/training_report"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Training

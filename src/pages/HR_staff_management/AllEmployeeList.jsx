@@ -42,7 +42,9 @@ const AllEmployeeList = () => {
                 <td>Location</td>
                 <td>Joining Date</td>
                 <td>Probation (months)</td>
+                <td>tentative_confirm_date</td>
                 <td>Is_confirmed</td>
+                <td>confirm_effective_date</td>
 
                 <td>Salary Grade</td>
                 <td>Starting Basic</td>
@@ -88,7 +90,13 @@ const AllEmployeeList = () => {
                   <td>{employee?.employment_info?.job_location}</td>
                   <td>{employee?.employment_info?.joining_date}</td>
                   <td>{employee?.employment_info?.probation_period_months}</td>
-                  <td>{employee?.employment_info?.is_confirmed}</td>
+                  <td>
+                    {employee?.employment_info?.tentative_confirmation_date}
+                  </td>
+                  <td>{employee?.salary_info?.is_confirmed ? "Yes" : "No"}</td>
+                  <td>
+                    {employee?.employment_info?.confirmation_effective_date}
+                  </td>
 
                   <td>{employee?.salary_info?.salary_grade}</td>
                   <td>{employee?.salary_info?.starting_basic}</td>
@@ -122,7 +130,7 @@ const AllEmployeeList = () => {
                   <td>{employee?.job_profile_details}</td>
                   <th>
                     <button
-                      className="btn btn-xs btn-outline btn-accent"
+                      className="btn btn-xs btn-outline btn-accent h-10"
                       onClick={() => handleViewDetails(employee?.employee_id)}
                     >
                       View
