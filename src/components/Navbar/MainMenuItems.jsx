@@ -266,14 +266,24 @@ const MainMenuItems = ({ user }) => {
           >
             {(user.userType === "power_user" ||
               user.userType === "standard_user") && (
-              <li>
-                <NavLink
-                  to="/entry_leave_data"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-                >
-                  Entry leave_data
-                </NavLink>
-              </li>
+              <>
+                <li>
+                  <NavLink
+                    to="/entry_leave_data"
+                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  >
+                    Entry leave_data
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/entry_late_attendance"
+                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  >
+                    Entry late attendance
+                  </NavLink>
+                </li>
+              </>
             )}
             {user.userType === "power_user" && (
               <>
@@ -290,7 +300,7 @@ const MainMenuItems = ({ user }) => {
                     to="/salary_sheet"
                     className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                   >
-                    Salary sheet
+                    Salary_sheet
                   </NavLink>
                 </li>
               </>

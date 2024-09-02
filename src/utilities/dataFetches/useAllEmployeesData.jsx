@@ -79,7 +79,7 @@ const useEmployeesData = () => {
           );
           // Step 2: Add serial number to each profile detail
           const numberedProfileDetails = filteredProfileInfo.map(
-            (info, index) => `${index + 1}. ${info.details}`
+            (info, index) => `**${index + 1}.** ${info.details}`
           );
           // Step 3: Combine all details with a comma separator
           const jobProfileDetails = numberedProfileDetails.join(" , ");

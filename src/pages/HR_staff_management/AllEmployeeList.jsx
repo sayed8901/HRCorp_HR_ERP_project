@@ -81,7 +81,7 @@ const AllEmployeeList = () => {
 
                 <td>
                   Job Profile Details of The Employee Describing The Full
-                  History of The Employee
+                  History of The Employee During His Employment
                 </td>
                 <th>Details</th>
               </tr>
