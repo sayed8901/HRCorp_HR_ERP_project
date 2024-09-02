@@ -10,19 +10,7 @@ const ConfirmationModal = ({
   isProcessing,
   error,
 }) => {
-  //   const [designations, setDesignations] = useState([]);
-
-  useEffect(() => {
-    // Fetch designations for the dropdown
-    fetch(`${import.meta.env.VITE_API_URL}/employment/designations/`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        // setDesignations(data);
-      })
-      .catch((err) => console.log("Error fetching designations:", err));
-  }, []);
-
+  const [designations, setDesignations] = useState([]);
   const [formData, setConfirmationData] = useState({
     confirmed_designation: "",
     confirmed_grade: "",
@@ -31,16 +19,43 @@ const ConfirmationModal = ({
   });
 
   useEffect(() => {
+    // Fetch designations for the dropdown
+    fetch(`${import.meta.env.VITE_API_URL}/employment/designations/`)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setDesignations(data);
+      })
+      .catch((err) => console.log("Error fetching designations:", err));
+  }, []);
+
+  // Function to get the designation ID by using designation name
+  const getDesignationIdByName = (name) => {
+    const designation = designations.find((post) => post.name === name);
+    return designation ? designation.id : "";
+  };
+
+  // Function to get the designation name by using designation ID
+  // it is needed because, we need to sent the designation id for API POST requests
+  const getDesignationName = (id) => {
+    const designation = designations.find((post) => post.id === id);
+    return designation ? designation.name : "";
+  };
+
+  // Initialize formData when the modal is opened or employee data changes
+  useEffect(() => {
     if (isOpen && employee) {
       setConfirmationData({
-        confirmed_designation: employee?.employment_info?.designation || "",
+        confirmed_designation: getDesignationIdByName(
+          employee?.employment_info?.designation
+        ),
         confirmed_grade: employee?.salary_info?.salary_grade || "",
         confirmed_step: employee?.salary_info?.salary_step || "",
         confirmation_effective_date:
           employee?.employment_info?.tentative_confirmation_date || "",
       });
     }
-  }, [isOpen, employee]);
+  }, [isOpen, employee, designations]);
 
   const handleChange = (e) => {
     setConfirmationData({
@@ -93,7 +108,7 @@ const ConfirmationModal = ({
                   type="text"
                   name="confirmed_designation"
                   id="confirmed_designation"
-                  value={employee?.employment_info?.designation || ""}
+                  value={getDesignationName(formData.confirmed_designation)}
                   disabled
                   className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 bg-gray-100 text-gray-900 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                 />
@@ -117,24 +132,14 @@ const ConfirmationModal = ({
                     required
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
                   >
-                    <option
-                      value={employee?.salary_info?.salary_grade}
-                      disabled
-                    >
-                      {employee?.salary_info?.salary_grade}
+                    <option value="" disabled>
+                      Select a grade
                     </option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
+                    {Array.from({ length: 12 }, (_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -155,19 +160,14 @@ const ConfirmationModal = ({
                     required
                     className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
                   >
-                    <option value={employee?.salary_info?.salary_step} disabled>
-                      {employee?.salary_info?.salary_step}
+                    <option value="" disabled>
+                      Select a step
                     </option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
+                    {Array.from({ length: 10 }, (_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
