@@ -194,7 +194,7 @@ const ConfirmationModal = ({
             </div>
           </div>
 
-          <div className="mt-4 flex justify-around">
+          <div className="mt-4 flex justify-around gap-4">
             <button
               type="button"
               disabled={isProcessing}

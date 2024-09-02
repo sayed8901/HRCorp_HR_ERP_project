@@ -113,8 +113,16 @@ const Transfer = () => {
               </tr>
             </thead>
             <tbody>
-              {allActiveEmployeesInfo?.map((employee) => (
-                <tr key={employee?.employee_id} className="hover">
+              {allActiveEmployeesInfo?.map((employee, index) => (
+                <tr
+                  key={employee?.employee_id}
+                  // here, length - 1 is used not to apply bottom border for the very last line of the table
+                  className={`hover ${
+                    index < allActiveEmployeesInfo.length - 1
+                      ? "border-b-2 border-indigo-300"
+                      : ""
+                  }`}
+                >
                   <th>{employee?.employee_id}</th>
                   <td>{employee?.employment_info?.status}</td>
                   <td>{employee?.personal_info?.name}</td>

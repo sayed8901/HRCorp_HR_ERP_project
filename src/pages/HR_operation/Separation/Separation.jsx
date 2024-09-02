@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
-import PromotionModal from "./PromotionModal";
+import SeparationModal from "./SeparationModal";
 
-const Promotion = () => {
+const Separation = () => {
   const navigate = useNavigate();
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
   const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -28,8 +28,8 @@ const Promotion = () => {
 
   const token = localStorage.getItem("authToken");
 
-  const handlePromote = async (employee_id, promotionData) => {
-    // console.log("promotion btn clicked");
+  const handleSeparation = async (employee_id, separationData) => {
+    // console.log("separation BTN clicked");
 
     setIsProcessing(true);
     setModalError(""); // Clear any previous errors
@@ -38,26 +38,27 @@ const Promotion = () => {
       const response = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/promotion/promote/?employee_id=${employee_id}`,
+        }/separation/deactivate/?employee_id=${employee_id}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Token ${token}`,
           },
-          body: JSON.stringify(promotionData),
+          body: JSON.stringify(separationData),
         }
       );
 
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(
-          errorData.detail || "Failed to make job promotion for the employee."
+          errorData.detail ||
+            "Failed to process the separation for the employee."
         );
       }
 
       // Show success toast message
-      toast.success("Job promotion was successful!");
+      toast.success("Employee separation was successful!");
 
       // Delay page refresh to allow toast to be shown
       setTimeout(() => {
@@ -65,9 +66,9 @@ const Promotion = () => {
       }, 1000); // Adjust delay as needed
     } catch (error) {
       setModalError(
-        error.message || "An error occurred while processing the job promotion."
+        error.message || "An error occurred while processing the separation."
       );
-      toast.error("Failed to make job promotion for the employee."); // Show error toast message
+      toast.error("Failed to process the separation for the employee."); // Show error toast message
     } finally {
       setIsProcessing(false);
       handleCloseModal(); // Close the modal after processing
@@ -81,7 +82,7 @@ const Promotion = () => {
           <div className="px-4 sm:px-0">
             <h2 className="w-full sm:w-1/2 mx-auto text-center text-3xl font-semibold leading-8 mb-10">
               <span className="text-gradient">
-                All ({allActiveEmployeesInfo?.length}) Active Employee
+                All ({allActiveEmployeesInfo?.length}) Active Employees
               </span>{" "}
               List
             </h2>
@@ -110,9 +111,7 @@ const Promotion = () => {
                   <td>Joining Date</td>
                   <td>Is Confirmed</td>
                   <td>Confirmation Effective Date</td>
-
                   <td>Last Promotion Date</td>
-
                   <td>Salary Grade</td>
                   <td>Starting Basic</td>
                   <td>Salary Step</td>
@@ -128,7 +127,6 @@ const Promotion = () => {
                   <td>Tax Deduction</td>
                   <td>Net Salary</td>
                   <td>Consolidated Salary</td>
-
                   <td>
                     Job Profile Details of The Employee Describing The Full
                     History of The Employee During His Employment
@@ -140,7 +138,6 @@ const Promotion = () => {
                 {allActiveEmployeesInfo?.map((employee, index) => (
                   <tr
                     key={employee?.employee_id}
-                    // here, length - 1 is used not to apply bottom border for the very last line of the table
                     className={`hover ${
                       index < allActiveEmployeesInfo.length - 1
                         ? "border-b-2 border-indigo-300"
@@ -160,11 +157,9 @@ const Promotion = () => {
                     <td>
                       {employee?.employment_info?.confirmation_effective_date}
                     </td>
-
                     <td>
                       {employee?.last_promotion?.promotion_effective_date}
                     </td>
-
                     <td>{employee?.salary_info?.salary_grade}</td>
                     <td>{employee?.salary_info?.starting_basic}</td>
                     <td>{employee?.salary_info?.salary_step}</td>
@@ -180,14 +175,13 @@ const Promotion = () => {
                     <td>{employee?.salary_info?.tax_deduction}</td>
                     <td>{employee?.salary_info?.net_salary}</td>
                     <td>{employee?.salary_info?.consolidated_salary}</td>
-
                     <td>{employee?.job_profile_details}</td>
                     <th>
                       <button
                         className="btn btn-xs btn-outline btn-accent h-10"
                         onClick={() => handleOpenModal(employee)}
                       >
-                        Promotion
+                        Separate
                       </button>
                     </th>
                   </tr>
@@ -198,10 +192,10 @@ const Promotion = () => {
         </div>
 
         {isModalOpen && (
-          <PromotionModal
+          <SeparationModal
             isOpen={isModalOpen}
             onClose={handleCloseModal}
-            onPromote={handlePromote}
+            onSeparate={handleSeparation}
             employee={selectedEmployee}
             isProcessing={isProcessing}
             error={modalError}
@@ -212,4 +206,4 @@ const Promotion = () => {
   );
 };
 
-export default Promotion;
+export default Separation;

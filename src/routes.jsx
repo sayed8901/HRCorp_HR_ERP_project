@@ -16,6 +16,7 @@ import EmployeeDetails from "./pages/HR_staff_management/EmployeeDetails/Employe
 import Transfer from "./pages/HR_operation/Transfer/Transfer.jsx";
 import Confirmation from "./pages/HR_operation/Job_confirmation/Confirmation.jsx";
 import Promotion from "./pages/HR_operation/Promotion/Promotion.jsx";
+import Separation from "./pages/HR_operation/Separation/Separation.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -121,6 +122,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <Promotion></Promotion>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/separation",
+        element: (
+          <LazyLoad>
+            <Separation></Separation>
           </LazyLoad>
         ),
       },
