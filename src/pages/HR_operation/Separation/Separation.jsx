@@ -109,24 +109,16 @@ const Separation = () => {
                   <td>Department</td>
                   <td>Location</td>
                   <td>Joining Date</td>
+
                   <td>Is Confirmed</td>
                   <td>Confirmation Effective Date</td>
                   <td>Last Promotion Date</td>
-                  <td>Salary Grade</td>
-                  <td>Starting Basic</td>
-                  <td>Salary Step</td>
-                  <td>Effective Basic</td>
-                  <td>House Rent</td>
-                  <td>Medical</td>
-                  <td>Conveyance</td>
-                  <td>Hardship</td>
-                  <td>PF Contribution</td>
-                  <td>Gross Salary</td>
-                  <td>PF Deduction</td>
-                  <td>SWF Deduction</td>
-                  <td>Tax Deduction</td>
-                  <td>Net Salary</td>
-                  <td>Consolidated Salary</td>
+
+                  <td>Separation Type</td>
+                  <td>Cause of Separation</td>
+                  <td>Separation Application Date</td>
+                  <td>Separation Effective Date</td>
+
                   <td>
                     Job Profile Details of The Employee Describing The Full
                     History of The Employee During His Employment
@@ -151,6 +143,7 @@ const Separation = () => {
                     <td>{employee?.employment_info?.department}</td>
                     <td>{employee?.employment_info?.job_location}</td>
                     <td>{employee?.employment_info?.joining_date}</td>
+
                     <td>
                       {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                     </td>
@@ -160,21 +153,14 @@ const Separation = () => {
                     <td>
                       {employee?.last_promotion?.promotion_effective_date}
                     </td>
-                    <td>{employee?.salary_info?.salary_grade}</td>
-                    <td>{employee?.salary_info?.starting_basic}</td>
-                    <td>{employee?.salary_info?.salary_step}</td>
-                    <td>{employee?.salary_info?.effective_basic}</td>
-                    <td>{employee?.salary_info?.house_rent}</td>
-                    <td>{employee?.salary_info?.medical_allowance}</td>
-                    <td>{employee?.salary_info?.conveyance}</td>
-                    <td>{employee?.salary_info?.hardship}</td>
-                    <td>{employee?.salary_info?.pf_contribution}</td>
-                    <td>{employee?.salary_info?.gross_salary}</td>
-                    <td>{employee?.salary_info?.pf_deduction}</td>
-                    <td>{employee?.salary_info?.swf_deduction}</td>
-                    <td>{employee?.salary_info?.tax_deduction}</td>
-                    <td>{employee?.salary_info?.net_salary}</td>
-                    <td>{employee?.salary_info?.consolidated_salary}</td>
+
+                    <td>{employee?.separation_info?.separation_type}</td>
+                    <td>{employee?.separation_info?.cause_of_separation}</td>
+                    <td>
+                      {employee?.separation_info?.application_submission_date}
+                    </td>
+                    <td>{employee?.separation_info?.separation_effect_date}</td>
+
                     <td>{employee?.job_profile_details}</td>
                     <th>
                       <button

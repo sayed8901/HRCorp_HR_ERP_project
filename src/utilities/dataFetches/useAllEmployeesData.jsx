@@ -7,6 +7,7 @@ const useEmployeesData = () => {
   const [allSalaryInfo, setAllSalaryInfo] = useState([]);
   const [allJobProfileHistory, setAllJobProfileHistory] = useState([]);
   const [allPromotionInfo, setAllPromotionInfo] = useState([]);
+  const [allSeparationInfo, setAllSeparationInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -41,7 +42,7 @@ const useEmployeesData = () => {
         const salaryInfo = await salaryInfoResponse.json();
         setAllSalaryInfo(salaryInfo);
 
-        // fetch promotional info
+        // Fetch promotion info
         const promotionInfoResponse = await fetch(
           `${import.meta.env.VITE_API_URL}/promotion/list/`
         );
@@ -55,22 +56,35 @@ const useEmployeesData = () => {
         const profileInfo = await profileInfoResponse.json();
         setAllJobProfileHistory(profileInfo);
 
+        // Fetch separation info
+        const separationInfoResponse = await fetch(
+          `${import.meta.env.VITE_API_URL}/separation/list/`
+        );
+        const separationInfo = await separationInfoResponse.json();
+        setAllSeparationInfo(separationInfo);
+
         // Combine data (via searching by employee_ID)
         const combinedData = employeeIDs.map((employee) => {
-          // personal information
+          // Personal information
           const personal =
             personalInfo.find(
               (info) => info.employee === employee.employee_id
             ) || {};
-          // employment information
+          // Employment information
           const employment =
             employmentInfo.find(
               (info) => info.employee === employee.employee_id
             ) || {};
-          // salary information
+          // Salary information
           const salary =
             salaryInfo.find((info) => info.employee === employee.employee_id) ||
             {};
+
+          // Find the separation info for the employee
+          const separationInfoForEmployee =
+            separationInfo.find(
+              (info) => info.employee === employee.employee_id
+            ) || {};
 
           // Aggregate details text from all job profile entries
           // Step 1: Filter job profile entries by employee ID
@@ -99,8 +113,9 @@ const useEmployeesData = () => {
             personal_info: personal,
             employment_info: employment,
             salary_info: salary,
-            job_profile_details: jobProfileDetails, // Combined job profile details
-            last_promotion: lastPromotionInfo, // Last promotion object
+            job_profile_details: jobProfileDetails,
+            last_promotion: lastPromotionInfo,
+            separation_info: separationInfoForEmployee,
           };
         });
 
@@ -128,6 +143,7 @@ const useEmployeesData = () => {
       allSalaryInfo: [],
       allJobProfileHistory: [],
       allPromotionInfo: [],
+      allSeparationInfo: [],
       loading: true,
       error: null,
     };
@@ -140,6 +156,7 @@ const useEmployeesData = () => {
       allSalaryInfo: [],
       allJobProfileHistory: [],
       allPromotionInfo: [],
+      allSeparationInfo: [],
       loading: false,
       error,
     };
@@ -152,6 +169,7 @@ const useEmployeesData = () => {
     allSalaryInfo,
     allJobProfileHistory,
     allPromotionInfo,
+    allSeparationInfo,
     loading,
     error,
   };

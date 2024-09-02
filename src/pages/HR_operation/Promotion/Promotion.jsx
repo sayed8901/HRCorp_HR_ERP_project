@@ -108,9 +108,9 @@ const Promotion = () => {
                   <td>Department</td>
                   <td>Location</td>
                   <td>Joining Date</td>
+
                   <td>Is Confirmed</td>
                   <td>Confirmation Effective Date</td>
-
                   <td>Last Promotion Date</td>
 
                   <td>Salary Grade</td>
@@ -154,13 +154,13 @@ const Promotion = () => {
                     <td>{employee?.employment_info?.department}</td>
                     <td>{employee?.employment_info?.job_location}</td>
                     <td>{employee?.employment_info?.joining_date}</td>
+
                     <td>
                       {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                     </td>
                     <td>
                       {employee?.employment_info?.confirmation_effective_date}
                     </td>
-
                     <td>
                       {employee?.last_promotion?.promotion_effective_date}
                     </td>

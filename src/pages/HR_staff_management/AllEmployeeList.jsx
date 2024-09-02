@@ -6,7 +6,7 @@ const AllEmployeeList = () => {
   const { allEmployeesFullInfo, loading, error } = useEmployeesData();
   const navigate = useNavigate();
 
-  // console.log(allEmployeesFullInfo);
+  console.log(allEmployeesFullInfo);
 
   const handleViewDetails = (employee_id) => {
     navigate(`/employee_details/${employee_id}`);
@@ -50,6 +50,11 @@ const AllEmployeeList = () => {
 
                 <td>Last Promotion Date</td>
 
+                <td>Separation Type</td>
+                <td>Cause of Separation</td>
+                <td>Separation Application Date</td>
+                <td>Separation Effective Date</td>
+
                 <td>Salary Grade</td>
                 <td>Starting Basic</td>
                 <td>Salary Step</td>
@@ -90,7 +95,7 @@ const AllEmployeeList = () => {
               {allEmployeesFullInfo?.map((employee, index) => (
                 <tr
                   key={employee?.employee_id}
-                  // here, length - 1 is used not to apply bottom border for the very last line of the table 
+                  // here, length - 1 is used not to apply bottom border for the very last line of the table
                   className={`hover ${
                     index < allEmployeesFullInfo.length - 1
                       ? "border-b-2 border-indigo-300"
@@ -114,6 +119,13 @@ const AllEmployeeList = () => {
                   </td>
 
                   <td>{employee?.last_promotion?.promotion_effective_date}</td>
+
+                  <td>{employee?.separation_info?.separation_type}</td>
+                  <td>{employee?.separation_info?.cause_of_separation}</td>
+                  <td>
+                    {employee?.separation_info?.application_submission_date}
+                  </td>
+                  <td>{employee?.separation_info?.separation_effect_date}</td>
 
                   <td>{employee?.salary_info?.salary_grade}</td>
                   <td>{employee?.salary_info?.starting_basic}</td>
