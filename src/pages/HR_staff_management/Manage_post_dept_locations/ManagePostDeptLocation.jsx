@@ -112,12 +112,20 @@ const ManagePostDeptLocation = () => {
 
   return (
     <div className="mt-16 mb-10 mx-2 sm:mx-5 lg:mx-10">
-      <div className="sm:mx-auto">
-        <h2 className="my-10 text-center text-2xl font-semibold leading-9 tracking-tight">
-          Here you can view all the available designations, departments, and job
-          locations. You can also{" "}
-          <span className="text-gradient">Add or Update</span> any item.
-        </h2>
+      <div className="sm:mx-auto my-10 text-center text-xl md:text-2xl font-semibold leading-9 tracking-tight">
+        <p>
+          Here you can view all the available{" "}
+          <span className="text-gradient">
+            designations, departments, and job locations
+          </span>
+          .
+        </p>
+        {user.userType === "power_user" && (
+          <p>
+            You can also <span className="text-gradient">Add or Update</span>{" "}
+            any item.
+          </p>
+        )}
       </div>
 
       <div className="flex flex-col md:flex-row w-full">
@@ -130,7 +138,7 @@ const ManagePostDeptLocation = () => {
           {/* add btn */}
           {user.userType === "power_user" && (
             <button
-              className="btn btn-primary my-4"
+              className="btn btn-primary mt-4 mb-8 font-bold text-md"
               onClick={() => handleAdd("departments")}
             >
               Add Department
@@ -169,7 +177,7 @@ const ManagePostDeptLocation = () => {
           {/* add btn */}
           {user.userType === "power_user" && (
             <button
-              className="btn btn-primary my-4"
+              className="btn btn-primary mt-4 mb-8 font-bold text-md"
               onClick={() => handleAdd("designations")}
             >
               Add Designation
@@ -208,7 +216,7 @@ const ManagePostDeptLocation = () => {
           {/* add btn */}
           {user.userType === "power_user" && (
             <button
-              className="btn btn-primary my-4"
+              className="btn btn-primary mt-4 mb-8 font-bold text-md"
               onClick={() => handleAdd("job_locations")}
             >
               Add Location

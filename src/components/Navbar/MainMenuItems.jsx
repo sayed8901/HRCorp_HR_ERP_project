@@ -214,6 +214,14 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
+                to="/transfer_report"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Transfer
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
                 to="/confirmation_report"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
@@ -226,14 +234,6 @@ const MainMenuItems = ({ user }) => {
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Promotion
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/transfer_report"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Transfer
               </NavLink>
             </li>
             <li>
@@ -324,56 +324,6 @@ const MainMenuItems = ({ user }) => {
       >
         Recruitment portal
       </NavLink>
-
-      {/* Extra dropdown menu */}
-      {/* {user.userType === "power_user" && (
-        <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
-          <div
-            tabIndex={0}
-            role="button"
-            className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-            onClick={() => handleMenuToggle("powerAccess")}
-          >
-            Power Access
-          </div>
-          <ul
-            tabIndex={0}
-            className={`menu dropdown-content bg-base-100 rounded-box z-[1] p-2 -mt-8 lg:mt-2 shadow-lg space-y-2 ${
-              openMenu === "powerAccess" ? "block" : "hidden"
-            }`}
-            style={{
-              position: "absolute",
-              top: "100%",
-              right: "0",
-            }}
-          >
-            <li>
-              <NavLink
-                to="/manage_designation"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Manage designation
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/manage_department"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Manage department
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/manage_job_location"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Manage job_location
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      )} */}
     </>
   );
 };
