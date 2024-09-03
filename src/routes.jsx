@@ -17,6 +17,7 @@ import Transfer from "./pages/HR_operation/Transfer/Transfer.jsx";
 import Confirmation from "./pages/HR_operation/Job_confirmation/Confirmation.jsx";
 import Promotion from "./pages/HR_operation/Promotion/Promotion.jsx";
 import Separation from "./pages/HR_operation/Separation/Separation.jsx";
+import ManagePostDeptLocation from "./pages/HR_staff_management/Manage_post_dept_locations/ManagePostDeptLocation.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -134,7 +135,7 @@ export const router = createBrowserRouter([
         ),
       },
 
-      // accessible routes for power_user, standard_user, general employee or no logged_in_user
+      // accessible routes for power_user, standard_user, general employee or even if there is no logged_in_user
       {
         path: "/employee_details/:employee_id",
         element: (
@@ -148,6 +149,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <EmployeeDetails></EmployeeDetails>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/manage_post_dept_location",
+        element: (
+          <LazyLoad>
+            <ManagePostDeptLocation></ManagePostDeptLocation>
           </LazyLoad>
         ),
       },

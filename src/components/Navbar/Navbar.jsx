@@ -91,7 +91,7 @@ const Navbar = () => {
 
           <ul
             tabIndex={1}
-            className="dropdown-content menu menu-sm lg:hidden bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="dropdown-content menu menu-sm lg:hidden bg-base-100 rounded-box z-[1] mt-3 w-64 p-2 shadow"
           >
             {/* conditionally rendering main menu items for mobile */}
             <MainMenuItems user={user}></MainMenuItems>

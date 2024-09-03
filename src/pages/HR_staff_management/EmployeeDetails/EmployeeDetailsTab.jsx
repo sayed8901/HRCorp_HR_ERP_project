@@ -380,7 +380,7 @@ const EmployeeDetailsTab = ({ employee_id }) => {
                   <div
                     className={`timeline-${
                       index % 2 === 0 ? "start" : "end"
-                    } mb-10`}
+                    } mb-3`}
                   >
                     <time className="font-mono italic">
                       {jobProfile.start_date}

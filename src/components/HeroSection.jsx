@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import banner from "../../src/assets/banner.jpg";
 
 const HeroSection = () => {
+  const userType = localStorage.getItem('user_type');
+
   return (
     <div>
       <div
@@ -29,9 +31,15 @@ const HeroSection = () => {
                 & final settlement, etc{" "}
               </p>
             </div>
-            <Link to="/login" className="btn btn-primary">
-              Get Started
-            </Link>
+            {userType === "standard_user" || userType === "power_user" ? (
+              <Link to="/all_employee" className="btn btn-primary">
+                Browse All Employee
+              </Link>
+            ) : (
+              <Link to="/login" className="btn btn-primary">
+                Get Started
+              </Link>
+            )}
           </div>
         </div>
       </div>

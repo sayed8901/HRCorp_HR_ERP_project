@@ -4,6 +4,7 @@ import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import EmployeeDetailsTab from "./EmployeeDetailsTab";
 import NotFoundPage from "../../NotFoundPage";
+import SampleKeyboardLayout from "../../../components/SampleKeyboardLayout";
 
 const EmployeeDetails = () => {
   const { employee_id: urlEmployeeId } = useParams();
@@ -110,7 +111,13 @@ const EmployeeDetails = () => {
         </div>
 
         {/* Using tabs component */}
-        {submittedId && <EmployeeDetailsTab employee_id={submittedId} />}
+        {submittedId ? (
+          <EmployeeDetailsTab employee_id={submittedId} />
+        ) : (
+          // {/* extra design part */}
+          // {/* rendering conditionally the sample keyboard layout */}
+          <SampleKeyboardLayout></SampleKeyboardLayout>
+        )}
       </div>
     </div>
   );

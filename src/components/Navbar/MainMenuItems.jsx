@@ -12,7 +12,7 @@ const MainMenuItems = ({ user }) => {
   return (
     <>
       {/* HR Staff Management */}
-      <div className="dropdown m-2 w-56 lg:w-24 lg:text-center">
+      <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-24 lg:text-center">
         <div
           tabIndex={0}
           role="button"
@@ -53,36 +53,43 @@ const MainMenuItems = ({ user }) => {
               </li>
             </>
           )}
-          {(user.userType === "standard_user" ||
-            user.userType === "power_user" ||
-            user.userType === "employee" ||
-            !user.userType) && (
-            <>
+
+          <>
+            <li>
+              <NavLink
+                to="/view_employee_details"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Employee details_view
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/employee_dashboard"
+                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              >
+                Employee dashboard
+              </NavLink>
+            </li>
+            {(user.userType === "standard_user" ||
+              user.userType === "power_user") && (
               <li>
                 <NavLink
-                  to="/view_employee_details"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  to="/manage_post_dept_location"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0 w-40 lg:w-full"
                 >
-                  Employee details_view
+                  Manage Post, Dept. & Location
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/employee_dashboard"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-                >
-                  Employee dashboard
-                </NavLink>
-              </li>
-            </>
-          )}
+            )}
+          </>
         </ul>
       </div>
 
       {/* HR Operations */}
       {(user.userType === "standard_user" ||
         user.userType === "power_user") && (
-        <div className="dropdown m-2 w-56 lg:w-20 lg:text-center">
+        <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
           <div
             tabIndex={0}
             role="button"
@@ -169,7 +176,7 @@ const MainMenuItems = ({ user }) => {
       {/* Reports */}
       {(user.userType === "standard_user" ||
         user.userType === "power_user") && (
-        <div className="dropdown m-2 w-56 lg:w-20 lg:text-center">
+        <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
           <div
             tabIndex={0}
             role="button"
@@ -244,7 +251,7 @@ const MainMenuItems = ({ user }) => {
       {/* Payroll Management */}
       {(user.userType === "standard_user" ||
         user.userType === "power_user") && (
-        <div className="dropdown m-2 w-56 lg:w-20 lg:text-center">
+        <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
           <div
             tabIndex={0}
             role="button"
@@ -309,9 +316,18 @@ const MainMenuItems = ({ user }) => {
         </div>
       )}
 
-      {/* Power Access */}
-      {user.userType === "power_user" && (
-        <div className="dropdown m-2 w-56 lg:w-20 lg:text-center">
+      {/* Recruitment site */}
+      <NavLink
+        // target="_blank"
+        to="https://bd-job-portal.netlify.app" // address for job portal
+        className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0 m-2 lg:my-2 lg:mx-1 w-56 lg:w-24 lg:text-center"
+      >
+        Recruitment portal
+      </NavLink>
+
+      {/* Extra dropdown menu */}
+      {/* {user.userType === "power_user" && (
+        <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
           <div
             tabIndex={0}
             role="button"
@@ -357,7 +373,7 @@ const MainMenuItems = ({ user }) => {
             </li>
           </ul>
         </div>
-      )}
+      )} */}
     </>
   );
 };
