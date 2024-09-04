@@ -85,7 +85,6 @@ const MainMenuItems = ({ user }) => {
           </>
         </ul>
       </div>
-
       {/* HR Operations */}
       {(user.userType === "standard_user" ||
         user.userType === "power_user") && (
@@ -172,82 +171,90 @@ const MainMenuItems = ({ user }) => {
           </ul>
         </div>
       )}
-
       {/* Reports */}
-      {(user.userType === "standard_user" ||
-        user.userType === "power_user") && (
-        <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
-          <div
-            tabIndex={0}
-            role="button"
-            className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-            onClick={() => handleMenuToggle("reports")}
-          >
-            Reports
-          </div>
-          <ul
-            tabIndex={0}
-            className={`menu dropdown-content bg-base-100 rounded-box z-[1] p-2 -mt-8 lg:mt-2 shadow-lg space-y-2 ${
-              openMenu === "reports" ? "block" : "hidden"
-            }`}
-            style={{
-              position: "absolute",
-              top: "100%",
-              right: "0",
-            }}
-          >
-            <li>
-              <NavLink
-                to="/joining_report"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Joining
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/separation_report"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Separation
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/transfer_report"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Transfer
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/confirmation_report"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Confirmation
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/promotion_report"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Promotion
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/training_report"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-              >
-                Training
-              </NavLink>
-            </li>
-          </ul>
+      <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
+        <div
+          tabIndex={0}
+          role="button"
+          className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+          onClick={() => handleMenuToggle("reports")}
+        >
+          Reports
         </div>
-      )}
-
+        <ul
+          tabIndex={0}
+          className={`menu dropdown-content bg-base-100 rounded-box z-[1] p-2 -mt-8 lg:mt-2 shadow-lg space-y-2 ${
+            openMenu === "reports" ? "block" : "hidden"
+          }`}
+          style={{
+            position: "absolute",
+            top: "100%",
+            right: "0",
+          }}
+        >
+          <li>
+            <NavLink
+              to="/manpower_status"
+              className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+            >
+              Manpower status
+            </NavLink>
+          </li>
+          {(user.userType === "standard_user" ||
+            user.userType === "power_user") && (
+            <>
+              <li>
+                <NavLink
+                  to="/joining_report"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Joining
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/separation_report"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Separation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/transfer_report"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Transfer
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/confirmation_report"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Confirmation
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/promotion_report"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Promotion
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/training_report"
+                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                >
+                  Training
+                </NavLink>
+              </li>
+            </>
+          )}
+        </ul>
+      </div>
       {/* Payroll Management */}
       {(user.userType === "standard_user" ||
         user.userType === "power_user") && (
@@ -315,7 +322,6 @@ const MainMenuItems = ({ user }) => {
           </ul>
         </div>
       )}
-
       {/* Recruitment site */}
       <NavLink
         // target="_blank"

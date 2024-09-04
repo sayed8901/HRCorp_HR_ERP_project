@@ -564,7 +564,7 @@ const EntryNewEmployee = () => {
                     required
                     value={formData.department}
                     onChange={handleChange}
-                    className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
+                    className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white"
                   >
                     <option value="" disabled>
                       Select department
@@ -592,7 +592,7 @@ const EntryNewEmployee = () => {
                     required
                     value={formData.designation}
                     onChange={handleChange}
-                    className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
+                    className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white"
                   >
                     <option value="" disabled>
                       Select designation
@@ -620,7 +620,7 @@ const EntryNewEmployee = () => {
                     required
                     value={formData.job_location}
                     onChange={handleChange}
-                    className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
+                    className="block w-full rounded-md border-0 py-3 px-5  shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white"
                   >
                     <option value="" disabled>
                       Select job location
@@ -658,7 +658,7 @@ const EntryNewEmployee = () => {
                     value={formData.salary_grade}
                     required
                     autoComplete="salary_grade"
-                    className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
+                    className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white"
                   >
                     <option value="" disabled>
                       Select salary grade
@@ -694,7 +694,7 @@ const EntryNewEmployee = () => {
                     value={formData.salary_step}
                     required
                     autoComplete="salary_step"
-                    className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 bg-white"
+                    className="block w-full rounded-md border-0 py-2 px-5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 bg-white"
                   >
                     <option value="" disabled>
                       Select salary step

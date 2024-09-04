@@ -18,6 +18,9 @@ import Confirmation from "./pages/HR_operation/Job_confirmation/Confirmation.jsx
 import Promotion from "./pages/HR_operation/Promotion/Promotion.jsx";
 import Separation from "./pages/HR_operation/Separation/Separation.jsx";
 import ManagePostDeptLocation from "./pages/HR_staff_management/Manage_post_dept_locations/ManagePostDeptLocation.jsx";
+import ManpowerStatus from "./pages/reports/ManpowerStatus.jsx";
+import JoinedStaffStatus from "./pages/reports/JoiningReport.jsx";
+import SeparationReport from "./pages/reports/SeparationReport.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -135,6 +138,23 @@ export const router = createBrowserRouter([
         ),
       },
 
+      {
+        path: "/joining_report",
+        element: (
+          <LazyLoad>
+            <JoinedStaffStatus></JoinedStaffStatus>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/separation_report",
+        element: (
+          <LazyLoad>
+            <SeparationReport></SeparationReport>
+          </LazyLoad>
+        ),
+      },
+
       // accessible routes for power_user, standard_user, general employee or even if there is no logged_in_user
       {
         path: "/employee_details/:employee_id",
@@ -157,6 +177,16 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <ManagePostDeptLocation></ManagePostDeptLocation>
+          </LazyLoad>
+        ),
+      },
+
+      // reports
+      {
+        path: "/manpower_status",
+        element: (
+          <LazyLoad>
+            <ManpowerStatus></ManpowerStatus>
           </LazyLoad>
         ),
       },
