@@ -20,7 +20,7 @@ const ManpowerStatus = () => {
     );
   }
 
-  // Count the number of employees: by department, designation, and job location
+  // Objects to hold the counts for each department, designation, and job location
   const departmentCount = {};
   const designationCount = {};
   const jobLocationCount = {};
@@ -31,12 +31,12 @@ const ManpowerStatus = () => {
     const designation = employee.employment_info.designation || "Unknown";
     const jobLocation = employee.employment_info.job_location || "Unknown";
 
-    // increasing the number of employee, 
-    // if an employee found in a certain department
+    // increasing the number of employee,
+    // Increment the count for the current department
     departmentCount[department] = (departmentCount[department] || 0) + 1;
-    // if an employee found in a certain designation
+    // Increment the count for the current designation
     designationCount[designation] = (designationCount[designation] || 0) + 1;
-    // if an employee found in a certain job location
+    // Increment the count for the current job location
     jobLocationCount[jobLocation] = (jobLocationCount[jobLocation] || 0) + 1;
   });
 
@@ -55,13 +55,16 @@ const ManpowerStatus = () => {
             Active Manpower by Department
           </h3>
           <ul className="space-y-2">
-            {/* map over 'Object.entries(departmentCount)', to only show the data which got any number */}
+            {/* map over 'Object.entries(departmentCount)', to only show the data which got any number count */}
+            {/* "object.entries()" is used to convert the a object into an array of key-value pairs. So, we can access both the name and its count in each iteration. */}
             {Object.entries(departmentCount).map(([department, count]) => (
               <li
                 key={department}
                 className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
               >
+                {/* Display the department name */}
                 <span>{department}</span>
+                {/* Display the count of employees for the current department */}
                 <span>{count}</span>
               </li>
             ))}
@@ -76,13 +79,16 @@ const ManpowerStatus = () => {
             Active Manpower by Designation
           </h3>
           <ul className="space-y-2">
-            {/* map over 'Object.entries(designationCount)', to only show the data which got any number */}
+            {/* map over 'Object.entries(designationCount)', to only show the data which got any number count */}
+            {/* "object.entries()" is used to convert the a object into an array of key-value pairs. So, we can access both the name and its count in each iteration. */}
             {Object.entries(designationCount).map(([designation, count]) => (
               <li
                 key={designation}
                 className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
               >
+                {/* Display the designation name */}
                 <span>{designation}</span>
+                {/* Display the count of employees for the current designation */}
                 <span>{count}</span>
               </li>
             ))}
@@ -97,13 +103,16 @@ const ManpowerStatus = () => {
             Active Manpower by Job Location
           </h3>
           <ul className="space-y-2">
-            {/* map over 'Object.entries(jobLocationCount)', to only show the data which got any number */}
+            {/* map over 'Object.entries(jobLocationCount)', to only show the data which got any number count */}
+            {/* "object.entries()" is used to convert the a object into an array of key-value pairs. So, we can access both the name and its count in each iteration. */}
             {Object.entries(jobLocationCount).map(([jobLocation, count]) => (
               <li
                 key={jobLocation}
                 className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
               >
+                {/* Display the jobLocation name */}
                 <span>{jobLocation}</span>
+                {/* Display the count of employees for the current jobLocation */}
                 <span>{count}</span>
               </li>
             ))}
