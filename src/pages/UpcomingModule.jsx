@@ -2,20 +2,22 @@ import { useNavigate } from "react-router-dom";
 import useTitle from "../utilities/useTitle";
 import PropTypes from "prop-types";
 
-export default function NotFoundPage({ title }) {
+export default function UpcomingModule({ title }) {
   useTitle("Error");
   const navigate = useNavigate();
 
   return (
     <>
       <main className="grid place-items-center bg-white px-6 py-12 lg:px-8">
-        <div className="text-center">
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            {title} not found
+        <div className="text-center w-3/4 md:w-1/2 mx-auto">
+          <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <span className="text-gradient">{title}</span> is not available right now
           </h1>
 
           <p className="mt-6 text-base leading-7 text-gray-600">
-            Sorry, we couldn’t find the {title} you’re looking for.
+            {title} you’re looking for is currently not available, we are
+            working on it & will be accessible in a very short while. Please try
+            again later
           </p>
 
           {/* back BTN */}
@@ -33,6 +35,6 @@ export default function NotFoundPage({ title }) {
   );
 }
 
-NotFoundPage.propTypes = {
+UpcomingModule.propTypes = {
   title: PropTypes.PropTypes.string.isRequired,
 };

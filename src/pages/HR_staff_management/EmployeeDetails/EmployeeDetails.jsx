@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import EmployeeDetailsTab from "./EmployeeDetailsTab";
-import NotFoundPage from "../../NotFoundPage";
+import UpcomingModule from "../../UpcomingModule";
 import SampleKeyboardLayout from "../../../components/SampleKeyboardLayout";
 
 const EmployeeDetails = () => {
@@ -64,7 +64,7 @@ const EmployeeDetails = () => {
   if (!employee && submittedId) {
     return (
       <div className="flex items-center justify-center">
-        <NotFoundPage title="Employee" />
+        <UpcomingModule title="Employee" />
       </div>
     );
   }

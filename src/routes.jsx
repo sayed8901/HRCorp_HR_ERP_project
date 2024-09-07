@@ -24,6 +24,8 @@ import SeparationReport from "./pages/reports/SeparationReport.jsx";
 import TransferReport from "./pages/reports/TransferReport.jsx";
 import JobConfirmationReport from "./pages/reports/JobConfirmationReport.jsx";
 import TransferList from "./pages/HR_operation/Transfer_list/Transfer_list.jsx";
+import PromotionReport from "./pages/reports/PromotionReport.jsx";
+import UpcomingModule from "./pages/UpcomingModule.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -181,6 +183,14 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
+      {
+        path: "/promotion_report",
+        element: (
+          <LazyLoad>
+            <PromotionReport></PromotionReport>
+          </LazyLoad>
+        ),
+      },
 
       // accessible routes for power_user, standard_user, general employee or even if there is no logged_in_user
       {
@@ -199,6 +209,16 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
+      
+      {
+        path: "/employee_dashboard",
+        element: (
+          <LazyLoad>
+            <UpcomingModule title="Employee dashboard" ></UpcomingModule>
+          </LazyLoad>
+        ),
+      },
+
       {
         path: "/manage_post_dept_location",
         element: (

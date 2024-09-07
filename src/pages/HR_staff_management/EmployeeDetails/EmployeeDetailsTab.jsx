@@ -2,7 +2,7 @@ import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData
 import useFetch from "../../../utilities/dataFetches/useDataFetchHooks";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import PropTypes from "prop-types";
-import NotFoundPage from "../../NotFoundPage";
+import UpcomingModule from "../../UpcomingModule";
 
 const EmployeeDetailsTab = ({ employee_id }) => {
   // Fetch all the employees full info data
@@ -33,7 +33,7 @@ const EmployeeDetailsTab = ({ employee_id }) => {
     return <LoadingSpinner></LoadingSpinner>;
   if (employeeError || jobProfileError)
     return <div>Error: {employeeError || jobProfileError}</div>;
-  if (!employee) return <NotFoundPage title="Employee"></NotFoundPage>;
+  if (!employee) return <UpcomingModule title="Employee"></UpcomingModule>;
 
   return (
     <div>

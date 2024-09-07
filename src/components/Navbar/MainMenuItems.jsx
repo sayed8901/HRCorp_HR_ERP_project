@@ -244,7 +244,7 @@ const MainMenuItems = ({ user }) => {
         </ul>
       </div>
       {/* Payroll Management */}
-      {(user.userType === "standard_user" ||
+      {/* {(user.userType === "standard_user" ||
         user.userType === "power_user") && (
         <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
           <div
@@ -309,7 +309,7 @@ const MainMenuItems = ({ user }) => {
             )}
           </ul>
         </div>
-      )}
+      )} */}
       {/* Recruitment site */}
       <NavLink
         // target="_blank"
