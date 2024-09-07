@@ -14,7 +14,7 @@ import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
 import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
 import EmployeeDetails from "./pages/HR_staff_management/EmployeeDetails/EmployeeDetails.jsx";
 import Transfer from "./pages/HR_operation/Transfer/Transfer.jsx";
-import Confirmation from "./pages/HR_operation/Job_confirmation/Confirmation.jsx";
+import JobConfirmation from "./pages/HR_operation/Job_confirmation/JobConfirmation.jsx";
 import Promotion from "./pages/HR_operation/Promotion/Promotion.jsx";
 import Separation from "./pages/HR_operation/Separation/Separation.jsx";
 import ManagePostDeptLocation from "./pages/HR_staff_management/Manage_post_dept_locations/ManagePostDeptLocation.jsx";
@@ -22,6 +22,7 @@ import ManpowerStatus from "./pages/reports/ManpowerStatus.jsx";
 import JoinedStaffStatus from "./pages/reports/JoiningReport.jsx";
 import SeparationReport from "./pages/reports/SeparationReport.jsx";
 import TransferReport from "./pages/reports/TransferReport.jsx";
+import JobConfirmationReport from "./pages/reports/JobConfirmationReport.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -115,10 +116,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/confirmation",
+        path: "/job_confirmation",
         element: (
           <LazyLoad>
-            <Confirmation></Confirmation>
+            <JobConfirmation></JobConfirmation>
           </LazyLoad>
         ),
       },
@@ -160,6 +161,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <TransferReport></TransferReport>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/job_confirmation_report",
+        element: (
+          <LazyLoad>
+            <JobConfirmationReport></JobConfirmationReport>
           </LazyLoad>
         ),
       },

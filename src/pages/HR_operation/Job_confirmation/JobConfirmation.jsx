@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
-import ConfirmationModal from "./ConfirmationModal";
+import JobConfirmationModal from "./JobConfirmationModal";
 
-const Confirmation = () => {
+const JobConfirmation = () => {
   const navigate = useNavigate();
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
   const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -81,7 +81,9 @@ const Confirmation = () => {
   return (
     <div>
       {loading ? (
-        <LoadingSpinner />
+        <div className="my-32">
+          <LoadingSpinner />
+        </div>
       ) : allNonConfirmedActiveStaffList.length > 0 ? (
         <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
           <div className="w-full mx-auto px-5 my-10">
@@ -203,7 +205,7 @@ const Confirmation = () => {
           </div>
 
           {isModalOpen && (
-            <ConfirmationModal
+            <JobConfirmationModal
               isOpen={isModalOpen}
               onClose={handleCloseModal}
               onConfirm={handleConfirm}
@@ -227,4 +229,4 @@ const Confirmation = () => {
   );
 };
 
-export default Confirmation;
+export default JobConfirmation;

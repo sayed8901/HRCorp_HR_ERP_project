@@ -61,6 +61,7 @@ const SeparationReport = () => {
       </div>
 
       <div className="my-6 flex justify-center">
+        {/* Select Option fields for filtering */}
         <DateSelector
           selectedDuration={selectedDuration}
           onChange={setSelectedDuration}

@@ -138,7 +138,7 @@ const MainMenuItems = ({ user }) => {
             )}
             <li>
               <NavLink
-                to="/confirmation"
+                to="/job_confirmation"
                 className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
               >
                 Confirmation
@@ -229,7 +229,7 @@ const MainMenuItems = ({ user }) => {
               </li>
               <li>
                 <NavLink
-                  to="/confirmation_report"
+                  to="/job_confirmation_report"
                   className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
                 >
                   Confirmation

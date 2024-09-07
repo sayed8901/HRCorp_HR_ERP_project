@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 
-const ConfirmationModal = ({
+const JobConfirmationModal = ({
   isOpen,
   onClose,
   onConfirm,
@@ -217,7 +217,7 @@ const ConfirmationModal = ({
   );
 };
 
-ConfirmationModal.propTypes = {
+JobConfirmationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
@@ -226,4 +226,4 @@ ConfirmationModal.propTypes = {
   error: PropTypes.string,
 };
 
-export default ConfirmationModal;
+export default JobConfirmationModal;

@@ -6,7 +6,7 @@ import calculateCounts from "../../utilities/CalculateUtils/employeeCalculateCou
 import getDatesForDuration from "../../utilities/CalculateUtils/useGetDatesForDuration";
 import StatisticsCard from "./reports_utility_components/StatisticsCard";
 
-const JoiningReport = () => {
+const JobConfirmationReport = () => {
   const { allEmployeesFullInfo, loading, error } = useEmployeesData();
   //   console.log(allEmployeesFullInfo);
 
@@ -29,21 +29,23 @@ const JoiningReport = () => {
     );
   }
 
-  // Helper function to filter employees by joining date
-  const filterByJoiningDate = (startDate, endDate) => {
+  // Helper function to filter employees by job confirmation date
+  const filterByJobConfirmationDate = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
 
     return allEmployeesFullInfo.filter((employee) => {
-      const joiningDate = new Date(employee.employment_info.joining_date);
-      // getting the number of employee joined within the filtered duration
-      return joiningDate >= start && joiningDate <= end;
+      const confirmationDate = new Date(
+        employee.employment_info.confirmation_effective_date
+      );
+      // getting the number of employees confirmed within the filtered duration
+      return confirmationDate >= start && confirmationDate <= end;
     });
   };
 
   // Filter employees based on selected duration
   const { startDate, endDate } = getDatesForDuration(selectedDuration);
-  const filteredStaff = filterByJoiningDate(startDate, endDate);
+  const filteredStaff = filterByJobConfirmationDate(startDate, endDate);
 
   // Destructure the returned counts from the function to use them separately
   const { departmentCount, designationCount, jobLocationCount } =
@@ -53,7 +55,8 @@ const JoiningReport = () => {
     <div className="mt-16 mb-10 mx-10">
       <div className="sm:mx-auto">
         <h2 className="my-10 text-center text-2xl font-semibold leading-9 tracking-tight">
-          You can get <span className="text-gradient">Joining Report</span> by
+          You can get{" "}
+          <span className="text-gradient">Job Confirmation Report</span> by
           various filtering options
         </h2>
       </div>
@@ -69,7 +72,7 @@ const JoiningReport = () => {
       <div className="flex flex-col md:flex-row w-full">
         {/* Section for Departments */}
         <StatisticsCard
-          title="Joined (in Selected Duration) by Department"
+          title="Confirmed (in Selected Duration) by Department"
           data={departmentCount}
         />
 
@@ -77,7 +80,7 @@ const JoiningReport = () => {
 
         {/* Section for Designations */}
         <StatisticsCard
-          title="Joined (in Selected Duration) by Designation"
+          title="Confirmed (in Selected Duration) by Designation"
           data={designationCount}
         />
 
@@ -85,7 +88,7 @@ const JoiningReport = () => {
 
         {/* Section for Job Locations */}
         <StatisticsCard
-          title="Joined (in Selected Duration) by Job Location"
+          title="Confirmed (in Selected Duration) by Job Location"
           data={jobLocationCount}
         />
       </div>
@@ -93,4 +96,4 @@ const JoiningReport = () => {
   );
 };
 
-export default JoiningReport;
+export default JobConfirmationReport;

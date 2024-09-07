@@ -5,6 +5,7 @@ import StatisticsCard from "./reports_utility_components/StatisticsCard";
 
 const ManpowerStatus = () => {
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
+  //   console.log(allActiveEmployeesInfo);
 
   /* to show loading spinner while loading */
   if (loading) {
