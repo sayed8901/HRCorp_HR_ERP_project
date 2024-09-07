@@ -38,7 +38,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/entry_new_employee"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Entry_new employee
                 </NavLink>
@@ -46,7 +46,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/all_employee"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   All_employee
                 </NavLink>
@@ -58,7 +58,7 @@ const MainMenuItems = ({ user }) => {
             <li>
               <NavLink
                 to="/view_employee_details"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Employee details_view
               </NavLink>
@@ -66,7 +66,7 @@ const MainMenuItems = ({ user }) => {
             <li>
               <NavLink
                 to="/employee_dashboard"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Employee dashboard
               </NavLink>
@@ -76,7 +76,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/manage_post_dept_location"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0 w-40 lg:w-full"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0 w-40 lg:w-full"
                 >
                   Manage Post, Dept. & Location
                 </NavLink>
@@ -111,35 +111,23 @@ const MainMenuItems = ({ user }) => {
             <li>
               <NavLink
                 to="/transfer"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Transfer
               </NavLink>
             </li>
-            {user.userType === "power_user" && (
-              <>
-                <li>
-                  <NavLink
-                    to="/update_transfer"
-                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-                  >
-                    Update_transfer
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/transfer_withdraw"
-                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
-                  >
-                    Transfer_withdraw
-                  </NavLink>
-                </li>
-              </>
-            )}
+            <li>
+              <NavLink
+                to="/transfer_list"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
+              >
+                Transfer list
+              </NavLink>
+            </li>
             <li>
               <NavLink
                 to="/job_confirmation"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Confirmation
               </NavLink>
@@ -147,7 +135,7 @@ const MainMenuItems = ({ user }) => {
             <li>
               <NavLink
                 to="/promotion"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Promotion
               </NavLink>
@@ -155,7 +143,7 @@ const MainMenuItems = ({ user }) => {
             <li>
               <NavLink
                 to="/training"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Training
               </NavLink>
@@ -163,7 +151,7 @@ const MainMenuItems = ({ user }) => {
             <li>
               <NavLink
                 to="/separation"
-                className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Separation
               </NavLink>
@@ -195,9 +183,9 @@ const MainMenuItems = ({ user }) => {
           <li>
             <NavLink
               to="/manpower_status"
-              className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+              className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
             >
-              Manpower status
+              Manpower_status
             </NavLink>
           </li>
           {(user.userType === "standard_user" ||
@@ -206,7 +194,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/joining_report"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Joining
                 </NavLink>
@@ -214,7 +202,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/separation_report"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Separation
                 </NavLink>
@@ -222,7 +210,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/transfer_report"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Transfer
                 </NavLink>
@@ -230,7 +218,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/job_confirmation_report"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Confirmation
                 </NavLink>
@@ -238,7 +226,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/promotion_report"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Promotion
                 </NavLink>
@@ -246,7 +234,7 @@ const MainMenuItems = ({ user }) => {
               <li>
                 <NavLink
                   to="/training_report"
-                  className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                  className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Training
                 </NavLink>
@@ -284,7 +272,7 @@ const MainMenuItems = ({ user }) => {
                 <li>
                   <NavLink
                     to="/entry_leave_data"
-                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                    className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                   >
                     Entry leave_data
                   </NavLink>
@@ -292,7 +280,7 @@ const MainMenuItems = ({ user }) => {
                 <li>
                   <NavLink
                     to="/entry_late_attendance"
-                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                    className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                   >
                     Entry late attendance
                   </NavLink>
@@ -304,7 +292,7 @@ const MainMenuItems = ({ user }) => {
                 <li>
                   <NavLink
                     to="/salary_deduction"
-                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                    className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                   >
                     Salary deduction
                   </NavLink>
@@ -312,7 +300,7 @@ const MainMenuItems = ({ user }) => {
                 <li>
                   <NavLink
                     to="/salary_sheet"
-                    className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0"
+                    className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                   >
                     Salary_sheet
                   </NavLink>

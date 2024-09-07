@@ -23,6 +23,7 @@ import JoinedStaffStatus from "./pages/reports/JoiningReport.jsx";
 import SeparationReport from "./pages/reports/SeparationReport.jsx";
 import TransferReport from "./pages/reports/TransferReport.jsx";
 import JobConfirmationReport from "./pages/reports/JobConfirmationReport.jsx";
+import TransferList from "./pages/HR_operation/Transfer_list/Transfer_list.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -112,6 +113,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <Transfer></Transfer>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/transfer_list",
+        element: (
+          <LazyLoad>
+            <TransferList></TransferList>
           </LazyLoad>
         ),
       },
