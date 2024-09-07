@@ -1,7 +1,7 @@
 import useEmployeesData from "../../utilities/dataFetches/useAllEmployeesData";
 import LoadingSpinner from "../../utilities/LoadingSpinner";
 import calculateCounts from "../../utilities/CalculateUtils/employeeCalculateCounts";
-import StatisticsCard from "./reports_utility_components/StaticticsCard";
+import StatisticsCard from "./reports_utility_components/StatisticsCard";
 
 const ManpowerStatus = () => {
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();

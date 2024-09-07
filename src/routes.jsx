@@ -21,6 +21,7 @@ import ManagePostDeptLocation from "./pages/HR_staff_management/Manage_post_dept
 import ManpowerStatus from "./pages/reports/ManpowerStatus.jsx";
 import JoinedStaffStatus from "./pages/reports/JoiningReport.jsx";
 import SeparationReport from "./pages/reports/SeparationReport.jsx";
+import TransferReport from "./pages/reports/TransferReport.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -151,6 +152,14 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <SeparationReport></SeparationReport>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/transfer_report",
+        element: (
+          <LazyLoad>
+            <TransferReport></TransferReport>
           </LazyLoad>
         ),
       },

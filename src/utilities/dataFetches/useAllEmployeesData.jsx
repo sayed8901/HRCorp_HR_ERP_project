@@ -8,6 +8,7 @@ const useEmployeesData = () => {
   const [allJobProfileHistory, setAllJobProfileHistory] = useState([]);
   const [allPromotionInfo, setAllPromotionInfo] = useState([]);
   const [allSeparationInfo, setAllSeparationInfo] = useState([]);
+  const [allTransferInfo, setAllTransferInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -63,6 +64,13 @@ const useEmployeesData = () => {
         const separationInfo = await separationInfoResponse.json();
         setAllSeparationInfo(separationInfo);
 
+        // Fetch transfer info
+        const transferInfoResponse = await fetch(
+          `${import.meta.env.VITE_API_URL}/transfer/list/`
+        );
+        const transferInfo = await transferInfoResponse.json();
+        setAllTransferInfo(transferInfo);
+
         // Combine data (via searching by employee_ID)
         const combinedData = employeeIDs.map((employee) => {
           // Personal information
@@ -70,21 +78,28 @@ const useEmployeesData = () => {
             personalInfo.find(
               (info) => info.employee === employee.employee_id
             ) || {};
+
           // Employment information
           const employment =
             employmentInfo.find(
               (info) => info.employee === employee.employee_id
             ) || {};
+
           // Salary information
           const salary =
             salaryInfo.find((info) => info.employee === employee.employee_id) ||
             {};
 
           // Find the separation info for the employee
-          const separationInfoForEmployee =
+          const separation =
             separationInfo.find(
               (info) => info.employee === employee.employee_id
             ) || {};
+
+          // Transfer info for the employee
+          const transfers = transferInfo.filter(
+            (info) => info.employee === employee.employee_id
+          );
 
           // Aggregate details text from all job profile entries
           // Step 1: Filter job profile entries by employee ID
@@ -115,7 +130,8 @@ const useEmployeesData = () => {
             salary_info: salary,
             job_profile_details: jobProfileDetails,
             last_promotion: lastPromotionInfo,
-            separation_info: separationInfoForEmployee,
+            separation_info: separation,
+            transfer_info: transfers,
           };
         });
 
@@ -144,6 +160,7 @@ const useEmployeesData = () => {
       allJobProfileHistory: [],
       allPromotionInfo: [],
       allSeparationInfo: [],
+      allTransferInfo: [],
       loading: true,
       error: null,
     };
@@ -157,6 +174,7 @@ const useEmployeesData = () => {
       allJobProfileHistory: [],
       allPromotionInfo: [],
       allSeparationInfo: [],
+      allTransferInfo: [],
       loading: false,
       error,
     };
@@ -170,6 +188,7 @@ const useEmployeesData = () => {
     allJobProfileHistory,
     allPromotionInfo,
     allSeparationInfo,
+    allTransferInfo,
     loading,
     error,
   };

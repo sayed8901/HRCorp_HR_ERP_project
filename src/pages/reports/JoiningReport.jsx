@@ -4,7 +4,7 @@ import LoadingSpinner from "../../utilities/LoadingSpinner";
 import DateSelector from "./reports_utility_components/DateSelectorComponent";
 import calculateCounts from "../../utilities/CalculateUtils/employeeCalculateCounts";
 import getDatesForDuration from "../../utilities/CalculateUtils/useGetDatesForDuration";
-import StatisticsCard from "./reports_utility_components/StaticticsCard";
+import StatisticsCard from "./reports_utility_components/StatisticsCard";
 
 const JoiningReport = () => {
   const { allEmployeesFullInfo, loading, error } = useEmployeesData();
