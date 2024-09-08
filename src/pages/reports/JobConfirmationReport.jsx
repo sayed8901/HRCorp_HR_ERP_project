@@ -5,6 +5,7 @@ import DateSelector from "./reports_utility_components/DateSelectorComponent";
 import calculateCounts from "../../utilities/CalculateUtils/employeeCalculateCounts";
 import getDatesForDuration from "../../utilities/CalculateUtils/useGetDatesForDuration";
 import StatisticsCard from "./reports_utility_components/StatisticsCard";
+import EmployeeInfoTable from "./reports_utility_components/EmployeeInfoTable";
 
 const JobConfirmationReport = () => {
   const { allEmployeesFullInfo, loading, error } = useEmployeesData();
@@ -103,6 +104,11 @@ const JobConfirmationReport = () => {
           data={jobLocationCount}
         />
       </div>
+
+      {/* Filtered Employee table */}
+      {filteredStaff.length > 0 && (
+        <EmployeeInfoTable allEmployeesFullInfo={filteredStaff} />
+      )}
     </div>
   );
 };

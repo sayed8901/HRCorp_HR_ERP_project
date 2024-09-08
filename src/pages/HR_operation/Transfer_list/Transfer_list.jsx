@@ -3,8 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useFetch from "../../../utilities/dataFetches/useDataFetchHooks";
-import TransferUpdateModal from "../Transfer_list/UpdateTransferModal";
 
+import TransferUpdateModal from "../Transfer_list/UpdateTransferModal";
+import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
+import TransferTable from "./TransferListTable";
+import TransferFilters from "./TransferListFilters";
+
+// Fetching all transfer data from the API
 const TransferList = () => {
   const navigate = useNavigate();
 
@@ -14,17 +19,23 @@ const TransferList = () => {
     loading,
   } = useFetch(`${import.meta.env.VITE_API_URL}/transfer/list/`);
 
+  // State to manage current transfer data for modal, loading state, and error messages
   const [currentTransferData, setCurrentTransferData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [modalError, setModalError] = useState("");
 
+  // State to store employee data
   const [employeeData, setEmployeeData] = useState({});
 
   // Filtering state
   const [filterText, setFilterText] = useState("");
   const [filterDepartment, setFilterDepartment] = useState("");
   const [filterDesignation, setFilterDesignation] = useState("");
+
+  // Duration filtering state
+  const [selectedDuration, setSelectedDuration] = useState("this_month");
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   const token = localStorage.getItem("authToken");
   const user_type = localStorage.getItem("user_type");
@@ -80,6 +91,12 @@ const TransferList = () => {
     }
   }, [all_transfers]);
 
+  // Filter employees based on selected duration
+  const { startDate, endDate } = getDatesForDuration(
+    selectedDuration,
+    selectedYear
+  );
+
   // Function to filter transfers based on criteria
   const filteredTransfers = all_transfers?.filter((transfer) => {
     const employee_id = transfer?.employee;
@@ -91,11 +108,17 @@ const TransferList = () => {
     const department =
       employeeInfo?.employmentData?.department?.toLowerCase() || "";
 
-    // Apply filters
+    // Apply filters and date range
+    const transferEffectiveDate = new Date(transfer?.transfer_effective_date);
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
     return (
       name.includes(filterText.toLowerCase()) &&
       designation.includes(filterDesignation.toLowerCase()) &&
-      department.includes(filterDepartment.toLowerCase())
+      department.includes(filterDepartment.toLowerCase()) &&
+      transferEffectiveDate >= start &&
+      transferEffectiveDate <= end
     );
   });
 
@@ -110,7 +133,7 @@ const TransferList = () => {
     setCurrentTransferData(null);
   };
 
-  // function to update the transfer
+  // function to update the transfer information via API call
   const handleUpdateTransfer = async (
     employee_id,
     transfer_id,
@@ -159,7 +182,7 @@ const TransferList = () => {
     }
   };
 
-  // function to cancel the transfer
+  // function to cancel the transfer via API call
   const handleWithdrawTransfer = async (employee_id, transfer_id) => {
     // console.log("Withdraw transfer btn clicked");
 
@@ -213,30 +236,19 @@ const TransferList = () => {
           </h2>
         </div>
 
-        {/* Filter input fields */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-          <input
-            type="text"
-            placeholder="Filter by 'Name'"
-            className="input input-bordered"
-            value={filterText}
-            onChange={(e) => setFilterText(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Filter by 'Designation'"
-            className="input input-bordered"
-            value={filterDesignation}
-            onChange={(e) => setFilterDesignation(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Filter by 'Department'"
-            className="input input-bordered"
-            value={filterDepartment}
-            onChange={(e) => setFilterDepartment(e.target.value)}
-          />
-        </div>
+        {/* Filter fields */}
+        <TransferFilters
+          filterText={filterText}
+          setFilterText={setFilterText}
+          filterDepartment={filterDepartment}
+          setFilterDepartment={setFilterDepartment}
+          filterDesignation={filterDesignation}
+          setFilterDesignation={setFilterDesignation}
+          selectedDuration={selectedDuration}
+          setSelectedDuration={setSelectedDuration}
+          selectedYear={selectedYear}
+          setSelectedYear={setSelectedYear}
+        />
 
         {/* to show loading spinner while loading */}
         {loading && <LoadingSpinner />}
@@ -246,101 +258,16 @@ const TransferList = () => {
           <div className="mt-6 text-center text-base text-red-600">{error}</div>
         )}
 
-        <div className="overflow-x-auto w-11/12 mx-auto">
-          <table className="table table-xs table-pin-rows table-pin-cols">
-            <thead>
-              <tr>
-                <th>Transfer ID</th>
-                <th>Employee ID</th>
-                <td>Name</td>
-                <td>Designation</td>
-
-                <td>Transfer from location</td>
-                <td>Transfer to location</td>
-                <td>Transfer from department</td>
-                <td>Transfer to department</td>
-                <td>Effective date</td>
-
-                <th>Transfer Update/ cancel</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTransfers?.map((transferData, index) => {
-                const employee_id = transferData?.employee;
-                const employeeInfo = employeeData[employee_id] || {};
-                const name = employeeInfo?.personalData?.name || "Loading...";
-                const designation =
-                  employeeInfo?.employmentData?.designation || "Loading...";
-
-                return (
-                  <tr
-                    key={transferData?.id}
-                    // here, length - 1 is used not to apply bottom border for the very last line of the table
-                    className={`hover ${
-                      index < all_transfers.length - 1
-                        ? "border-b-2 border-indigo-300"
-                        : ""
-                    }`}
-                  >
-                    <th>{transferData?.id}</th>
-                    <th>{employee_id}</th>
-                    <td>{name}</td>
-                    <td>{designation}</td>
-
-                    <td>{transferData?.transfer_from_location}</td>
-                    <td>{transferData?.transfer_to_location}</td>
-                    <td>{transferData?.transfer_from_department}</td>
-                    <td>{transferData?.transfer_to_department}</td>
-                    <td>{transferData?.transfer_effective_date}</td>
-
-                    {/* Checking if transfer is not outdated and if the user is power_user */}
-                    {isTransferNotOutdated(
-                      transferData?.transfer_effective_date
-                    ) ? (
-                      <>
-                        {user_type === "power_user" ? (
-                          <th className="flex flex-col gap-2 items-center">
-                            <button
-                              className="btn btn-xs btn-outline btn-accent w-32"
-                              onClick={() =>
-                                handleOpenTransferUpdateModal(transferData)
-                              }
-                            >
-                              Update Transfer
-                            </button>
-                            <button
-                              className="btn btn-xs btn-outline btn-secondary"
-                              onClick={() =>
-                                handleWithdrawTransfer(
-                                  transferData.employee,
-                                  transferData.id
-                                )
-                              }
-                            >
-                              Withdraw Transfer
-                            </button>
-                          </th>
-                        ) : (
-                          <th>
-                            <div className="text-xsm text-center border border-blue-300 rounded-lg font-normal px-2 py-1">
-                              N/A (Only power user can perform update / delete)
-                            </div>
-                          </th>
-                        )}
-                      </>
-                    ) : (
-                      <th className="flex flex-col items-center">
-                        <div className="text-xsm text-center border border-red-300 rounded-lg font-normal px-2 py-1">
-                          N/A (This Transfer is Already Expired)
-                        </div>
-                      </th>
-                    )}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        {/* transfer list table */}
+        <TransferTable
+          filteredTransfers={filteredTransfers}
+          employeeData={employeeData}
+          user_type={user_type}
+          handleOpenTransferUpdateModal={handleOpenTransferUpdateModal}
+          handleWithdrawTransfer={handleWithdrawTransfer}
+          isTransferNotOutdated={isTransferNotOutdated}
+          all_transfers={all_transfers}
+        />
 
         <TransferUpdateModal
           isOpen={isModalOpen}
