@@ -6,7 +6,7 @@ const DateSelector = ({ selectedDuration, onChange }) => {
       <select
         value={selectedDuration}
         onChange={(e) => onChange(e.target.value)}
-        className="select select-bordered w-full max-w-xs"
+        className="select select-bordered w-full max-w-xs rounded-l-full"
       >
         <option value="this_month">This Month</option>
         <option value="last_month">Last Month</option>

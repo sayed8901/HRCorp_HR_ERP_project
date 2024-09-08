@@ -21,6 +21,14 @@ const TransferList = () => {
 
   const [employeeData, setEmployeeData] = useState({});
 
+  // Filtering state
+  const [filterText, setFilterText] = useState("");
+  const [filterDepartment, setFilterDepartment] = useState("");
+  const [filterDesignation, setFilterDesignation] = useState("");
+
+  const token = localStorage.getItem("authToken");
+  const user_type = localStorage.getItem("user_type");
+
   // Function to fetch personalData and employmentData based on employee_id
   const fetchPersonalAndEmploymentInfo = async (employee_id) => {
     try {
@@ -72,8 +80,24 @@ const TransferList = () => {
     }
   }, [all_transfers]);
 
-  const token = localStorage.getItem("authToken");
-  const user_type = localStorage.getItem("user_type");
+  // Function to filter transfers based on criteria
+  const filteredTransfers = all_transfers?.filter((transfer) => {
+    const employee_id = transfer?.employee;
+    const employeeInfo = employeeData[employee_id] || {};
+
+    const name = employeeInfo?.personalData?.name?.toLowerCase() || "";
+    const designation =
+      employeeInfo?.employmentData?.designation?.toLowerCase() || "";
+    const department =
+      employeeInfo?.employmentData?.department?.toLowerCase() || "";
+
+    // Apply filters
+    return (
+      name.includes(filterText.toLowerCase()) &&
+      designation.includes(filterDesignation.toLowerCase()) &&
+      department.includes(filterDepartment.toLowerCase())
+    );
+  });
 
   const handleOpenTransferUpdateModal = (transferData) => {
     setCurrentTransferData(transferData);
@@ -189,6 +213,31 @@ const TransferList = () => {
           </h2>
         </div>
 
+        {/* Filter input fields */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+          <input
+            type="text"
+            placeholder="Filter by 'Name'"
+            className="input input-bordered"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Filter by 'Designation'"
+            className="input input-bordered"
+            value={filterDesignation}
+            onChange={(e) => setFilterDesignation(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Filter by 'Department'"
+            className="input input-bordered"
+            value={filterDepartment}
+            onChange={(e) => setFilterDepartment(e.target.value)}
+          />
+        </div>
+
         {/* to show loading spinner while loading */}
         {loading && <LoadingSpinner />}
 
@@ -216,7 +265,7 @@ const TransferList = () => {
               </tr>
             </thead>
             <tbody>
-              {all_transfers?.map((transferData, index) => {
+              {filteredTransfers?.map((transferData, index) => {
                 const employee_id = transferData?.employee;
                 const employeeInfo = employeeData[employee_id] || {};
                 const name = employeeInfo?.personalData?.name || "Loading...";

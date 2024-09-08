@@ -142,18 +142,18 @@ const MainMenuItems = ({ user }) => {
             </li>
             <li>
               <NavLink
-                to="/training"
-                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
-              >
-                Training
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
                 to="/separation"
                 className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Separation
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/training"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
+              >
+                Training
               </NavLink>
             </li>
           </ul>

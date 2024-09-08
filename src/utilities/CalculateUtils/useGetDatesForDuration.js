@@ -1,15 +1,23 @@
 // Function to get start and end dates based on selected duration
-const getDatesForDuration = (duration) => {
+const getDatesForDuration = (duration, selectedYear) => {
   const today = new Date();
   let startDate = new Date();
   let endDate = new Date();
 
+  // Check if the selected year is a leap year
+  const isLeapYear =
+    (selectedYear % 4 === 0 && selectedYear % 100 !== 0) ||
+    selectedYear % 400 === 0;
+
+  // If it's a leap year, February has 29 days, otherwise 28 days
+  const lastDayOfFebruary = isLeapYear ? 29 : 28;
+
   switch (duration) {
     case "this_month":
       // First day of the current month
-      startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+      startDate = new Date(selectedYear, today.getMonth(), 1);
       // Last day of the current month
-      endDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+      endDate = new Date(selectedYear, today.getMonth() + 1, 0);
       break;
 
     case "last_month":
@@ -26,135 +34,141 @@ const getDatesForDuration = (duration) => {
 
     case "1st_QTR":
       // First day of January
-      startDate = new Date(today.getFullYear(), 0, 1);
+      startDate = new Date(selectedYear, 0, 1);
       // Last day of March
-      endDate = new Date(today.getFullYear(), 2, 31);
+      endDate = new Date(selectedYear, 2, 31);
       break;
+
     case "2nd_QTR":
       // First day of April
-      startDate = new Date(today.getFullYear(), 3, 1);
+      startDate = new Date(selectedYear, 3, 1);
       // Last day of June
-      endDate = new Date(today.getFullYear(), 5, 30);
+      endDate = new Date(selectedYear, 5, 30);
       break;
+
     case "3rd_QTR":
       // First day of July
-      startDate = new Date(today.getFullYear(), 6, 1);
+      startDate = new Date(selectedYear, 6, 1);
       // Last day of September
-      endDate = new Date(today.getFullYear(), 8, 30);
+      endDate = new Date(selectedYear, 8, 30);
       break;
+
     case "4th_QTR":
       // First day of October
-      startDate = new Date(today.getFullYear(), 9, 1);
+      startDate = new Date(selectedYear, 9, 1);
       // Last day of December
-      endDate = new Date(today.getFullYear(), 11, 31);
+      endDate = new Date(selectedYear, 11, 31);
       break;
+
     case "1st_year_half":
       // First day of January
-      startDate = new Date(today.getFullYear(), 0, 1);
+      startDate = new Date(selectedYear, 0, 1);
       // Last day of June
-      endDate = new Date(today.getFullYear(), 5, 30);
+      endDate = new Date(selectedYear, 5, 30);
       break;
+
     case "2nd_year_half":
       // First day of July
-      startDate = new Date(today.getFullYear(), 6, 1);
+      startDate = new Date(selectedYear, 6, 1);
       // Last day of December
-      endDate = new Date(today.getFullYear(), 11, 31);
+      endDate = new Date(selectedYear, 11, 31);
       break;
+
     case "Full_year":
       // First day of January
-      startDate = new Date(today.getFullYear(), 0, 1);
+      startDate = new Date(selectedYear, 0, 1);
       // Last day of December
-      endDate = new Date(today.getFullYear(), 11, 31);
+      endDate = new Date(selectedYear, 11, 31);
       break;
 
     case "January":
       // First day of January
-      startDate = new Date(today.getFullYear(), 0, 1);
+      startDate = new Date(selectedYear, 0, 1);
       // Last day of January
-      endDate = new Date(today.getFullYear(), 0, 31);
+      endDate = new Date(selectedYear, 0, 31);
       break;
 
     case "February":
       // First day of February
-      startDate = new Date(today.getFullYear(), 1, 1);
-      // Last day of February (leap year handling not included)
-      endDate = new Date(today.getFullYear(), 1, 29);
+      startDate = new Date(selectedYear, 1, 1);
+      // Set the last day of February accordingly
+      endDate = new Date(selectedYear, 1, lastDayOfFebruary);
       break;
 
     case "March":
       // First day of March
-      startDate = new Date(today.getFullYear(), 2, 1);
+      startDate = new Date(selectedYear, 2, 1);
       // Last day of March
-      endDate = new Date(today.getFullYear(), 2, 31);
+      endDate = new Date(selectedYear, 2, 31);
       break;
 
     case "April":
       // First day of April
-      startDate = new Date(today.getFullYear(), 3, 1);
+      startDate = new Date(selectedYear, 3, 1);
       // Last day of April
-      endDate = new Date(today.getFullYear(), 3, 30);
+      endDate = new Date(selectedYear, 3, 30);
       break;
 
     case "May":
       // First day of May
-      startDate = new Date(today.getFullYear(), 4, 1);
+      startDate = new Date(selectedYear, 4, 1);
       // Last day of May
-      endDate = new Date(today.getFullYear(), 4, 31);
+      endDate = new Date(selectedYear, 4, 31);
       break;
 
     case "June":
       // First day of June
-      startDate = new Date(today.getFullYear(), 5, 1);
+      startDate = new Date(selectedYear, 5, 1);
       // Last day of June
-      endDate = new Date(today.getFullYear(), 5, 30);
+      endDate = new Date(selectedYear, 5, 30);
       break;
 
     case "July":
       // First day of July
-      startDate = new Date(today.getFullYear(), 6, 1);
+      startDate = new Date(selectedYear, 6, 1);
       // Last day of July
-      endDate = new Date(today.getFullYear(), 6, 31);
+      endDate = new Date(selectedYear, 6, 31);
       break;
 
     case "August":
       // First day of August
-      startDate = new Date(today.getFullYear(), 7, 1);
+      startDate = new Date(selectedYear, 7, 1);
       // Last day of August
-      endDate = new Date(today.getFullYear(), 7, 31);
+      endDate = new Date(selectedYear, 7, 31);
       break;
 
     case "September":
       // First day of September
-      startDate = new Date(today.getFullYear(), 8, 1);
+      startDate = new Date(selectedYear, 8, 1);
       // Last day of September
-      endDate = new Date(today.getFullYear(), 8, 30);
+      endDate = new Date(selectedYear, 8, 30);
       break;
 
     case "October":
       // First day of October
-      startDate = new Date(today.getFullYear(), 9, 1);
+      startDate = new Date(selectedYear, 9, 1);
       // Last day of October
-      endDate = new Date(today.getFullYear(), 9, 31);
+      endDate = new Date(selectedYear, 9, 31);
       break;
 
     case "November":
       // First day of November
-      startDate = new Date(today.getFullYear(), 10, 1);
+      startDate = new Date(selectedYear, 10, 1);
       // Last day of November
-      endDate = new Date(today.getFullYear(), 10, 30);
+      endDate = new Date(selectedYear, 10, 30);
       break;
 
     case "December":
       // First day of December
-      startDate = new Date(today.getFullYear(), 11, 1);
+      startDate = new Date(selectedYear, 11, 1);
       // Last day of December
-      endDate = new Date(today.getFullYear(), 11, 31);
+      endDate = new Date(selectedYear, 11, 31);
       break;
 
     default:
       // Default to the entire year (from January 1 to December 31)
-      startDate = new Date(today.getFullYear(), 0, 1);
-      endDate = new Date(today.getFullYear(), 11, 31);
+      startDate = new Date(selectedYear, 0, 1);
+      endDate = new Date(selectedYear, 11, 31);
       break;
   }
 

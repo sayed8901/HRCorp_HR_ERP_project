@@ -12,6 +12,7 @@ const SeparationReport = () => {
 
   // to track the filter parameter
   const [selectedDuration, setSelectedDuration] = useState("this_month");
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   // Show loading spinner while loading
   if (loading) {
@@ -44,7 +45,10 @@ const SeparationReport = () => {
   };
 
   // Filter employees based on selected duration
-  const { startDate, endDate } = getDatesForDuration(selectedDuration);
+  const { startDate, endDate } = getDatesForDuration(
+    selectedDuration,
+    selectedYear
+  );
   const filteredStaff = filterBySeparationDate(startDate, endDate);
 
   // Destructure the returned counts from the function to use them separately
@@ -60,11 +64,18 @@ const SeparationReport = () => {
         </h2>
       </div>
 
-      <div className="my-6 flex justify-center">
+      <div className="my-6 flex justify-center items-center gap-2">
         {/* Select Option fields for filtering */}
         <DateSelector
           selectedDuration={selectedDuration}
           onChange={setSelectedDuration}
+        />
+        <input
+          type="number"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
+          placeholder="Year"
+          className="input input-bordered w-32 rounded-r-full"
         />
       </div>
 

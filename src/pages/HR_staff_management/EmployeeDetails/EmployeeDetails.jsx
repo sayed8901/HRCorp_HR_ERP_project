@@ -45,7 +45,11 @@ const EmployeeDetails = () => {
     }
   }, [urlEmployeeId]);
 
-  if (employeeLoading) return <LoadingSpinner />;
+  if (employeeLoading) return (
+    <div className="my-36">
+      <LoadingSpinner />
+    </div>
+  );
 
   if (employeeError) {
     return (
