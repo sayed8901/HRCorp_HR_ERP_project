@@ -13,6 +13,7 @@ const TransferModal = ({
   const [departments, setDepartments] = useState([]);
   const [job_Locations, setJobLocation] = useState([]);
 
+  // Fetch departments
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/employment/departments/`)
       .then((res) => res.json())
@@ -22,6 +23,7 @@ const TransferModal = ({
       .catch((err) => console.log("Error fetching departments:", err));
   }, []);
 
+  // Fetch job locations
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/employment/job_locations/`)
       .then((res) => res.json())
@@ -40,17 +42,29 @@ const TransferModal = ({
     transfer_effective_date: "",
   });
 
+  // Ensure that the locations and departments are available before setting form data
   useEffect(() => {
-    if (isOpen && transferData) {
+    if (isOpen && transferData && job_Locations.length && departments.length) {
+      const transferToLocation =
+        job_Locations.find(
+          (location) => location.name === transferData.transfer_to_location
+        )?.id || "";
+
+      const transferToDepartment =
+        departments.find(
+          (department) =>
+            department.name === transferData.transfer_to_department
+        )?.id || "";
+
       setTransferData({
-        transfer_from_location: transferData?.transfer_from_location,
-        transfer_from_department: transferData?.transfer_from_department,
-        transfer_to_location: transferData?.transfer_to_location,
-        transfer_to_department: transferData?.transfer_to_department,
-        transfer_effective_date: transferData?.transfer_effective_date,
+        transfer_from_location: transferData?.transfer_from_location || "",
+        transfer_from_department: transferData?.transfer_from_department || "",
+        transfer_to_location: transferToLocation,
+        transfer_to_department: transferToDepartment,
+        transfer_effective_date: transferData?.transfer_effective_date || "",
       });
     }
-  }, [isOpen, transferData]);
+  }, [isOpen, transferData, job_Locations, departments]);
 
   const handleChange = (e) => {
     setTransferData({

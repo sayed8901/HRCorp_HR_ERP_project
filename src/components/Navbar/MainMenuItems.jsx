@@ -244,7 +244,7 @@ const MainMenuItems = ({ user }) => {
         </ul>
       </div>
       {/* Payroll Management */}
-      {/* {(user.userType === "standard_user" ||
+      {(user.userType === "standard_user" ||
         user.userType === "power_user") && (
         <div className="dropdown m-2 lg:my-2 lg:mx-1 w-56 lg:w-20 lg:text-center">
           <div
@@ -297,19 +297,19 @@ const MainMenuItems = ({ user }) => {
                     Salary deduction
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/salary_sheet"
-                    className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
-                  >
-                    Salary_sheet
-                  </NavLink>
-                </li>
               </>
             )}
+            <li>
+              <NavLink
+                to="/salary_sheet"
+                className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
+              >
+                Salary_sheet
+              </NavLink>
+            </li>
           </ul>
         </div>
-      )} */}
+      )}
       {/* Recruitment site */}
       <NavLink
         // target="_blank"

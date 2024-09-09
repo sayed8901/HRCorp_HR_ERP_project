@@ -192,6 +192,23 @@ export const router = createBrowserRouter([
         ),
       },
 
+      {
+        path: "/training",
+        element: (
+          <LazyLoad>
+            <UpcomingModule title="Training section"></UpcomingModule>
+          </LazyLoad>
+        ),
+      },
+      {
+        path: "/training_report",
+        element: (
+          <LazyLoad>
+            <UpcomingModule title="Training report section"></UpcomingModule>
+          </LazyLoad>
+        ),
+      },
+
       // accessible routes for power_user, standard_user, general employee or even if there is no logged_in_user
       {
         path: "/employee_details/:employee_id",
@@ -209,12 +226,12 @@ export const router = createBrowserRouter([
           </LazyLoad>
         ),
       },
-      
+
       {
         path: "/employee_dashboard",
         element: (
           <LazyLoad>
-            <UpcomingModule title="Employee dashboard" ></UpcomingModule>
+            <UpcomingModule title="Employee dashboard"></UpcomingModule>
           </LazyLoad>
         ),
       },
