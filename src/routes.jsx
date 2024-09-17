@@ -26,6 +26,7 @@ import JobConfirmationReport from "./pages/reports/JobConfirmationReport.jsx";
 import TransferList from "./pages/HR_operation/Transfer_list/Transfer_list.jsx";
 import PromotionReport from "./pages/reports/PromotionReport.jsx";
 import UpcomingModule from "./pages/UpcomingModule.jsx";
+import EntryLeave from "./pages/Payroll/Entry_leave/EntryLeave.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -79,6 +80,15 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <PowerUserProfile></PowerUserProfile>
+          </LazyLoad>
+        ),
+      },
+
+      {
+        path: "/salary_deduction",
+        element: (
+          <LazyLoad>
+            <UpcomingModule title="Salary deduction part"></UpcomingModule>
           </LazyLoad>
         ),
       },
@@ -205,6 +215,31 @@ export const router = createBrowserRouter([
         element: (
           <LazyLoad>
             <UpcomingModule title="Training report section"></UpcomingModule>
+          </LazyLoad>
+        ),
+      },
+
+      {
+        path: "/entry_leave_data",
+        element: (
+          <LazyLoad>
+            <EntryLeave></EntryLeave>
+          </LazyLoad>
+        ),
+      },
+      // {
+      //   path: "/entry_late_attendance",
+      //   element: (
+      //     <LazyLoad>
+      //       <UpcomingModule title="Late attendance part"></UpcomingModule>
+      //     </LazyLoad>
+      //   ),
+      // },
+      {
+        path: "/salary_sheet",
+        element: (
+          <LazyLoad>
+            <UpcomingModule title="Salary sheet section"></UpcomingModule>
           </LazyLoad>
         ),
       },

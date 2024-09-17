@@ -331,6 +331,12 @@ const EmployeeDetailsTab = ({ employee_id }) => {
               </dd>
             </div>
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">Salary Deduction</dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.salary_info?.npl_salary_deduction}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">Net Salary</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
                 {employee?.salary_info?.net_salary}

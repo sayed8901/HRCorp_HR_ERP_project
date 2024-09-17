@@ -277,14 +277,14 @@ const MainMenuItems = ({ user }) => {
                     Entry leave_data
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/entry_late_attendance"
                     className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                   >
                     Entry late attendance
                   </NavLink>
-                </li>
+                </li> */}
               </>
             )}
             {user.userType === "power_user" && (
@@ -311,13 +311,17 @@ const MainMenuItems = ({ user }) => {
         </div>
       )}
       {/* Recruitment site */}
-      <NavLink
-        // target="_blank"
-        to="https://bd-job-portal.netlify.app" // address for job portal
-        className="rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0 m-2 lg:my-2 lg:mx-1 w-56 lg:w-24 lg:text-center"
+      <div
+        className="tooltip tooltip-bottom tooltip-primary rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0 m-2 lg:my-2 lg:mx-1 w-56 lg:w-24 lg:text-center"
+        data-tip="You can also check out our job portal site"
       >
-        Recruitment portal
-      </NavLink>
+        <NavLink
+          // target="_blank"
+          to="https://bd-job-portal.netlify.app" // address for job portal
+        >
+          Recruitment portal
+        </NavLink>
+      </div>
     </>
   );
 };

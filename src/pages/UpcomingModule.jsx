@@ -8,13 +8,13 @@ export default function UpcomingModule({ title }) {
 
   return (
     <>
-      <main className="grid place-items-center bg-white px-6 py-12 lg:px-8">
+      <main className="grid place-items-center px-6 py-12 lg:px-8">
         <div className="text-center w-3/4 md:w-1/2 mx-auto">
-          <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h1 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl">
             <span className="text-gradient">{title}</span> is not available right now
           </h1>
 
-          <p className="mt-6 text-base leading-7 text-gray-600">
+          <p className="mt-6 text-base leading-7">
             {title} you’re looking for is currently not available, we are
             working on it & will be accessible in a very short while. Please try
             again later
