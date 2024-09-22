@@ -132,7 +132,9 @@ const Transfer = () => {
 
                   <td>{employee?.employment_info?.joining_date}</td>
                   <td>{employee?.employment_info?.probation_period_months}</td>
-                  <td>{employee?.employment_info?.is_confirmed}</td>
+                  <td>
+                    {employee?.employment_info?.is_confirmed ? "Yes" : "No"}
+                  </td>
                   <td>{employee?.personal_info?.permanent_address}</td>
                   <td>{employee?.personal_info?.present_address}</td>
 

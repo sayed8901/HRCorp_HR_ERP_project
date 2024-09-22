@@ -34,6 +34,9 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo }) => {
 
             <td>Last Promotion Date</td>
 
+            <td>sick_leave_balance</td>
+            <td>casual_leave_balance</td>
+
             <td>Separation Type</td>
             <td>Cause of Separation</td>
             <td>Separation Application Date</td>
@@ -100,6 +103,9 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo }) => {
               <td>{employee?.employment_info?.confirmation_effective_date}</td>
 
               <td>{employee?.last_promotion?.promotion_effective_date}</td>
+
+              <td>{employee?.salary_info?.sick_leave_balance}</td>
+              <td>{employee?.salary_info?.casual_leave_balance}</td>
 
               <td>{employee?.separation_info?.separation_type}</td>
               <td>{employee?.separation_info?.cause_of_separation}</td>

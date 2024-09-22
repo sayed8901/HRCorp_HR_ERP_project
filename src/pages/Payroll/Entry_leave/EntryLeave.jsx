@@ -13,6 +13,8 @@ const EntryLeave = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [modalError, setModalError] = useState("");
 
+  // console.log(allActiveEmployeesInfo);
+
   const handleOpenModal = (employee) => {
     setSelectedEmployee(employee);
     setModalError(""); // Clear any previous errors when opening the modal
@@ -100,8 +102,12 @@ const EntryLeave = () => {
                 <td>Location</td>
 
                 <td>Joining Date</td>
-                <td>Probation (months)</td>
+                <td>Probation <br /> (months)</td>
                 <td>Is_confirmed</td>
+
+                <td>Sick <br /> leave <br /> balance</td>
+                <td>Casual <br /> leave <br /> balance</td>
+
                 <td>Permanent Address</td>
                 <td>Present Address</td>
 
@@ -132,7 +138,13 @@ const EntryLeave = () => {
 
                   <td>{employee?.employment_info?.joining_date}</td>
                   <td>{employee?.employment_info?.probation_period_months}</td>
-                  <td>{employee?.employment_info?.is_confirmed}</td>
+                  <td>
+                    {employee?.employment_info?.is_confirmed ? "Yes" : "No"}
+                  </td>
+
+                  <td>{employee?.salary_info?.sick_leave_balance}</td>
+                  <td>{employee?.salary_info?.casual_leave_balance}</td>
+
                   <td>{employee?.personal_info?.permanent_address}</td>
                   <td>{employee?.personal_info?.present_address}</td>
 

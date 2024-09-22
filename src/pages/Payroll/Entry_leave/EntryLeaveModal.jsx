@@ -16,15 +16,45 @@ const EntryLeaveModal = ({
     leave_end_date: "",
   });
 
+  const [modalError, setModalError] = useState("");
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setModalError(""); // Clear any previous modal errors on change
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Calculate the number of leave days
+    const startDate = new Date(formData.leave_start_date);
+    const endDate = new Date(formData.leave_end_date);
+    const leaveDays = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1; // Add 1 to include both start and end date
+
+    // Check leave balance and show error if necessary
+    if (
+      formData.leave_type === "Sick" &&
+      leaveDays > employee.salary_info.sick_leave_balance
+    ) {
+      setModalError(
+        `You cannot take more than ${employee.salary_info.sick_leave_balance} sick leave days.`
+      );
+      return; // Stop submission if the leave exceeds the balance
+    }
+
+    if (
+      formData.leave_type === "Casual" &&
+      leaveDays > employee.salary_info.casual_leave_balance
+    ) {
+      setModalError(
+        `You cannot take more than ${employee.salary_info.casual_leave_balance} casual leave days.`
+      );
+      return; // Stop submission if the leave exceeds the balance
+    }
 
     // preparing the final modal data to submit
     const finalData = {
@@ -51,7 +81,12 @@ const EntryLeaveModal = ({
           {employee.employee_id})
         </h2>
 
+        {/* leave error */}
         {error && <div className="text-red-600 text-center mb-4">{error}</div>}
+        {/* modal error */}
+        {modalError && (
+          <div className="text-red-600 text-center mb-4">{modalError}</div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -72,8 +107,12 @@ const EntryLeaveModal = ({
               <option value="" disabled>
                 Select leave type
               </option>
-              <option>Sick</option>
-              <option>Casual</option>
+              {employee?.salary_info?.sick_leave_balance > 0 && (
+                <option>Sick</option>
+              )}
+              {employee?.salary_info?.casual_leave_balance > 0 && (
+                <option>Casual</option>
+              )}
               <option>Non_Paid_Leave</option>
             </select>
           </div>

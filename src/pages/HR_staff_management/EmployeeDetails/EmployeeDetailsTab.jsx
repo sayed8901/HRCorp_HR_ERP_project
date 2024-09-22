@@ -331,7 +331,9 @@ const EmployeeDetailsTab = ({ employee_id }) => {
               </dd>
             </div>
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-              <dt className="text-sm font-medium leading-6">Salary Deduction</dt>
+              <dt className="text-sm font-medium leading-6">
+                Salary Deduction
+              </dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
                 {employee?.salary_info?.npl_salary_deduction}
               </dd>
@@ -348,6 +350,22 @@ const EmployeeDetailsTab = ({ employee_id }) => {
               </dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
                 {employee?.salary_info?.consolidated_salary}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">
+                sick_leave_balance
+              </dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.salary_info?.sick_leave_balance}
+              </dd>
+            </div>
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">
+                casual_leave_balance
+              </dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.salary_info?.casual_leave_balance}
               </dd>
             </div>
           </dl>
