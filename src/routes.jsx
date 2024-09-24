@@ -27,6 +27,7 @@ import TransferList from "./pages/HR_operation/Transfer_list/Transfer_list.jsx";
 import PromotionReport from "./pages/reports/PromotionReport.jsx";
 import UpcomingModule from "./pages/UpcomingModule.jsx";
 import EntryLeave from "./pages/Payroll/Entry_leave/EntryLeave.jsx";
+import Payroll from "./pages/Payroll/Salary_sheet/Payroll.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -239,7 +240,7 @@ export const router = createBrowserRouter([
         path: "/salary_sheet",
         element: (
           <LazyLoad>
-            <UpcomingModule title="Salary sheet section"></UpcomingModule>
+            <Payroll></Payroll>
           </LazyLoad>
         ),
       },
