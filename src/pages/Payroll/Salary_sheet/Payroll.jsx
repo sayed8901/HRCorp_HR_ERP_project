@@ -1,22 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
+import PayrollTable from "./PayrollTable";
 
 const Payroll = () => {
   const [payrollData, setPayrollData] = useState([]);
-  const [month, setMonth] = useState(new Date().toISOString().slice(0, 7)); // Current month as default value
+
+  // Month options
+  const monthOptions = [
+    { label: "January", value: "01" },
+    { label: "February", value: "02" },
+    { label: "March", value: "03" },
+    { label: "April", value: "04" },
+    { label: "May", value: "05" },
+    { label: "June", value: "06" },
+    { label: "July", value: "07" },
+    { label: "August", value: "08" },
+    { label: "September", value: "09" },
+    { label: "October", value: "10" },
+    { label: "November", value: "11" },
+    { label: "December", value: "12" },
+  ];
+  const today = new Date();
+
+  const [month, setMonth] = useState(monthOptions[today.getMonth()].label); // Default month as a string
+  const [year, setYear] = useState(new Date().getFullYear()); // Current year as default value
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Get current month in 'YYYY-MM' format
-  const currentMonth = new Date().toISOString().slice(0, 7);
-
   // Fetch payroll data
-  const fetchPayrollData = async () => {
+  const fetchPayrollData = async (payrollDuration) => {
     setLoading(true);
     setError("");
     try {
       const response = await fetch(
-        `https://hrcorp-system.onrender.com/payroll/process_payroll/?month=${month}`
+        `${
+          import.meta.env.VITE_API_URL
+        }/payroll/process_payroll/?month=${payrollDuration}`
       );
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
@@ -31,30 +51,79 @@ const Payroll = () => {
     }
   };
 
-  useEffect(() => {
-    fetchPayrollData();
-  }, [month]);
+  const handleSearch = (monthNumber, year) => {
+    const payrollDuration = `${year}-${monthNumber}`; // Combine year and month number
+    fetchPayrollData(payrollDuration); // Pass payrollDuration to the fetch function
+  };
 
   const handleMonthChange = (e) => {
     setMonth(e.target.value);
   };
 
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
+  };
+
   return (
     <div className="overflow-x-auto w-11/12 mx-auto mt-10 mb-16">
-      <h1 className="text-2xl font-bold text-center my-6">Payroll Data</h1>
+      {/* Input fields for month and year */}
+      <div className="month-selector my-4 text-center flex flex-col items-center">
+        <div className="flex justify-center space-x-4">
+          <div className="flex flex-row items-center">
+            <label htmlFor="month" className="mr-2 font-semibold mb-1">
+              Select Month:
+            </label>
+            <select
+              id="month"
+              value={month}
+              onChange={handleMonthChange}
+              className="border border-blue-400 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {monthOptions.map((option) => {
+                const currentMonthNumber = today.getMonth() + 1; // Get current month (January is 0, so we add 1)
+                const isDisabled =
+                  year === today.getFullYear() &&
+                  parseInt(option.value) > currentMonthNumber;
+                return (
+                  <option
+                    key={option.value}
+                    value={option.label}
+                    disabled={isDisabled}
+                  >
+                    {option.label}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div className="flex flex-row items-center">
+            <label htmlFor="year" className="mr-2 font-semibold mb-1">
+              Select Year:
+            </label>
+            <input
+              type="number"
+              id="year"
+              value={year}
+              onChange={handleYearChange}
+              min="2022" // Setting up the minimum year
+              max={new Date().getFullYear()} // Limit to the current year to block future year selection
+              className="border border-blue-400 p-2 rounded-lg w-24 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
 
-      <div className="month-selector my-4 text-center">
-        <label htmlFor="month" className="mr-2">
-          Select Month:
-        </label>
-        <input
-          type="month"
-          id="month"
-          value={month}
-          onChange={handleMonthChange}
-          max={currentMonth} /* Disable future months */
-          className="border border-gray-400 p-2 rounded"
-        />
+        {/* Search button below the input fields */}
+        <button
+          onClick={() => {
+            const monthNumber = monthOptions.find(
+              (m) => m.label === month
+            )?.value; // Get the numerical month value
+            handleSearch(monthNumber, year); // Call handleSearch with month number and year
+          }}
+          className="mt-4 py-2 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Get Payroll Info
+        </button>
       </div>
 
       {loading && (
@@ -65,90 +134,32 @@ const Payroll = () => {
 
       {error && <div className="text-center text-red-600 my-4">{error}</div>}
 
-      {!loading && !error && (
-        <div className="overflow-x-auto w-11/12 mx-auto mt-10 mb-16">
-          <table className="table table-xs table-pin-rows table-pin-cols">
-            <thead>
-              <tr>
-                <th>Employee ID</th>
-                <th>Name</th>
-                <th>Designation</th>
-                <th>Department</th>
-                <th>Job Location</th>
-                <th>Status</th>
-                <th>Joining Date</th>
-                <th>Salary Grade</th>
-                <th>Salary Step</th>
-                <th>Starting Basic</th>
-                <th>Effective Basic</th>
-                <th>House Rent</th>
-                <th>Medical Allowance</th>
-                <th>Conveyance</th>
-                <th>Hardship</th>
-                <th>PF Contribution</th>
-                <th>Festival Bonus</th>
-                <th>Other Allowance</th>
-                <th>Gross Salary</th>
-                <th>PF Deduction</th>
-                <th>SWF Deduction</th>
-                <th>Tax Deduction</th>
-                <th>Late Joining Deduction</th>
-                <th>NPL Salary Deduction</th>
-                <th>Net Salary</th>
-                <th>Consolidated Salary</th>
-                <th>Is Confirmed</th>
-              </tr>
-            </thead>
-            <tbody>
-              {payrollData.length > 0 ? (
-                payrollData.map((employee, index) => (
-                  <tr
-                    key={employee.employee}
-                    className={`hover ${
-                      index < payrollData.length - 1
-                        ? "border-b-2 border-indigo-300"
-                        : ""
-                    }`}
-                  >
-                    <th>{employee.employee}</th>
-                    <td>{employee.employee_name}</td>
-                    <td>{employee.designation}</td>
-                    <td>{employee.department}</td>
-                    <td>{employee.job_location}</td>
-                    <td>{employee.status}</td>
-                    <td>{employee.joining_date}</td>
-                    <td>{employee.salary_grade}</td>
-                    <td>{employee.salary_step}</td>
-                    <td>{employee.starting_basic}</td>
-                    <td>{employee.effective_basic}</td>
-                    <td>{employee.house_rent}</td>
-                    <td>{employee.medical_allowance}</td>
-                    <td>{employee.conveyance}</td>
-                    <td>{employee.hardship}</td>
-                    <td>{employee.pf_contribution}</td>
-                    <td>{employee.festival_bonus}</td>
-                    <td>{employee.other_allowance}</td>
-                    <td>{employee.gross_salary}</td>
-                    <td>{employee.pf_deduction}</td>
-                    <td>{employee.swf_deduction}</td>
-                    <td>{employee.tax_deduction}</td>
-                    <td>{employee.late_joining_deduction}</td>
-                    <td>{employee.npl_salary_deduction}</td>
-                    <td>{employee.net_salary}</td>
-                    <td>{employee.consolidated_salary}</td>
-                    <td>{employee.is_confirmed ? "Yes" : "No"}</td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td className="border px-4 py-2 text-center" colSpan="27">
-                    No payroll data available for this month.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+      {/* Conditional rendering based on payroll data availability */}
+      {!loading && !error && payrollData.length > 0 ? (
+        <>
+          {/* Headline with month and year */}
+          <h1 className="text-2xl text-center mt-6">
+            <span className="font-bold">Payroll</span> data for the month of:{" "}
+            <span className="font-bold">
+              {month}-{year}
+            </span>
+          </h1>
+
+          {/* Payroll table */}
+          <PayrollTable payrollData={payrollData}></PayrollTable>
+        </>
+      ) : (
+        // Display message when no payroll data is found
+        !loading &&
+        !error && (
+          <div className="text-center text-red-600 my-12">
+            No payroll data available now. <br /> <br />
+            <span className="text-success">
+              Please click onto the search button to process payroll again
+            </span>{" "}
+            <br /> or try again later.
+          </div>
+        )
       )}
     </div>
   );

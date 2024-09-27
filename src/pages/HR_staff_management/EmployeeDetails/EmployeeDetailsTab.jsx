@@ -344,14 +344,7 @@ const EmployeeDetailsTab = ({ employee_id }) => {
                 {employee?.salary_info?.net_salary}
               </dd>
             </div>
-            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-              <dt className="text-sm font-medium leading-6">
-                Consolidated Salary
-              </dt>
-              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
-                {employee?.salary_info?.consolidated_salary}
-              </dd>
-            </div>
+
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">
                 sick_leave_balance

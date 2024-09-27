@@ -127,7 +127,6 @@ const Promotion = () => {
                   <td>SWF Deduction</td>
                   <td>Tax Deduction</td>
                   <td>Net Salary</td>
-                  <td>Consolidated Salary</td>
 
                   <td>
                     Job Profile Details of The Employee Describing The Full
@@ -179,7 +178,6 @@ const Promotion = () => {
                     <td>{employee?.salary_info?.swf_deduction}</td>
                     <td>{employee?.salary_info?.tax_deduction}</td>
                     <td>{employee?.salary_info?.net_salary}</td>
-                    <td>{employee?.salary_info?.consolidated_salary}</td>
 
                     <td>{employee?.job_profile_details}</td>
                     <th>

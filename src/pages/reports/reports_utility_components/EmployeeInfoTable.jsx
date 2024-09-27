@@ -57,7 +57,6 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo }) => {
             <td>Tax Deduct.</td>
             <td>Salary Deduct.</td>
             <td>Net Salary</td>
-            <td>Consolidated Salary</td>
 
             <td>Father</td>
             <td>Mother</td>
@@ -127,7 +126,6 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo }) => {
               <td>{employee?.salary_info?.tax_deduction}</td>
               <td>{employee?.salary_info?.npl_salary_deduction}</td>
               <td>{employee?.salary_info?.net_salary}</td>
-              <td>{employee?.salary_info?.consolidated_salary}</td>
 
               <td>{employee?.personal_info?.father_name}</td>
               <td>{employee?.personal_info?.mother_name}</td>
