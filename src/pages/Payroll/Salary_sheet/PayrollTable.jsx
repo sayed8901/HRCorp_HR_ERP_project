@@ -38,6 +38,15 @@ const PayrollTable = ({ payrollData }) => {
     "Is Confirmed": employee.is_confirmed ? "Yes" : "No",
   });
 
+  // Helper function to get the current month and year
+  const getCurrentMonthYear = () => {
+    const date = new Date();
+    const options = { month: "long", year: "numeric" };
+    return date.toLocaleDateString("en-US", options).replace(" ", "-");
+  };
+
+  const monthYear = getCurrentMonthYear(); // e.g., "September-2024"
+
   // PDF download
   const downloadPDF = () => {
     const doc = new jsPDF({ orientation: "landscape" });
@@ -78,7 +87,8 @@ const PayrollTable = ({ payrollData }) => {
       Object.values(formatEmployeeData(employee))
     );
 
-    doc.text("Payroll Data", 14, 20);
+    // Use the monthYear variable to dynamically set the title
+    doc.text(`Payroll Data - ${monthYear}`, 14, 20); // 14, 20 is to set the page margins or positioning (X, Y coordinates)
 
     doc.autoTable({
       head: headers,
@@ -88,7 +98,8 @@ const PayrollTable = ({ payrollData }) => {
       startY: 30,
     });
 
-    doc.save("payroll-data.pdf");
+    // Use monthYear in the filename for the PDF
+    doc.save(`payroll-data-${monthYear}.pdf`);
   };
 
   // Excel download
@@ -100,8 +111,8 @@ const PayrollTable = ({ payrollData }) => {
 
     XLSX.utils.book_append_sheet(wb, ws, "Payroll Data"); // Append the worksheet to the workbook
 
-    // Save the workbook as an Excel file
-    XLSX.writeFile(wb, "payroll-data.xlsx");
+    // Use monthYear in the filename for the Excel file
+    XLSX.writeFile(wb, `payroll-data-${monthYear}.xlsx`);
   };
 
   return (
