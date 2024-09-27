@@ -109,7 +109,7 @@ const PayrollTable = ({ payrollData }) => {
 
     const wb = XLSX.utils.book_new(); // Create a new workbook for Excel download
 
-    XLSX.utils.book_append_sheet(wb, ws, "Payroll Data"); // Append the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws, `Payroll Data - ${monthYear}`); // Append the worksheet to the workbook
 
     // Use monthYear in the filename for the Excel file
     XLSX.writeFile(wb, `payroll-data-${monthYear}.xlsx`);
