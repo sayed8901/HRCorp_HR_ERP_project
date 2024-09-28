@@ -148,14 +148,14 @@ const MainMenuItems = ({ user }) => {
                 Separation
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to="/training"
                 className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Training
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       )}
@@ -231,14 +231,14 @@ const MainMenuItems = ({ user }) => {
                   Promotion
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
                   to="/training_report"
                   className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                 >
                   Training
                 </NavLink>
-              </li>
+              </li> */}
             </>
           )}
         </ul>

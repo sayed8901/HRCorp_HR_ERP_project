@@ -203,22 +203,22 @@ export const router = createBrowserRouter([
         ),
       },
 
-      {
-        path: "/training",
-        element: (
-          <LazyLoad>
-            <UpcomingModule title="Training section"></UpcomingModule>
-          </LazyLoad>
-        ),
-      },
-      {
-        path: "/training_report",
-        element: (
-          <LazyLoad>
-            <UpcomingModule title="Training report section"></UpcomingModule>
-          </LazyLoad>
-        ),
-      },
+      // {
+      //   path: "/training",
+      //   element: (
+      //     <LazyLoad>
+      //       <UpcomingModule title="Training section"></UpcomingModule>
+      //     </LazyLoad>
+      //   ),
+      // },
+      // {
+      //   path: "/training_report",
+      //   element: (
+      //     <LazyLoad>
+      //       <UpcomingModule title="Training report section"></UpcomingModule>
+      //     </LazyLoad>
+      //   ),
+      // },
 
       {
         path: "/entry_leave_data",
