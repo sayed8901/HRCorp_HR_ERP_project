@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const DateSelector = ({ selectedDuration, onChange }) => {
   return (
-    <div className="my-6 flex justify-center">
+    <div className="flex justify-center">
       <select
         value={selectedDuration}
         onChange={(e) => onChange(e.target.value)}

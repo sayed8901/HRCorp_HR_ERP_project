@@ -12,10 +12,10 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
   // Helper object to format employee data for reuse in PDF or Excel files
   const formatEmployeeData = (employee) => ({
     "Employee ID": employee?.employee_id,
-    Status: employee?.employment_info?.status,
-    Name: employee?.personal_info?.name,
-    Designation: employee?.employment_info?.designation,
-    Department: employee?.employment_info?.department,
+    "Status": employee?.employment_info?.status,
+    "Name": employee?.personal_info?.name,
+    "Designation": employee?.employment_info?.designation,
+    "Department": employee?.employment_info?.department,
     "Job Location": employee?.employment_info?.job_location,
 
     "Joining Date": employee?.employment_info?.joining_date,
@@ -121,14 +121,7 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
 
   return (
     <div>
-      <h2 className="text-center text-2xl font-semibold leading-8 my-10">
-        <span className="text-gradient">
-          All ({allEmployeesFullInfo?.length}) Employee
-        </span>{" "}
-        Info
-      </h2>
-
-      <div className="my-4 mr-8 text-right">
+      <div className="my-4 mr-4 sm:mr-8 text-right">
         <button
           onClick={downloadPDF}
           className="btn-sm mr-2 px-4 py-2 bg-indigo-500 text-white rounded transition duration-300 hover:bg-indigo-600"
@@ -143,7 +136,7 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
         </button>
       </div>
 
-      <div className="overflow-x-auto w-11/12 mx-auto mt-10 mb-16">
+      <div className="overflow-x-auto w-11/12 mx-auto mt-4 mb-16">
         <table className="table table-xs table-pin-rows table-pin-cols">
           <thead>
             <tr>

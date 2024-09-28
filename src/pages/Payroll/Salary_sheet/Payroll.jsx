@@ -141,7 +141,7 @@ const Payroll = () => {
       {!loading && !error && payrollData.length > 0 ? (
         <>
           {/* Headline with month and year */}
-          <h1 className="text-2xl text-center mt-6">
+          <h1 className="text-2xl text-center mt-6 text-gradient">
             <span className="font-bold">Payroll</span> data for the month of:{" "}
             <span className="font-bold">
               {month}-{year}

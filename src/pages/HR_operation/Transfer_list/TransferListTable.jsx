@@ -96,7 +96,7 @@ const TransferTable = ({
                           </button>
                         </th>
                       ) : (
-                        <th>
+                        <th className="border border-gray-300">
                           <div className="text-xsm text-center border border-blue-300 rounded-lg font-normal px-2 py-1">
                             N/A (Only power user can perform update / delete)
                           </div>

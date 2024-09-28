@@ -11,7 +11,7 @@ import Login from "./authentication/Login.jsx";
 import PowerUserProfile from "./pages/profiles/PowerUserProfile.jsx";
 import StandardUserProfile from "./pages/profiles/StandardUserProfile.jsx";
 import EntryNewEmployee from "./pages/HR_staff_management/EntryNewEmployee.jsx";
-import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList.jsx";
+import AllEmployeeList from "./pages/HR_staff_management/AllEmployeeList/AllEmployeeList.jsx";
 import EmployeeDetails from "./pages/HR_staff_management/EmployeeDetails/EmployeeDetails.jsx";
 import Transfer from "./pages/HR_operation/Transfer/Transfer.jsx";
 import JobConfirmation from "./pages/HR_operation/Job_confirmation/JobConfirmation.jsx";
@@ -229,7 +229,7 @@ export const router = createBrowserRouter([
         ),
       },
       // {
-      //   path: "/entry_late_attendance",
+      //   path: "/salary_deduction",
       //   element: (
       //     <LazyLoad>
       //       <UpcomingModule title="Late attendance part"></UpcomingModule>
@@ -263,14 +263,14 @@ export const router = createBrowserRouter([
         ),
       },
 
-      {
-        path: "/employee_dashboard",
-        element: (
-          <LazyLoad>
-            <UpcomingModule title="Employee dashboard"></UpcomingModule>
-          </LazyLoad>
-        ),
-      },
+      // {
+      //   path: "/employee_dashboard",
+      //   element: (
+      //     <LazyLoad>
+      //       <UpcomingModule title="Employee dashboard"></UpcomingModule>
+      //     </LazyLoad>
+      //   ),
+      // },
 
       {
         path: "/manage_post_dept_location",

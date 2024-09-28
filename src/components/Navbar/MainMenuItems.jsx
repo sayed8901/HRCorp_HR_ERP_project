@@ -63,14 +63,14 @@ const MainMenuItems = ({ user }) => {
                 Employee details_view
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to="/employee_dashboard"
                 className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
               >
                 Employee dashboard
               </NavLink>
-            </li>
+            </li> */}
             {(user.userType === "standard_user" ||
               user.userType === "power_user") && (
               <li>
@@ -277,14 +277,6 @@ const MainMenuItems = ({ user }) => {
                     Entry leave_data
                   </NavLink>
                 </li>
-                {/* <li>
-                  <NavLink
-                    to="/entry_late_attendance"
-                    className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
-                  >
-                    Entry late attendance
-                  </NavLink>
-                </li> */}
               </>
             )}
             {user.userType === "power_user" && (

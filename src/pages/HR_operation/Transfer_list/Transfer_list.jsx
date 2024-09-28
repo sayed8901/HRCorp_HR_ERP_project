@@ -7,7 +7,7 @@ import useFetch from "../../../utilities/dataFetches/useDataFetchHooks";
 import TransferUpdateModal from "../Transfer_list/UpdateTransferModal";
 import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 import TransferTable from "./TransferListTable";
-import TransferFilters from "./TransferListFilters";
+import MultipleInputFilters from "../../HR_staff_management/AllEmployeeList/CustomMultipleFilters";
 import useTitle from "../../../utilities/useTitle";
 
 // Fetching all transfer data from the API
@@ -32,9 +32,11 @@ const TransferList = () => {
   const [employeeData, setEmployeeData] = useState({});
 
   // Filtering state
-  const [filterText, setFilterText] = useState("");
+  const [filterID, setFilterID] = useState("");
+  const [filterName, setFilterName] = useState("");
   const [filterDepartment, setFilterDepartment] = useState("");
   const [filterDesignation, setFilterDesignation] = useState("");
+  const [filterJobLocation, setFilterJobLocation] = useState("");
 
   // Duration filtering state
   const [selectedDuration, setSelectedDuration] = useState("this_month");
@@ -110,6 +112,8 @@ const TransferList = () => {
       employeeInfo?.employmentData?.designation?.toLowerCase() || "";
     const department =
       employeeInfo?.employmentData?.department?.toLowerCase() || "";
+    const jobLocation =
+      employeeInfo?.employmentData?.job_location?.toLowerCase() || "";
 
     // Apply filters and date range
     const transferEffectiveDate = new Date(transfer?.transfer_effective_date);
@@ -117,13 +121,17 @@ const TransferList = () => {
     const end = new Date(endDate);
 
     return (
-      name.includes(filterText.toLowerCase()) &&
+      (filterID ? employee_id.toString() === filterID : true) &&
+      name.includes(filterName.toLowerCase()) &&
       designation.includes(filterDesignation.toLowerCase()) &&
       department.includes(filterDepartment.toLowerCase()) &&
+      jobLocation.includes(filterJobLocation.toLowerCase()) &&
       transferEffectiveDate >= start &&
       transferEffectiveDate <= end
     );
   });
+
+  // console.log(filteredTransfers);
 
   const handleOpenTransferUpdateModal = (transferData) => {
     setCurrentTransferData(transferData);
@@ -240,15 +248,26 @@ const TransferList = () => {
         </div>
 
         {/* Filter fields */}
-        <TransferFilters
-          filterText={filterText}
-          setFilterText={setFilterText}
+        <MultipleInputFilters
+          // for ID filtering
+          filterID={filterID}
+          setFilterID={setFilterID}
+          // for name filtering
+          filterName={filterName}
+          setFilterName={setFilterName}
+          // for description filtering
           filterDepartment={filterDepartment}
           setFilterDepartment={setFilterDepartment}
+          // for designation filtering
           filterDesignation={filterDesignation}
           setFilterDesignation={setFilterDesignation}
+          // for job location filtering
+          filterJobLocation={filterJobLocation}
+          setFilterJobLocation={setFilterJobLocation}
+          // for month & duration filtering
           selectedDuration={selectedDuration}
           setSelectedDuration={setSelectedDuration}
+          // for year filtering
           selectedYear={selectedYear}
           setSelectedYear={setSelectedYear}
         />
