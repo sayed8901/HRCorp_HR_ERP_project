@@ -9,7 +9,6 @@ const AllEmployeeList = () => {
   return (
     <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
       <div className="w-full mx-auto px-5 my-10">
-
         {loading && <LoadingSpinner />}
 
         {/* Display error messages */}
@@ -19,7 +18,10 @@ const AllEmployeeList = () => {
 
         {/* All Employee table */}
         <div className="my-10">
-          <EmployeeInfoTable allEmployeesFullInfo={allEmployeesFullInfo} />
+          <EmployeeInfoTable
+            allEmployeesFullInfo={allEmployeesFullInfo}
+            reportType="all_employees"
+          ></EmployeeInfoTable>
         </div>
       </div>
     </div>

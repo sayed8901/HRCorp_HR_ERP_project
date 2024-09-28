@@ -104,7 +104,10 @@ const JoiningReport = () => {
 
       {/* Filtered Employee table */}
       {filteredStaff.length > 0 && (
-        <EmployeeInfoTable allEmployeesFullInfo={filteredStaff} />
+        <EmployeeInfoTable
+          allEmployeesFullInfo = {filteredStaff}
+          reportType = "joining"
+        ></EmployeeInfoTable>
       )}
     </div>
   );

@@ -153,10 +153,14 @@ const Payroll = () => {
         !loading &&
         !error && (
           <div className="text-center text-red-600 my-12">
-            No payroll data available now. <br /> <br />
+            Payroll data not available. <br /> <br />
             <span className="text-success">
-              Please click onto the <span className="font-bold text-primary">Get Payroll Info</span> button to process payroll again
-            </span>{" "}
+              Please click onto the{" "}
+              <span className="font-bold text-primary">
+                &quot;Get Payroll Info&quot;
+              </span>{" "}
+              button to process payroll again
+            </span>
             <br /> or try again later.
           </div>
         )

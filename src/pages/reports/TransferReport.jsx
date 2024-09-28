@@ -110,7 +110,10 @@ const TransferReport = () => {
       </div>
 
       {filteredStaff.length > 0 && (
-        <EmployeeInfoTable allEmployeesFullInfo={filteredStaff} />
+        <EmployeeInfoTable
+          allEmployeesFullInfo={filteredStaff}
+          reportType="transfer"
+        ></EmployeeInfoTable>
       )}
     </div>
   );

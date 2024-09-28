@@ -107,7 +107,10 @@ const JobConfirmationReport = () => {
 
       {/* Filtered Employee table */}
       {filteredStaff.length > 0 && (
-        <EmployeeInfoTable allEmployeesFullInfo={filteredStaff} />
+        <EmployeeInfoTable
+          allEmployeesFullInfo={filteredStaff}
+          reportType="job_confirmation"
+        ></EmployeeInfoTable>
       )}
     </div>
   );
