@@ -4,8 +4,11 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import JobConfirmationModal from "./JobConfirmationModal";
+import useTitle from "../../../utilities/useTitle";
 
 const JobConfirmation = () => {
+  useTitle("Job Confirmation");
+
   const navigate = useNavigate();
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
   const [selectedEmployee, setSelectedEmployee] = useState(null);

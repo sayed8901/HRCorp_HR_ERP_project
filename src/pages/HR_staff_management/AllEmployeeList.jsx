@@ -1,8 +1,11 @@
 import LoadingSpinner from "../../utilities/LoadingSpinner";
 import useEmployeesData from "../../utilities/dataFetches/useAllEmployeesData";
+import useTitle from "../../utilities/useTitle";
 import EmployeeInfoTable from "../reports/reports_utility_components/EmployeeInfoTable";
 
 const AllEmployeeList = () => {
+  useTitle("All Employees List");
+
   const { allEmployeesFullInfo, loading, error } = useEmployeesData();
   // console.log(allEmployeesFullInfo);
 

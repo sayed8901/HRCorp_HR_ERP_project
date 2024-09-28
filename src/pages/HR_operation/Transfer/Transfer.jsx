@@ -4,8 +4,11 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import TransferModal from "./TransferModal";
+import useTitle from "../../../utilities/useTitle";
 
 const Transfer = () => {
+  useTitle("Transfer");
+
   const navigate = useNavigate();
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
   const [selectedEmployee, setSelectedEmployee] = useState(null);

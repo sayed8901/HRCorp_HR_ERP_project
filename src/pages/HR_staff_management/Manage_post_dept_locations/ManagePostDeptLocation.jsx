@@ -3,8 +3,11 @@ import { UserContext } from "../../../contextProviders/Contexts"; // Importing t
 import UpdatePostDeptLocationModal from "./UpdatePostDeptLocationModal";
 import CreateNewPostDeptLocationModal from "./CreateNewPostDeptLocationModal";
 import { toast } from "react-toastify";
+import useTitle from "../../../utilities/useTitle";
 
 const ManagePostDeptLocation = () => {
+  useTitle("Manage Post Dept Location");
+
   const [designations, setDesignations] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [jobLocations, setJobLocations] = useState([]);

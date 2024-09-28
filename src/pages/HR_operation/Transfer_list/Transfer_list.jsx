@@ -8,9 +8,12 @@ import TransferUpdateModal from "../Transfer_list/UpdateTransferModal";
 import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 import TransferTable from "./TransferListTable";
 import TransferFilters from "./TransferListFilters";
+import useTitle from "../../../utilities/useTitle";
 
 // Fetching all transfer data from the API
 const TransferList = () => {
+  useTitle("Transfer List");
+
   const navigate = useNavigate();
 
   const {

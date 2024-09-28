@@ -5,8 +5,11 @@ import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import EmployeeDetailsTab from "./EmployeeDetailsTab";
 import UpcomingModule from "../../UpcomingModule";
 import SampleKeyboardLayout from "../../../components/SampleKeyboardLayout";
+import useTitle from "../../../utilities/useTitle";
 
 const EmployeeDetails = () => {
+  useTitle("Employee Details");
+
   const { employee_id: urlEmployeeId } = useParams();
   const [searchId, setSearchId] = useState(urlEmployeeId || "");
   const [submittedId, setSubmittedId] = useState("");

@@ -6,8 +6,11 @@ import calculateCounts from "../../utilities/CalculateUtils/employeeCalculateCou
 import getDatesForDuration from "../../utilities/CalculateUtils/useGetDatesForDuration";
 import StatisticsCard from "./reports_utility_components/StatisticsCard";
 import EmployeeInfoTable from "./reports_utility_components/EmployeeInfoTable";
+import useTitle from "../../utilities/useTitle";
 
 const SeparationReport = () => {
+  useTitle("Separation Report");
+
   const { allEmployeesFullInfo, loading, error } = useEmployeesData();
   //   console.log(allEmployeesFullInfo);
 

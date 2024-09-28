@@ -2,8 +2,11 @@ import useEmployeesData from "../../utilities/dataFetches/useAllEmployeesData";
 import LoadingSpinner from "../../utilities/LoadingSpinner";
 import calculateCounts from "../../utilities/CalculateUtils/employeeCalculateCounts";
 import StatisticsCard from "./reports_utility_components/StatisticsCard";
+import useTitle from "../../utilities/useTitle";
 
 const ManpowerStatus = () => {
+  useTitle("Manpower Status");
+
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
   //   console.log(allActiveEmployeesInfo);
 

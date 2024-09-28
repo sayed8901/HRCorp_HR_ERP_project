@@ -1,8 +1,11 @@
 import { useState } from "react";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import PayrollTable from "./PayrollTable";
+import useTitle from "../../../utilities/useTitle";
 
 const Payroll = () => {
+  useTitle("Process Payroll");
+
   const [payrollData, setPayrollData] = useState([]);
 
   // Month options
