@@ -14,18 +14,18 @@ const TransferTable = ({
       <table className="table table-xs table-pin-rows table-pin-cols">
         <thead>
           <tr>
-            <th>Transfer ID</th>
-            <th>Employee ID</th>
-            <td>Name</td>
-            <td>Designation</td>
+            <th className="border border-gray-300">Transfer ID</th>
+            <th className="border border-gray-300">Employee ID</th>
+            <td className="border border-gray-300">Name</td>
+            <td className="border border-gray-300">Designation</td>
 
-            <td>Transfer from location</td>
-            <td>Transfer to location</td>
-            <td>Transfer from department</td>
-            <td>Transfer to department</td>
-            <td>Effective date</td>
+            <td className="border border-gray-300">Transfer from location</td>
+            <td className="border border-gray-300">Transfer to location</td>
+            <td className="border border-gray-300">Transfer from department</td>
+            <td className="border border-gray-300">Transfer to department</td>
+            <td className="border border-gray-300">Effective date</td>
 
-            <th>Transfer Update/ cancel</th>
+            <th className="border border-gray-300">Transfer Update/ cancel</th>
           </tr>
         </thead>
         <tbody>
@@ -47,16 +47,26 @@ const TransferTable = ({
                       : ""
                   }`}
                 >
-                  <th>{transferData?.id}</th>
-                  <th>{employee_id}</th>
-                  <td>{name}</td>
-                  <td>{designation}</td>
+                  <th className="border border-gray-300">{transferData?.id}</th>
+                  <th className="border border-gray-300">{employee_id}</th>
+                  <td className="border border-gray-300">{name}</td>
+                  <td className="border border-gray-300">{designation}</td>
 
-                  <td>{transferData?.transfer_from_location}</td>
-                  <td>{transferData?.transfer_to_location}</td>
-                  <td>{transferData?.transfer_from_department}</td>
-                  <td>{transferData?.transfer_to_department}</td>
-                  <td>{transferData?.transfer_effective_date}</td>
+                  <td className="border border-gray-300">
+                    {transferData?.transfer_from_location}
+                  </td>
+                  <td className="border border-gray-300">
+                    {transferData?.transfer_to_location}
+                  </td>
+                  <td className="border border-gray-300">
+                    {transferData?.transfer_from_department}
+                  </td>
+                  <td className="border border-gray-300">
+                    {transferData?.transfer_to_department}
+                  </td>
+                  <td className="border border-gray-300">
+                    {transferData?.transfer_effective_date}
+                  </td>
 
                   {/* Checking if transfer is not outdated and if the user is power_user */}
                   {isTransferNotOutdated(
@@ -64,7 +74,7 @@ const TransferTable = ({
                   ) ? (
                     <>
                       {user_type === "power_user" ? (
-                        <th className="flex flex-col gap-2 items-center">
+                        <th className="border border-gray-300 flex flex-col gap-2 items-center">
                           <button
                             className="btn btn-xs btn-outline btn-accent w-32"
                             onClick={() =>
@@ -94,7 +104,7 @@ const TransferTable = ({
                       )}
                     </>
                   ) : (
-                    <th className="flex flex-col items-center">
+                    <th className="border border-gray-300 flex flex-col items-center">
                       <div className="text-xsm text-center border border-red-300 rounded-lg font-normal px-2 py-1">
                         N/A (This Transfer is Already Expired)
                       </div>

@@ -289,14 +289,14 @@ const MainMenuItems = ({ user }) => {
             )}
             {user.userType === "power_user" && (
               <>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/salary_deduction"
                     className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                   >
                     Salary deduction
                   </NavLink>
-                </li>
+                </li> */}
               </>
             )}
             <li>

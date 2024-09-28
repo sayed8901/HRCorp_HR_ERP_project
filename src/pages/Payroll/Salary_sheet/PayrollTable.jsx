@@ -10,32 +10,32 @@ import * as XLSX from "xlsx";
 const PayrollTable = ({ payrollData }) => {
   // Helper object to format employee data for reuse in PDF or Excel files
   const formatEmployeeData = (employee) => ({
-    "Employee ID": employee.employee,
-    "Name": employee.employee_name,
-    "Designation": employee.designation,
-    "Department": employee.department,
-    "Job Location": employee.job_location,
-    "Status": employee.status,
-    "Joining Date": employee.joining_date,
-    "Salary Grade": employee.salary_grade,
-    "Salary Step": employee.salary_step,
-    "Starting Basic": employee.starting_basic,
-    "Effective Basic": employee.effective_basic,
-    "House Rent": employee.house_rent,
-    "Medical Allowance": employee.medical_allowance,
-    "Conveyance": employee.conveyance,
-    "Hardship": employee.hardship,
-    "PF Contribution": employee.pf_contribution,
-    "Festival Bonus": employee.festival_bonus,
-    "Other Allowance": employee.other_allowance,
-    "Gross Salary": employee.gross_salary,
-    "PF Deduction": employee.pf_deduction,
-    "SWF Deduction": employee.swf_deduction,
-    "Tax Deduction": employee.tax_deduction,
-    "Late Joining Deduction": employee.late_joining_deduction,
-    "NPL Salary Deduction": employee.npl_salary_deduction,
-    "Net Salary": employee.net_salary,
-    "Is Confirmed": employee.is_confirmed ? "Yes" : "No",
+    "Employee ID": employee?.employee,
+    "Name": employee?.employee_name,
+    "Designation": employee?.designation,
+    "Department": employee?.department,
+    "Job Location": employee?.job_location,
+    "Status": employee?.status,
+    "Joining Date": employee?.joining_date,
+    "Salary Grade": employee?.salary_grade,
+    "Salary Step": employee?.salary_step,
+    "Starting Basic": employee?.starting_basic,
+    "Effective Basic": employee?.effective_basic,
+    "House Rent": employee?.house_rent,
+    "Medical Allowance": employee?.medical_allowance,
+    "Conveyance": employee?.conveyance,
+    "Hardship": employee?.hardship,
+    "PF Contribution": employee?.pf_contribution,
+    "Festival Bonus": employee?.festival_bonus,
+    "Other Allowance": employee?.other_allowance,
+    "Gross Salary": employee?.gross_salary,
+    "PF Deduction": employee?.pf_deduction,
+    "SWF Deduction": employee?.swf_deduction,
+    "Tax Deduction": employee?.tax_deduction,
+    "Late Joining Deduction": employee?.late_joining_deduction,
+    "NPL Salary Deduction": employee?.npl_salary_deduction,
+    "Net Salary": employee?.net_salary,
+    "Is Confirmed": employee?.is_confirmed ? "Yes" : "No",
   });
 
   // Helper function to get the current month and year
@@ -136,7 +136,9 @@ const PayrollTable = ({ payrollData }) => {
           <thead>
             <tr>
               {Object.keys(formatEmployeeData({})).map((header, index) => (
-                <td key={index}>{header}</td>
+                <td className="border border-gray-300" key={index}>
+                  {header}
+                </td>
               ))}
             </tr>
           </thead>
@@ -152,7 +154,9 @@ const PayrollTable = ({ payrollData }) => {
               >
                 {Object.values(formatEmployeeData(employee)).map(
                   (value, index) => (
-                    <td key={index}>{value}</td>
+                    <td className="border border-gray-300" key={index}>
+                      {value}
+                    </td>
                   )
                 )}
               </tr>

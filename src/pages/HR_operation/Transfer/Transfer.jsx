@@ -95,24 +95,24 @@ const Transfer = () => {
           <table className="table table-xs table-pin-rows table-pin-cols">
             <thead>
               <tr>
-                <th>ID</th>
-                <td>Status</td>
-                <td>Name</td>
-                <td>Designation</td>
-                <td>Department</td>
-                <td>Location</td>
+                <th className="border border-gray-300">ID</th>
+                <td className="border border-gray-300">Status</td>
+                <td className="border border-gray-300">Name</td>
+                <td className="border border-gray-300">Designation</td>
+                <td className="border border-gray-300">Department</td>
+                <td className="border border-gray-300">Location</td>
 
-                <td>Joining Date</td>
-                <td>Probation (months)</td>
-                <td>Is_confirmed</td>
-                <td>Permanent Address</td>
-                <td>Present Address</td>
+                <td className="border border-gray-300">Joining Date</td>
+                <td className="border border-gray-300">Probation (months)</td>
+                <td className="border border-gray-300">Is_confirmed</td>
+                <td className="border border-gray-300">Permanent Address</td>
+                <td className="border border-gray-300">Present Address</td>
 
-                <td>
+                <td className="border border-gray-300">
                   Job Profile Details of The Employee Describing The Full
                   History of The Employee During His Employment
                 </td>
-                <th>Action</th>
+                <th className="border border-gray-300">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -126,23 +126,45 @@ const Transfer = () => {
                       : ""
                   }`}
                 >
-                  <th>{employee?.employee_id}</th>
-                  <td>{employee?.employment_info?.status}</td>
-                  <td>{employee?.personal_info?.name}</td>
-                  <td>{employee?.employment_info?.designation}</td>
-                  <td>{employee?.employment_info?.department}</td>
-                  <td>{employee?.employment_info?.job_location}</td>
+                  <th className="border border-gray-300">
+                    {employee?.employee_id}
+                  </th>
+                  <td className="border border-gray-300">
+                    {employee?.employment_info?.status}
+                  </td>
+                  <td className="border border-gray-300">
+                    {employee?.personal_info?.name}
+                  </td>
+                  <td className="border border-gray-300">
+                    {employee?.employment_info?.designation}
+                  </td>
+                  <td className="border border-gray-300">
+                    {employee?.employment_info?.department}
+                  </td>
+                  <td className="border border-gray-300">
+                    {employee?.employment_info?.job_location}
+                  </td>
 
-                  <td>{employee?.employment_info?.joining_date}</td>
-                  <td>{employee?.employment_info?.probation_period_months}</td>
-                  <td>
+                  <td className="border border-gray-300">
+                    {employee?.employment_info?.joining_date}
+                  </td>
+                  <td className="border border-gray-300">
+                    {employee?.employment_info?.probation_period_months}
+                  </td>
+                  <td className="border border-gray-300">
                     {employee?.employment_info?.is_confirmed ? "Yes" : "No"}
                   </td>
-                  <td>{employee?.personal_info?.permanent_address}</td>
-                  <td>{employee?.personal_info?.present_address}</td>
+                  <td className="border border-gray-300">
+                    {employee?.personal_info?.permanent_address}
+                  </td>
+                  <td className="border border-gray-300">
+                    {employee?.personal_info?.present_address}
+                  </td>
 
-                  <td>{employee?.job_profile_details}</td>
-                  <th>
+                  <td className="border border-gray-300">
+                    {employee?.job_profile_details}
+                  </td>
+                  <th className="border border-gray-300">
                     <button
                       className="btn btn-xs btn-outline btn-accent h-10"
                       onClick={() => handleOpenModal(employee)}

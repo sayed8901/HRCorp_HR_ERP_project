@@ -104,38 +104,42 @@ const Promotion = () => {
             <table className="table table-xs table-pin-rows table-pin-cols">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <td>Status</td>
-                  <td>Name</td>
-                  <td>Designation</td>
-                  <td>Department</td>
-                  <td>Location</td>
-                  <td>Joining Date</td>
+                  <th className="border border-gray-300">ID</th>
+                  <td className="border border-gray-300">Status</td>
+                  <td className="border border-gray-300">Name</td>
+                  <td className="border border-gray-300">Designation</td>
+                  <td className="border border-gray-300">Department</td>
+                  <td className="border border-gray-300">Location</td>
+                  <td className="border border-gray-300">Joining Date</td>
 
-                  <td>Is Confirmed</td>
-                  <td>Confirmation Effective Date</td>
-                  <td>Last Promotion Date</td>
+                  <td className="border border-gray-300">Is Confirmed</td>
+                  <td className="border border-gray-300">
+                    Confirmation Effective Date
+                  </td>
+                  <td className="border border-gray-300">
+                    Last Promotion Date
+                  </td>
 
-                  <td>Salary Grade</td>
-                  <td>Starting Basic</td>
-                  <td>Salary Step</td>
-                  <td>Effective Basic</td>
-                  <td>House Rent</td>
-                  <td>Medical</td>
-                  <td>Conveyance</td>
-                  <td>Hardship</td>
-                  <td>PF Contribution</td>
-                  <td>Gross Salary</td>
+                  <td className="border border-gray-300">Salary Grade</td>
+                  <td className="border border-gray-300">Starting Basic</td>
+                  <td className="border border-gray-300">Salary Step</td>
+                  <td className="border border-gray-300">Effective Basic</td>
+                  <td className="border border-gray-300">House Rent</td>
+                  <td className="border border-gray-300">Medical</td>
+                  <td className="border border-gray-300">Conveyance</td>
+                  <td className="border border-gray-300">Hardship</td>
+                  <td className="border border-gray-300">PF Contribution</td>
+                  <td className="border border-gray-300">Gross Salary</td>
                   <td>PF Deduction</td>
-                  <td>SWF Deduction</td>
-                  <td>Tax Deduction</td>
-                  <td>Net Salary</td>
+                  <td className="border border-gray-300">SWF Deduction</td>
+                  <td className="border border-gray-300">Tax Deduction</td>
+                  <td className="border border-gray-300">Net Salary</td>
 
-                  <td>
+                  <td className="border border-gray-300">
                     Job Profile Details of The Employee Describing The Full
                     History of The Employee During His Employment
                   </td>
-                  <th>Action</th>
+                  <th className="border border-gray-300">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -149,41 +153,85 @@ const Promotion = () => {
                         : ""
                     }`}
                   >
-                    <th>{employee?.employee_id}</th>
-                    <td>{employee?.employment_info?.status}</td>
-                    <td>{employee?.personal_info?.name}</td>
-                    <td>{employee?.employment_info?.designation}</td>
-                    <td>{employee?.employment_info?.department}</td>
-                    <td>{employee?.employment_info?.job_location}</td>
-                    <td>{employee?.employment_info?.joining_date}</td>
+                    <th className="border border-gray-300">
+                      {employee?.employee_id}
+                    </th>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.status}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.personal_info?.name}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.designation}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.department}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.job_location}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.joining_date}
+                    </td>
 
-                    <td>
+                    <td className="border border-gray-300">
                       {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                     </td>
-                    <td>
+                    <td className="border border-gray-300">
                       {employee?.employment_info?.confirmation_effective_date}
                     </td>
-                    <td>
+                    <td className="border border-gray-300">
                       {employee?.last_promotion?.promotion_effective_date}
                     </td>
 
-                    <td>{employee?.salary_info?.salary_grade}</td>
-                    <td>{employee?.salary_info?.starting_basic}</td>
-                    <td>{employee?.salary_info?.salary_step}</td>
-                    <td>{employee?.salary_info?.effective_basic}</td>
-                    <td>{employee?.salary_info?.house_rent}</td>
-                    <td>{employee?.salary_info?.medical_allowance}</td>
-                    <td>{employee?.salary_info?.conveyance}</td>
-                    <td>{employee?.salary_info?.hardship}</td>
-                    <td>{employee?.salary_info?.pf_contribution}</td>
-                    <td>{employee?.salary_info?.gross_salary}</td>
-                    <td>{employee?.salary_info?.pf_deduction}</td>
-                    <td>{employee?.salary_info?.swf_deduction}</td>
-                    <td>{employee?.salary_info?.tax_deduction}</td>
-                    <td>{employee?.salary_info?.net_salary}</td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.salary_grade}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.starting_basic}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.salary_step}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.effective_basic}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.house_rent}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.medical_allowance}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.conveyance}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.hardship}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.pf_contribution}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.gross_salary}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.pf_deduction}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.swf_deduction}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.tax_deduction}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.salary_info?.net_salary}
+                    </td>
 
-                    <td>{employee?.job_profile_details}</td>
-                    <th>
+                    <td className="border border-gray-300">
+                      {employee?.job_profile_details}
+                    </td>
+                    <th className="border border-gray-300">
                       <button
                         className="btn btn-xs btn-outline btn-accent h-10"
                         onClick={() => handleOpenModal(employee)}

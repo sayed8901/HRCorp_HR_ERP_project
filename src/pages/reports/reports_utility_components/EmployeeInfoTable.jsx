@@ -11,37 +11,37 @@ import * as XLSX from "xlsx";
 const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
   // Helper object to format employee data for reuse in PDF or Excel files
   const formatEmployeeData = (employee) => ({
-    "Employee ID": employee.employee_id,
-    Status: employee.employment_info?.status,
-    Name: employee.personal_info?.name,
-    Designation: employee.employment_info?.designation,
-    Department: employee.employment_info?.department,
-    "Job Location": employee.employment_info?.job_location,
+    "Employee ID": employee?.employee_id,
+    Status: employee?.employment_info?.status,
+    Name: employee?.personal_info?.name,
+    Designation: employee?.employment_info?.designation,
+    Department: employee?.employment_info?.department,
+    "Job Location": employee?.employment_info?.job_location,
 
-    "Joining Date": employee.employment_info?.joining_date,
-    "Probation (months)": employee.employment_info?.probation_period_months,
+    "Joining Date": employee?.employment_info?.joining_date,
+    "Probation (months)": employee?.employment_info?.probation_period_months,
     "Tentative Confirm Date":
-      employee.employment_info?.tentative_confirmation_date,
-    "Is Confirmed": employee.salary_info?.is_confirmed ? "Yes" : "No",
+      employee?.employment_info?.tentative_confirmation_date,
+    "Is Confirmed": employee?.salary_info?.is_confirmed ? "Yes" : "No",
     "Confirm Effective Date":
-      employee.employment_info?.confirmation_effective_date,
-    "Last Promotion Date": employee.last_promotion?.promotion_effective_date,
+      employee?.employment_info?.confirmation_effective_date,
+    "Last Promotion Date": employee?.last_promotion?.promotion_effective_date,
 
-    "Sick Leave Balance": employee.salary_info?.sick_leave_balance,
-    "Casual Leave Balance": employee.salary_info?.casual_leave_balance,
+    "Sick Leave Balance": employee?.salary_info?.sick_leave_balance,
+    "Casual Leave Balance": employee?.salary_info?.casual_leave_balance,
 
-    "Separation Type": employee.separation_info?.separation_type || "N/A",
+    "Separation Type": employee?.separation_info?.separation_type || "N/A",
     "Cause of Separation":
-      employee.separation_info?.cause_of_separation || "N/A",
+      employee?.separation_info?.cause_of_separation || "N/A",
     "Application Submission Date":
-      employee.separation_info?.application_submission_date || "N/A",
+      employee?.separation_info?.application_submission_date || "N/A",
     "Separation Effective Date":
-      employee.separation_info?.separation_effect_date || "N/A",
+      employee?.separation_info?.separation_effect_date || "N/A",
 
-    "Salary Grade": employee.salary_info?.salary_grade || "N/A",
-    "Salary Step": employee.salary_info?.salary_step || "N/A",
-    "Gross Salary": employee.salary_info?.gross_salary || "N/A",
-    "Net Salary": employee.salary_info?.net_salary || "N/A",
+    "Salary Grade": employee?.salary_info?.salary_grade || "N/A",
+    "Salary Step": employee?.salary_info?.salary_step || "N/A",
+    "Gross Salary": employee?.salary_info?.gross_salary || "N/A",
+    "Net Salary": employee?.salary_info?.net_salary || "N/A",
   });
 
   // PDF download
@@ -147,62 +147,114 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
         <table className="table table-xs table-pin-rows table-pin-cols">
           <thead>
             <tr>
-              <th>ID</th>
-              <td>Status</td>
-              <td>Name</td>
-              <td>Designation</td>
-              <td>Department</td>
-              <td>Location</td>
-              <td>Joining Date</td>
-              <td>Probation (months)</td>
-              <td>tentative_confirm_date</td>
-              <td>Is_confirmed</td>
-              <td>confirm_effective_date</td>
+              <th className="border border-gray-300">ID</th>
+              <td className="border border-gray-300">Status</td>
+              <td className="border border-gray-300">Name</td>
+              <td className="border border-gray-300">Designation</td>
+              <td className="border border-gray-300">Department</td>
+              <td className="border border-gray-300">Location</td>
+              <td className="border border-gray-300">Joining Date</td>
+              <td className="border border-gray-300">
+                Probation <br /> (months)
+              </td>
+              <td className="border border-gray-300">
+                tentative <br /> confirmation <br /> date
+              </td>
+              <td className="border border-gray-300">Is_confirmed</td>
+              <td className="border border-gray-300">
+                confirm <br /> effective <br /> date
+              </td>
 
-              <td>Last Promotion Date</td>
+              <td className="border border-gray-300">
+                Last <br /> Promotion <br /> Date
+              </td>
 
-              <td>sick_leave_balance</td>
-              <td>casual_leave_balance</td>
+              <td className="border border-gray-300">
+                sick <br /> leave <br /> balance
+              </td>
+              <td className="border border-gray-300">
+                casual <br /> leave <br /> balance
+              </td>
 
-              <td>Separation Type</td>
-              <td>Cause of Separation</td>
-              <td>Separation Application Date</td>
-              <td>Separation Effective Date</td>
+              <td className="border border-gray-300">Separation Type</td>
+              <td className="border border-gray-300">
+                Cause of <br /> Separation
+              </td>
+              <td className="border border-gray-300">
+                Separation <br /> Application <br /> Date
+              </td>
+              <td className="border border-gray-300">
+                Separation <br /> Effective <br /> Date
+              </td>
 
-              <td>Salary Grade</td>
-              <td>Starting Basic</td>
-              <td>Salary Step</td>
-              <td>Effective Basic</td>
-              <td>House Rent</td>
-              <td>Medical</td>
-              <td>Conveyance</td>
-              <td>Hardship</td>
-              <td>PF Contrib.</td>
-              <td>Gross Salary</td>
-              <td>PF Deduct.</td>
-              <td>SWF Deduct.</td>
-              <td>Tax Deduct.</td>
-              <td>Salary Deduct.</td>
-              <td>Net Salary</td>
+              <td className="border border-gray-300">
+                Salary <br /> Grade
+              </td>
+              <td className="border border-gray-300">
+                Starting <br /> Basic
+              </td>
+              <td className="border border-gray-300">
+                Salary <br /> Step
+              </td>
+              <td className="border border-gray-300">
+                Effective <br /> Basic
+              </td>
+              <td className="border border-gray-300">
+                House <br /> Rent
+              </td>
+              <td className="border border-gray-300">
+                Medical <br /> Allowance
+              </td>
+              <td className="border border-gray-300">
+                Conveyance <br /> Allowance
+              </td>
+              <td className="border border-gray-300">
+                Hardship <br /> Allowance
+              </td>
+              <td className="border border-gray-300">
+                PF <br /> Contrib.
+              </td>
+              <td className="border border-gray-300">
+                Gross <br /> Salary
+              </td>
+              <td className="border border-gray-300">
+                PF <br /> Deduct.
+              </td>
+              <td className="border border-gray-300">
+                SWF <br /> Deduct.
+              </td>
+              <td className="border border-gray-300">
+                Tax <br /> Deduct.
+              </td>
+              <td className="border border-gray-300">
+                Salary <br /> Deduct.
+              </td>
+              <td className="border border-gray-300">
+                Net <br /> Salary
+              </td>
 
-              <td>Father</td>
-              <td>Mother</td>
-              <td>Gender</td>
-              <td>Marital Status</td>
-              <td>Blood Group</td>
-              <td>Education</td>
-              <td>Email</td>
-              <td>Contact_no</td>
-              <td>Date of Birth</td>
-              <td>Smart NID</td>
-              <td>Permanent Address</td>
-              <td>Present Address</td>
+              <td className="border border-gray-300">Father</td>
+              <td className="border border-gray-300">Mother</td>
+              <td className="border border-gray-300">Gender</td>
+              <td className="border border-gray-300">
+                Marital <br /> Status
+              </td>
+              <td className="border border-gray-300">
+                Blood <br /> Group
+              </td>
+              <td className="border border-gray-300">Education</td>
+              <td className="border border-gray-300">Email</td>
+              <td className="border border-gray-300">Contact_no</td>
+              <td className="border border-gray-300">Date of Birth</td>
+              <td className="border border-gray-300">Smart NID</td>
+              <td className="border border-gray-300">Permanent Address</td>
+              <td className="border border-gray-300">Present Address</td>
 
-              <td>
+              <td className="border border-gray-300">
                 Job Profile Details of The Employee Describing The Full History
                 of The Employee During His Employment
               </td>
-              <th>Details</th>
+              <th className="border border-gray-300">Details</th>
             </tr>
           </thead>
           <tbody>
@@ -216,65 +268,151 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
                     : ""
                 }`}
               >
-                <th>{employee?.employee_id}</th>
-                <td>{employee?.employment_info?.status}</td>
-                <td>{employee?.personal_info?.name}</td>
-                <td>{employee?.employment_info?.designation}</td>
-                <td>{employee?.employment_info?.department}</td>
-                <td>{employee?.employment_info?.job_location}</td>
-                <td>{employee?.employment_info?.joining_date}</td>
-                <td>{employee?.employment_info?.probation_period_months}</td>
-                <td>
+                <th className="border border-gray-300">
+                  {employee?.employee_id}
+                </th>
+                <td className="border border-gray-300">
+                  {employee?.employment_info?.status}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.name}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.employment_info?.designation}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.employment_info?.department}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.employment_info?.job_location}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.employment_info?.joining_date}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.employment_info?.probation_period_months}
+                </td>
+                <td className="border border-gray-300">
                   {employee?.employment_info?.tentative_confirmation_date}
                 </td>
-                <td>{employee?.salary_info?.is_confirmed ? "Yes" : "No"}</td>
-                <td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
+                </td>
+                <td className="border border-gray-300">
                   {employee?.employment_info?.confirmation_effective_date}
                 </td>
 
-                <td>{employee?.last_promotion?.promotion_effective_date}</td>
+                <td className="border border-gray-300">
+                  {employee?.last_promotion?.promotion_effective_date}
+                </td>
 
-                <td>{employee?.salary_info?.sick_leave_balance}</td>
-                <td>{employee?.salary_info?.casual_leave_balance}</td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.sick_leave_balance}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.casual_leave_balance}
+                </td>
 
-                <td>{employee?.separation_info?.separation_type}</td>
-                <td>{employee?.separation_info?.cause_of_separation}</td>
-                <td>
+                <td className="border border-gray-300">
+                  {employee?.separation_info?.separation_type}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.separation_info?.cause_of_separation}
+                </td>
+                <td className="border border-gray-300">
                   {employee?.separation_info?.application_submission_date}
                 </td>
-                <td>{employee?.separation_info?.separation_effect_date}</td>
+                <td className="border border-gray-300">
+                  {employee?.separation_info?.separation_effect_date}
+                </td>
 
-                <td>{employee?.salary_info?.salary_grade}</td>
-                <td>{employee?.salary_info?.starting_basic}</td>
-                <td>{employee?.salary_info?.salary_step}</td>
-                <td>{employee?.salary_info?.effective_basic}</td>
-                <td>{employee?.salary_info?.house_rent}</td>
-                <td>{employee?.salary_info?.medical_allowance}</td>
-                <td>{employee?.salary_info?.conveyance}</td>
-                <td>{employee?.salary_info?.hardship}</td>
-                <td>{employee?.salary_info?.pf_contribution}</td>
-                <td>{employee?.salary_info?.gross_salary}</td>
-                <td>{employee?.salary_info?.pf_deduction}</td>
-                <td>{employee?.salary_info?.swf_deduction}</td>
-                <td>{employee?.salary_info?.tax_deduction}</td>
-                <td>{employee?.salary_info?.npl_salary_deduction}</td>
-                <td>{employee?.salary_info?.net_salary}</td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.salary_grade}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.starting_basic}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.salary_step}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.effective_basic}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.house_rent}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.medical_allowance}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.conveyance}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.hardship}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.pf_contribution}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.gross_salary}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.pf_deduction}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.swf_deduction}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.tax_deduction}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.npl_salary_deduction}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.salary_info?.net_salary}
+                </td>
 
-                <td>{employee?.personal_info?.father_name}</td>
-                <td>{employee?.personal_info?.mother_name}</td>
-                <td>{employee?.personal_info?.gender}</td>
-                <td>{employee?.personal_info?.marital_status}</td>
-                <td>{employee?.personal_info?.blood_group}</td>
-                <td>{employee?.personal_info?.educational_degree}</td>
-                <td>{employee?.personal_info?.email}</td>
-                <td>{employee?.personal_info?.contact_number}</td>
-                <td>{employee?.personal_info?.date_of_birth}</td>
-                <td>{employee?.personal_info?.smart_id}</td>
-                <td>{employee?.personal_info?.permanent_address}</td>
-                <td>{employee?.personal_info?.present_address}</td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.father_name}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.mother_name}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.gender}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.marital_status}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.blood_group}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.educational_degree}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.email}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.contact_number}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.date_of_birth}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.smart_id}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.permanent_address}
+                </td>
+                <td className="border border-gray-300">
+                  {employee?.personal_info?.present_address}
+                </td>
 
-                <td>{employee?.job_profile_details}</td>
-                <th>
+                <td className="border border-gray-300">
+                  {employee?.job_profile_details}
+                </td>
+                <th className="border border-gray-300">
                   <button
                     className="btn btn-xs btn-outline btn-accent h-10"
                     onClick={() => handleViewDetails(employee?.employee_id)}

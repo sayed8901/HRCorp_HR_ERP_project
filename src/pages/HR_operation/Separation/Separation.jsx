@@ -105,28 +105,38 @@ const Separation = () => {
             <table className="table table-xs table-pin-rows table-pin-cols">
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <td>Status</td>
-                  <td>Name</td>
-                  <td>Designation</td>
-                  <td>Department</td>
-                  <td>Location</td>
-                  <td>Joining Date</td>
+                  <th className="border border-gray-300">ID</th>
+                  <td className="border border-gray-300">Status</td>
+                  <td className="border border-gray-300">Name</td>
+                  <td className="border border-gray-300">Designation</td>
+                  <td className="border border-gray-300">Department</td>
+                  <td className="border border-gray-300">Location</td>
+                  <td className="border border-gray-300">Joining Date</td>
 
-                  <td>Is Confirmed</td>
-                  <td>Confirmation Effective Date</td>
-                  <td>Last Promotion Date</td>
+                  <td className="border border-gray-300">Is Confirmed</td>
+                  <td className="border border-gray-300">
+                    Confirmation Effective Date
+                  </td>
+                  <td className="border border-gray-300">
+                    Last Promotion Date
+                  </td>
 
-                  <td>Separation Type</td>
-                  <td>Cause of Separation</td>
-                  <td>Separation Application Date</td>
-                  <td>Separation Effective Date</td>
+                  <td className="border border-gray-300">Separation Type</td>
+                  <td className="border border-gray-300">
+                    Cause of Separation
+                  </td>
+                  <td className="border border-gray-300">
+                    Separation Application Date
+                  </td>
+                  <td className="border border-gray-300">
+                    Separation Effective Date
+                  </td>
 
-                  <td>
+                  <td className="border border-gray-300">
                     Job Profile Details of The Employee Describing The Full
                     History of The Employee During His Employment
                   </td>
-                  <th>Action</th>
+                  <th className="border border-gray-300">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -139,33 +149,55 @@ const Separation = () => {
                         : ""
                     }`}
                   >
-                    <th>{employee?.employee_id}</th>
-                    <td>{employee?.employment_info?.status}</td>
-                    <td>{employee?.personal_info?.name}</td>
-                    <td>{employee?.employment_info?.designation}</td>
-                    <td>{employee?.employment_info?.department}</td>
-                    <td>{employee?.employment_info?.job_location}</td>
-                    <td>{employee?.employment_info?.joining_date}</td>
+                    <th className="border border-gray-300">
+                      {employee?.employee_id}
+                    </th>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.status}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.personal_info?.name}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.designation}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.department}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.job_location}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.employment_info?.joining_date}
+                    </td>
 
-                    <td>
+                    <td className="border border-gray-300">
                       {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                     </td>
-                    <td>
+                    <td className="border border-gray-300">
                       {employee?.employment_info?.confirmation_effective_date}
                     </td>
-                    <td>
+                    <td className="border border-gray-300">
                       {employee?.last_promotion?.promotion_effective_date}
                     </td>
 
-                    <td>{employee?.separation_info?.separation_type}</td>
-                    <td>{employee?.separation_info?.cause_of_separation}</td>
-                    <td>
+                    <td className="border border-gray-300">
+                      {employee?.separation_info?.separation_type}
+                    </td>
+                    <td className="border border-gray-300">
+                      {employee?.separation_info?.cause_of_separation}
+                    </td>
+                    <td className="border border-gray-300">
                       {employee?.separation_info?.application_submission_date}
                     </td>
-                    <td>{employee?.separation_info?.separation_effect_date}</td>
+                    <td className="border border-gray-300">
+                      {employee?.separation_info?.separation_effect_date}
+                    </td>
 
-                    <td>{employee?.job_profile_details}</td>
-                    <th>
+                    <td className="border border-gray-300">
+                      {employee?.job_profile_details}
+                    </td>
+                    <th className="border border-gray-300">
                       <button
                         className="btn btn-xs btn-outline btn-accent h-10"
                         onClick={() => handleOpenModal(employee)}
