@@ -9,13 +9,15 @@ import "jspdf-autotable";
 import * as XLSX from "xlsx";
 
 const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
+  // console.log(allEmployeesFullInfo);
+
   // Helper object to format employee data for reuse in PDF or Excel files
   const formatEmployeeData = (employee) => ({
     "Employee ID": employee?.employee_id,
-    "Status": employee?.employment_info?.status,
-    "Name": employee?.personal_info?.name,
-    "Designation": employee?.employment_info?.designation,
-    "Department": employee?.employment_info?.department,
+    Status: employee?.employment_info?.status,
+    Name: employee?.personal_info?.name,
+    Designation: employee?.employment_info?.designation,
+    Department: employee?.employment_info?.department,
     "Job Location": employee?.employment_info?.job_location,
 
     "Joining Date": employee?.employment_info?.joining_date,

@@ -304,7 +304,7 @@ const MainMenuItems = ({ user }) => {
       )}
 
       {/* Recruitment site */}
-      <div
+      {/* <div
         className="tooltip tooltip-bottom tooltip-primary rounded-md px-2 py-1 text-sm font-medium btn-ghost border-0 m-2 lg:my-2 lg:mx-1 w-56 lg:w-24 lg:text-center"
         data-tip="You can also check out our job portal site"
       >
@@ -314,7 +314,7 @@ const MainMenuItems = ({ user }) => {
         >
           Recruitment portal
         </NavLink>
-      </div>
+      </div> */}
     </>
   );
 };
