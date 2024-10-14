@@ -4,6 +4,7 @@ import UpdatePostDeptLocationModal from "./UpdatePostDeptLocationModal";
 import CreateNewPostDeptLocationModal from "./CreateNewPostDeptLocationModal";
 import { toast } from "react-toastify";
 import useTitle from "../../../utilities/useTitle";
+import LoadingSpinner from "../../../utilities/LoadingSpinner";
 
 const ManagePostDeptLocation = () => {
   useTitle("Manage Post Dept Location");
@@ -11,6 +12,8 @@ const ManagePostDeptLocation = () => {
   const [designations, setDesignations] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [jobLocations, setJobLocations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const { user } = useContext(UserContext); // Get user state from context
 
   const [currentUpdate, setCurrentUpdate] = useState({ type: "", id: "" });
@@ -41,6 +44,8 @@ const ManagePostDeptLocation = () => {
       setJobLocations(jobLocationsData);
     } catch (error) {
       console.error("Error fetching data", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -149,24 +154,28 @@ const ManagePostDeptLocation = () => {
           )}
 
           {/* all departments */}
-          <ul className="space-y-2">
-            {departments.map((department) => (
-              <li
-                key={department.id}
-                className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
-              >
-                <span>{department.name}</span>
-                {user.userType === "power_user" && (
-                  <button
-                    className="btn btn-primary btn-xs"
-                    onClick={() => handleUpdate("departments", department.id)}
-                  >
-                    Update
-                  </button>
-                )}
-              </li>
-            ))}
-          </ul>
+          {loading ? (
+            <LoadingSpinner></LoadingSpinner>
+          ) : (
+            <ul className="space-y-2">
+              {departments.map((department) => (
+                <li
+                  key={department.id}
+                  className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
+                >
+                  <span>{department.name}</span>
+                  {user.userType === "power_user" && (
+                    <button
+                      className="btn btn-primary btn-xs"
+                      onClick={() => handleUpdate("departments", department.id)}
+                    >
+                      Update
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="divider divider-horizontal"></div>
@@ -188,24 +197,30 @@ const ManagePostDeptLocation = () => {
           )}
 
           {/* all designations */}
-          <ul className="space-y-2">
-            {designations.map((designation) => (
-              <li
-                key={designation.id}
-                className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
-              >
-                <span>{designation.name}</span>
-                {user.userType === "power_user" && (
-                  <button
-                    className="btn btn-primary btn-xs" // Adjusted to smaller size
-                    onClick={() => handleUpdate("designations", designation.id)}
-                  >
-                    Update
-                  </button>
-                )}
-              </li>
-            ))}
-          </ul>
+          {loading ? (
+            <LoadingSpinner></LoadingSpinner>
+          ) : (
+            <ul className="space-y-2">
+              {designations.map((designation) => (
+                <li
+                  key={designation.id}
+                  className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
+                >
+                  <span>{designation.name}</span>
+                  {user.userType === "power_user" && (
+                    <button
+                      className="btn btn-primary btn-xs" // Adjusted to smaller size
+                      onClick={() =>
+                        handleUpdate("designations", designation.id)
+                      }
+                    >
+                      Update
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="divider divider-horizontal"></div>
@@ -227,26 +242,30 @@ const ManagePostDeptLocation = () => {
           )}
 
           {/* all job locations */}
-          <ul className="space-y-2">
-            {jobLocations.map((jobLocation) => (
-              <li
-                key={jobLocation.id}
-                className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
-              >
-                <span>{jobLocation.name}</span>
-                {user.userType === "power_user" && (
-                  <button
-                    className="btn btn-primary btn-xs" // Adjusted to smaller size
-                    onClick={() =>
-                      handleUpdate("job_locations", jobLocation.id)
-                    }
-                  >
-                    Update
-                  </button>
-                )}
-              </li>
-            ))}
-          </ul>
+          {loading ? (
+            <LoadingSpinner></LoadingSpinner>
+          ) : (
+            <ul className="space-y-2">
+              {jobLocations.map((jobLocation) => (
+                <li
+                  key={jobLocation.id}
+                  className="flex justify-between items-center bg-white p-2 rounded-md shadow-sm"
+                >
+                  <span>{jobLocation.name}</span>
+                  {user.userType === "power_user" && (
+                    <button
+                      className="btn btn-primary btn-xs" // Adjusted to smaller size
+                      onClick={() =>
+                        handleUpdate("job_locations", jobLocation.id)
+                      }
+                    >
+                      Update
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 

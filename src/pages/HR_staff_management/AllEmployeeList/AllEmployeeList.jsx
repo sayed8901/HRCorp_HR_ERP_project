@@ -3,7 +3,8 @@ import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import useTitle from "../../../utilities/useTitle";
 import EmployeeInfoTable from "../../reports/reports_utility_components/EmployeeInfoTable";
-import CustomMultipleFilters from "./CustomMultipleFilters"; // Adjust the import path as necessary
+import CustomMultipleFilters from "./CustomMultipleFilters";
+import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 
 const AllEmployeeList = () => {
   useTitle("All Employees List");
@@ -19,26 +20,45 @@ const AllEmployeeList = () => {
   const [selectedDuration, setSelectedDuration] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
-  // Filtering logic based on employee information
-  const filteredEmployees = allEmployeesFullInfo?.filter((employee) => {
-    const employee_id = employee?.employee_id;
-    const name = employee?.personal_info?.name?.toLowerCase() || "";
-    const designation =
-      employee?.employment_info?.designation?.toLowerCase() || "";
-    const department =
-      employee?.employment_info?.department?.toLowerCase() || "";
-    const jobLocation =
-      employee?.employment_info?.jobLocation?.toLowerCase() || "";
+  // Helper function to filter employees by joining date
+  const filterByJoiningDate = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
 
-    // Apply filters
-    return (
-      (filterID ? employee_id.toString() === filterID : true) &&
-      name.includes(filterName.toLowerCase()) &&
-      designation.includes(filterDesignation.toLowerCase()) &&
-      department.includes(filterDepartment.toLowerCase()) &&
-      jobLocation.includes(filterJobLocation.toLowerCase())
-    );
-  });
+    return allEmployeesFullInfo?.filter((employee) => {
+      const joiningDate = new Date(employee?.employment_info?.joining_date);
+      return joiningDate >= start && joiningDate <= end;
+    });
+  };
+
+  // Get startDate and endDate for selected duration and year
+  const { startDate, endDate } = getDatesForDuration(
+    selectedDuration,
+    selectedYear
+  );
+
+  // Filter employees based on joining date and other filters
+  const filteredEmployees = filterByJoiningDate(startDate, endDate)?.filter(
+    (employee) => {
+      const employee_id = employee?.employee_id;
+      const name = employee?.personal_info?.name?.toLowerCase() || "";
+      const designation =
+        employee?.employment_info?.designation?.toLowerCase() || "";
+      const department =
+        employee?.employment_info?.department?.toLowerCase() || "";
+      const jobLocation =
+        employee?.employment_info?.jobLocation?.toLowerCase() || "";
+
+      // Apply filters
+      return (
+        (filterID ? employee_id.toString() === filterID : true) &&
+        name.includes(filterName.toLowerCase()) &&
+        designation.includes(filterDesignation.toLowerCase()) &&
+        department.includes(filterDepartment.toLowerCase()) &&
+        jobLocation.includes(filterJobLocation.toLowerCase())
+      );
+    }
+  );
 
   // console.log(filteredEmployees);
 

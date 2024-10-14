@@ -77,6 +77,8 @@ const JoiningReport = () => {
           value={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
           placeholder="Year"
+          min="2022" // Setting up the minimum year
+          max={new Date().getFullYear()} // Limit to the current year to block future year selection
           className="input input-bordered w-32 rounded-r-full"
         />
       </div>
