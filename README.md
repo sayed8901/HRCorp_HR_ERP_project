@@ -5,6 +5,8 @@
 **Project Type**: HR software  
 **Project Name**: HRCorp
 
+## Overview
+
 This is the frontend for the **HRCorp HR ERP system**, built using **React** and **Vite**. It provides the user interface for managing employee data, job profiles, leave applications, payroll, and more.
 
 ---
