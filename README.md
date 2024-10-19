@@ -143,6 +143,12 @@ tailwindcss==3.4.10
 vite==5.4.1
 ```
 
+### Additional Notes:
+
+- **Vite** is used as the development and build tool for this project.
+- **React Router** is implemented for managing application routes.
+- **Tailwind CSS** and **DaisyUI** are used for styling components.
+
 ---
 
 <br>
@@ -167,11 +173,14 @@ vite==5.4.1
 
    ```bash
    npm install
+   code .
    ```
+
+<br>
 
 4. **Environment Variables Configuration**
 
-- To run the application, you need to configure environment variables. Create a file named `.env.local` inside the root directory of your project and include the following lines:
+- To run the application, you need to configure environment variables. Create a file named `.env.local` inside the root directory of your project and include the `server link` as VITE_API_URL:
 
 * For Local server:
 
@@ -179,32 +188,33 @@ vite==5.4.1
   VITE_API_URL=http://127.0.0.1:8000
   ```
 
-  - N.B.: If you have cloned the backend project (`https://github.com/sayed8901/HRCorp_system_DRF_backend`) and perform the `Instructions to Run Locally` section properly, you can get the above mentioned `local server` link...
-
 * For Vercel deployed server:
+
   ```bash
   VITE_API_URL=https://hr-corp-system-drf-backend.vercel.app
   ```
 
-- Uncomment the relevant line depending on the server you are using.
+  <br>
+
+  - N.B.: If you have cloned the backend project (`https://github.com/sayed8901/HRCorp_system_DRF_backend`) and perform the `Instructions to Run Locally` section properly, you can get the above mentioned `local server` link...
+
+  - Or, if you don't want to set up the `backend local server`, you can use the `vercel server link` which I have already deployed earlier..
+
+    - `Important:` **Uncomment** the relevant line depending on the server you are currently using (`Vercel deployed server` or `Local server`).
+
+<br>
 
 5. **Run the development server:**
 
-   After the dependencies are installed, start the development server with:
+After the dependencies are installed, start the development server with:
 
-   ```bash
-   npm run dev
-   ```
+```bash
+npm run dev
+```
 
 **Finally, Access the application**
 
-   The application will be available at: `http://localhost:5173`.
-
-### Additional Notes:
-
-- **Vite** is used as the development and build tool for this project.
-- **React Router** is implemented for managing application routes.
-- **Tailwind CSS** and **DaisyUI** are used for styling components.
+The application will be available at: `http://localhost:5173`.
 
 ---
 
