@@ -12,10 +12,10 @@ function App() {
   return (
     <div
       data-theme={themeClassName}
-      className="container mx-auto flex flex-col min-h-screen"
+      className="mx-auto flex flex-col min-h-screen"
     >
       <Navbar></Navbar>
-      <div className="flex-grow">
+      <div className="container mx-auto flex-grow">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

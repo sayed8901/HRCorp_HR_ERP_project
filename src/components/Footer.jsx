@@ -3,14 +3,17 @@ import logo from "../../public/front_page-icon.jpg";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="footer bg-neutral text-neutral-content px-10 py-6">
+    <div className="w-full bg-neutral text-neutral-content">
+      <footer className="footer container mx-auto px-10 py-6">
         <aside>
           <Link to={"/"} className="flex items-center gap-5 sm:px-5">
             <img src={logo} className="w-16" alt="HRCorp Logo" />
-            <div className="space-y-3">
+            <div className="space-y-2">
               <h5 className="text-2xl sm:text-3xl">HRCorp</h5>
               <p>A Complete HR Management Solution</p>
+              <p className="text-sm">Copyright 
+                &copy; {new Date().getFullYear()} HRCorp. All rights reserved.
+              </p>
             </div>
           </Link>
         </aside>

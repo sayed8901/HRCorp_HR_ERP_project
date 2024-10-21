@@ -61,64 +61,69 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar bg-base-200 h-12 sticky top-0 z-10 rounded transition-opacity duration-300
+      className={`bg-base-200 h-auto sticky top-0 z-10 rounded transition-opacity duration-300
       ${
         isNavbarVisible ? "opacity-100" : "opacity-0"
       } transition-opacity duration-300}`}
     >
-      <div className="navbar-start">
-        <div className="lg:hidden dropdown">
-          <div
-            tabIndex={1}
-            role="button"
-            className="btn btn-ghost border-0 lg:hidden"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+      <div className="navbar container mx-auto">
+        <div className="navbar-start">
+          <div className="lg:hidden dropdown">
+            <div
+              tabIndex={1}
+              role="button"
+              className="btn btn-ghost border-0 lg:hidden"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+
+            <ul
+              tabIndex={1}
+              className="dropdown-content menu menu-sm lg:hidden bg-base-100 rounded-box z-[1] mt-3 w-64 p-2 shadow"
+            >
+              {/* conditionally rendering main menu items for mobile */}
+              <MainMenuItems user={user}></MainMenuItems>
+            </ul>
           </div>
 
-          <ul
-            tabIndex={1}
-            className="dropdown-content menu menu-sm lg:hidden bg-base-100 rounded-box z-[1] mt-3 w-64 p-2 shadow"
-          >
-            {/* conditionally rendering main menu items for mobile */}
-            <MainMenuItems user={user}></MainMenuItems>
-          </ul>
+          <Link to={"/"} className="flex items-center gap-2 sm:gap-5 sm:px-5">
+            <img src={logo} className="w-10" alt="HRCorp Logo" />
+            <h5 className="text-xl sm:text-2xl font-bold">HRCorp</h5>
+          </Link>
         </div>
 
-        <Link to={"/"} className="flex items-center gap-2 sm:gap-5 sm:px-5">
-          <img src={logo} className="w-10" alt="HRCorp Logo" />
-          <h5 className="text-xl sm:text-2xl font-bold">HRCorp</h5>
-        </Link>
-      </div>
+        <div className="navbar-center hidden lg:flex">
+          {/* conditionally rendering main menu items for desktop */}
+          <MainMenuItems user={user}></MainMenuItems>
+        </div>
 
-      <div className="navbar-center hidden lg:flex">
-        {/* conditionally rendering main menu items for desktop */}
-        <MainMenuItems user={user}></MainMenuItems>
-      </div>
+        <div className="navbar-end">
+          {/* conditionally rendering additional login & logout menu items */}
+          {/* {renderAuthItems()} */}
+          <AuthMenuItems
+            user={user}
+            handleLogout={handleLogout}
+          ></AuthMenuItems>
 
-      <div className="navbar-end">
-        {/* conditionally rendering additional login & logout menu items */}
-        {/* {renderAuthItems()} */}
-        <AuthMenuItems user={user} handleLogout={handleLogout}></AuthMenuItems>
-
-        {/* dark/light toggle btn */}
-        <ThemeToggler
-          toggleMode={toggleMode}
-          isDarkMode={isDarkMode}
-        ></ThemeToggler>
+          {/* dark/light toggle btn */}
+          <ThemeToggler
+            toggleMode={toggleMode}
+            isDarkMode={isDarkMode}
+          ></ThemeToggler>
+        </div>
       </div>
     </div>
   );

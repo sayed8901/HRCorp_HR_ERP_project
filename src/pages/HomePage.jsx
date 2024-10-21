@@ -5,6 +5,7 @@ import LazyLoad from "react-lazy-load";
 import EmployeeDetails from "./HR_staff_management/EmployeeDetails/EmployeeDetails";
 import FAQSection from "../components/FAQSection";
 import AllEmployeeSlider from "../components/AllEmployeeSlider";
+import ManpowerStatus from "./reports/ManpowerStatus";
 
 const HomePage = () => {
   useTitle();
@@ -16,6 +17,9 @@ const HomePage = () => {
       </LazyLoad>
       <LazyLoad>
         <StatDashboard></StatDashboard>
+      </LazyLoad>
+      <LazyLoad>
+        <ManpowerStatus></ManpowerStatus>
       </LazyLoad>
       <LazyLoad>
         <AllEmployeeSlider></AllEmployeeSlider>

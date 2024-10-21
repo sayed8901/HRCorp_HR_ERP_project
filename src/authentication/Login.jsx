@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import LoadingSpinner from "../utilities/LoadingSpinner";
 import useTitle from "../utilities/useTitle";
 
-
 const Login = () => {
   useTitle("Login");
 
@@ -16,7 +15,7 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext); // Get user state from context
   const navigate = useNavigate();
@@ -185,6 +184,35 @@ const Login = () => {
             >
               Create Power_user Account.
             </a>
+          </div>
+
+          {/* Display credentials info */}
+          <div className="mt-10 p-6 border rounded-lg shadow-md bg-gray-100">
+            <h3 className="font-semibold text-xl text-center text-indigo-600 mb-4">
+              Credentials for Testing:
+            </h3>
+
+            <div className="mb-4 p-4 border rounded-lg shadow-md bg-white">
+              <div className="mt-2 text-center text-sm text-gray-700">
+                <p className="mb-1">
+                  Power_user Username: <strong>Tasmi</strong>
+                </p>
+                <p className="mb-1">
+                  Power_user Password: <strong>sayed8901</strong>
+                </p>
+              </div>
+            </div>
+
+            <div className="p-4 border rounded-lg shadow-md bg-white">
+              <div className="mt-2 text-center text-sm text-gray-700">
+                <p className="mb-1">
+                  Standard_user Username: <strong>Sohel</strong>
+                </p>
+                <p className="mb-1">
+                  Standard_user Password: <strong>sayed8901</strong>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
