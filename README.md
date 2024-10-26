@@ -220,6 +220,32 @@ The application will be available at: `http://localhost:5173`.
 
 <br>
 
+## Getting Started
+
+To unlock and access the full functionality of this site and to perform some role-specific activities, you will need to create an account first. Follow the instructions below to get started.
+
+### Account Creation
+
+You will find the available register options by clicking on the `Register` button on the top right corner of the `Navbar`.
+
+- **To register as a Power_user**: click on the `Power User Registration` button.
+- **To register as a Standard_user**: click on the `Standard User Registration` button.
+
+#### Steps to Register:
+
+1. Fill out the registration form with the relevant information and click the **POST** button.
+2. A confirmation link will be automatically sent to your email. Please check your inbox.
+3. Verify your account by clicking on the confirmation link provided in the email.
+4. After verification, return to the project site and click on the `Login` button to log in with your credentials.
+
+### Role-Based Activities
+
+Once you’ve logged in, you’re ready to interact with the application and will be able to perform activities specific to your role.
+
+---
+
+<br>
+
 ### Conclusion
 
 Thank you for exploring the **HRCorp HR ERP system**. This project aims to streamline HR processes and enhance employee management through an user-friendly interface. I hope this application will serve as a valuable tool for HR professionals and organizations.
