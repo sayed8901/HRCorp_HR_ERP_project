@@ -246,7 +246,7 @@ Once you’ve logged in, you’re ready to interact with the application and wil
 
 <br>
 
-### Conclusion
+## Conclusion
 
 Thank you for exploring the **HRCorp HR ERP system**. This project aims to streamline HR processes and enhance employee management through an user-friendly interface. I hope this application will serve as a valuable tool for HR professionals and organizations.
 
