@@ -16,6 +16,31 @@ const Transfer = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [modalError, setModalError] = useState("");
 
+  // for pagination implementations
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
+
+  const totalPages = Math.ceil(allActiveEmployeesInfo.length / itemsPerPage);
+
+  const currentEmployees = allActiveEmployeesInfo.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // to handle next & prev btn
+  const handleNextPage = () =>
+    currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const handlePrevPage = () =>
+    currentPage > 1 && setCurrentPage(currentPage - 1);
+
+  // function to set the items per page dynamically as the user wants
+  const handleItemsPerPageChange = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setItemsPerPage(value);
+    setCurrentPage(1); // Reset to first page after changing items per page
+  };
+
+  // for modal activity
   const handleOpenModal = (employee) => {
     setSelectedEmployee(employee);
     setModalError(""); // Clear any previous errors when opening the modal
@@ -83,6 +108,19 @@ const Transfer = () => {
           </h2>
         </div>
 
+        <div className="my-6 flex justify-end mx-2 sm:mr-10">
+          <label>
+            Items per page:
+            <input
+              type="number"
+              min="1"
+              value={itemsPerPage}
+              onChange={handleItemsPerPageChange}
+              className="ml-2 p-1 border rounded w-20"
+            />
+          </label>
+        </div>
+
         {/* to show loading spinner while loading */}
         {loading && <LoadingSpinner />}
 
@@ -116,7 +154,7 @@ const Transfer = () => {
               </tr>
             </thead>
             <tbody>
-              {allActiveEmployeesInfo?.map((employee, index) => (
+              {currentEmployees?.map((employee, index) => (
                 <tr
                   key={employee?.employee_id}
                   // here, length - 1 is used not to apply bottom border for the very last line of the table
@@ -176,6 +214,26 @@ const Transfer = () => {
               ))}
             </tbody>
           </table>
+        </div>
+
+        <div className="flex justify-center items-center mt-4 sm:mt-8">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            className="btn-sm w-24 px-4 py-1 bg-indigo-500 text-white rounded disabled:bg-gray-300"
+          >
+            Previous
+          </button>
+          <span className="mx-4">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className="btn-sm w-24 px-4 py-1 bg-indigo-500 text-white rounded disabled:bg-gray-300"
+          >
+            Next
+          </button>
         </div>
       </div>
 

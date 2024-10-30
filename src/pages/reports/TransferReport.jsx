@@ -116,7 +116,7 @@ const TransferReport = () => {
         <div>
           <h2 className="text-center text-2xl font-semibold leading-8 mt-10 mb-4">
             <span className="text-gradient">
-              All ({allEmployeesFullInfo?.length}) Employee
+              All ({filteredStaff?.length}) Employee
             </span>{" "}
             Info
           </h2>

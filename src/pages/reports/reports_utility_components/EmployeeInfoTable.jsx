@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // For PDF download
@@ -117,28 +118,68 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
 
   const navigate = useNavigate();
 
+  // function to handle employee view details
   const handleViewDetails = (employee_id) => {
     navigate(`/employee_details/${employee_id}`);
   };
 
+  // for pagination implementations
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
+
+  const totalPages = Math.ceil(allEmployeesFullInfo.length / itemsPerPage);
+
+  const currentEmployees = allEmployeesFullInfo.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // to handle next & prev btn
+  const handleNextPage = () =>
+    currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const handlePrevPage = () =>
+    currentPage > 1 && setCurrentPage(currentPage - 1);
+
+  // function to set the items per page dynamically as the user wants
+  const handleItemsPerPageChange = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setItemsPerPage(value);
+    setCurrentPage(1); // Reset to first page after changing items per page
+  };
+
   return (
     <div>
-      <div className="my-4 mr-4 sm:mr-8 text-right">
-        <button
-          onClick={downloadPDF}
-          className="btn-sm mr-2 px-4 py-2 bg-indigo-500 text-white rounded transition duration-300 hover:bg-indigo-600"
-        >
-          Download in PDF
-        </button>
-        <button
-          onClick={downloadExcel}
-          className="btn-sm px-4 py-2 bg-green-500 text-white rounded transition duration-300 hover:bg-green-600"
-        >
-          Download in Excel
-        </button>
+      <div className="flex justify-between items-center gap-6 my-4 mx-2 sm:mx-10 text-center">
+        <div>
+          <label>
+            Items per page:
+            <input
+              type="number"
+              min="1"
+              value={itemsPerPage}
+              onChange={handleItemsPerPageChange}
+              className="ml-2 p-1 border rounded w-20"
+            />
+          </label>
+        </div>
+
+        <div>
+          <button
+            onClick={downloadPDF}
+            className="btn-sm mr-2 px-4 py-2 bg-indigo-500 text-white rounded transition duration-300 hover:bg-indigo-600"
+          >
+            Download in PDF
+          </button>
+          <button
+            onClick={downloadExcel}
+            className="btn-sm px-4 py-2 bg-green-500 text-white rounded transition duration-300 hover:bg-green-600"
+          >
+            Download in Excel
+          </button>
+        </div>
       </div>
 
-      <div className="overflow-x-auto w-11/12 mx-auto mt-4 mb-16">
+      <div className="overflow-x-auto w-11/12 mx-auto mt-4 mb-4">
         <table className="table table-xs table-pin-rows table-pin-cols">
           <thead>
             <tr>
@@ -252,13 +293,14 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
               <th className="border border-gray-300">Details</th>
             </tr>
           </thead>
+
           <tbody>
-            {allEmployeesFullInfo?.map((employee, index) => (
+            {currentEmployees?.map((employee, index) => (
               <tr
                 key={employee?.employee_id}
                 // here, length - 1 is used not to apply bottom border for the very last line of the table
                 className={`hover ${
-                  index < allEmployeesFullInfo.length - 1
+                  index < currentEmployees.length - 1
                     ? "border-b-2 border-indigo-300"
                     : ""
                 }`}
@@ -419,6 +461,26 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="flex justify-center items-center mt-4 sm:mt-8">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn-sm w-24 px-4 py-1 bg-indigo-500 text-white rounded disabled:bg-gray-300"
+        >
+          Previous
+        </button>
+        <span className="mx-4">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="btn-sm w-24 px-4 py-1 bg-indigo-500 text-white rounded disabled:bg-gray-300"
+        >
+          Next
+        </button>
       </div>
     </div>
   );
