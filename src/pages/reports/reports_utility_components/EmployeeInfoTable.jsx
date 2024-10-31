@@ -147,6 +147,12 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
     setCurrentPage(1); // Reset to first page after changing items per page
   };
 
+  // Helper function to format date into dd-mm-yyy form
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    return new Date(dateString).toLocaleDateString("en-GB");
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center gap-6 my-4 mx-2 sm:mx-10 text-center">
@@ -324,23 +330,29 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
                   {employee?.employment_info?.job_location}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.employment_info?.joining_date}
+                  {formatDate(employee?.employment_info?.joining_date)}
                 </td>
                 <td className="border border-gray-300">
                   {employee?.employment_info?.probation_period_months}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.employment_info?.tentative_confirmation_date}
+                  {formatDate(
+                    employee?.employment_info?.tentative_confirmation_date
+                  )}
                 </td>
                 <td className="border border-gray-300">
                   {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.employment_info?.confirmation_effective_date}
+                  {formatDate(
+                    employee?.employment_info?.confirmation_effective_date
+                  )}
                 </td>
 
                 <td className="border border-gray-300">
-                  {employee?.last_promotion?.promotion_effective_date}
+                  {formatDate(
+                    employee?.last_promotion?.promotion_effective_date
+                  )}
                 </td>
 
                 <td className="border border-gray-300">
@@ -357,10 +369,14 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
                   {employee?.separation_info?.cause_of_separation}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.separation_info?.application_submission_date}
+                  {formatDate(
+                    employee?.separation_info?.application_submission_date
+                  )}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.separation_info?.separation_effect_date}
+                  {formatDate(
+                    employee?.separation_info?.separation_effect_date
+                  )}
                 </td>
 
                 <td className="border border-gray-300">
@@ -434,7 +450,7 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
                   {employee?.personal_info?.contact_number}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.personal_info?.date_of_birth}
+                  {formatDate(employee?.personal_info?.date_of_birth)}
                 </td>
                 <td className="border border-gray-300">
                   {employee?.personal_info?.smart_id}

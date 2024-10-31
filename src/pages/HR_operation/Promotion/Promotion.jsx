@@ -100,6 +100,12 @@ const Promotion = () => {
     }
   };
 
+  // Helper function to format date into dd-mm-yyy form
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    return new Date(dateString).toLocaleDateString("en-GB");
+  };
+
   return (
     <div>
       <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
@@ -208,17 +214,21 @@ const Promotion = () => {
                       {employee?.employment_info?.job_location}
                     </td>
                     <td className="border border-gray-300">
-                      {employee?.employment_info?.joining_date}
+                      {formatDate(employee?.employment_info?.joining_date)}
                     </td>
 
                     <td className="border border-gray-300">
                       {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                     </td>
                     <td className="border border-gray-300">
-                      {employee?.employment_info?.confirmation_effective_date}
+                      {formatDate(
+                        employee?.employment_info?.confirmation_effective_date
+                      )}
                     </td>
                     <td className="border border-gray-300">
-                      {employee?.last_promotion?.promotion_effective_date}
+                      {formatDate(
+                        employee?.last_promotion?.promotion_effective_date
+                      )}
                     </td>
 
                     <td className="border border-gray-300">

@@ -108,6 +108,12 @@ const JobConfirmation = () => {
     }
   };
 
+  // Helper function to format date into dd-mm-yyy form
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    return new Date(dateString).toLocaleDateString("en-GB");
+  };
+
   return (
     <div>
       {loading ? (
@@ -222,19 +228,23 @@ const JobConfirmation = () => {
                         {employee?.employment_info?.job_location}
                       </td>
                       <td className="border border-gray-300">
-                        {employee?.employment_info?.joining_date}
+                        {formatDate(employee?.employment_info?.joining_date)}
                       </td>
                       <td className="border border-gray-300">
                         {employee?.employment_info?.probation_period_months}
                       </td>
                       <td className="border border-gray-300">
-                        {employee?.employment_info?.tentative_confirmation_date}
+                        {formatDate(
+                          employee?.employment_info?.tentative_confirmation_date
+                        )}
                       </td>
                       <td className="border border-gray-300">
                         {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                       </td>
                       <td className="border border-gray-300">
-                        {employee?.employment_info?.confirmation_effective_date}
+                        {formatDate(
+                          employee?.employment_info?.confirmation_effective_date
+                        )}
                       </td>
 
                       <td className="border border-gray-300">

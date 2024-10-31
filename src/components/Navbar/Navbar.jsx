@@ -63,7 +63,9 @@ const Navbar = () => {
     <div
       className={`bg-base-200 h-auto sticky top-0 z-10 rounded transition-opacity duration-300
       ${
-        isNavbarVisible ? "opacity-100" : "opacity-0"
+        isNavbarVisible
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
       } transition-opacity duration-300}`}
     >
       <div className="navbar container mx-auto">

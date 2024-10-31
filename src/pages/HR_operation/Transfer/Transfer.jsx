@@ -96,6 +96,12 @@ const Transfer = () => {
     }
   };
 
+  // Helper function to format date into dd-mm-yyy form
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    return new Date(dateString).toLocaleDateString("en-GB");
+  };
+
   return (
     <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
       <div className="w-full mx-auto px-5 my-10">
@@ -184,7 +190,7 @@ const Transfer = () => {
                   </td>
 
                   <td className="border border-gray-300">
-                    {employee?.employment_info?.joining_date}
+                    {formatDate(employee?.employment_info?.joining_date)}
                   </td>
                   <td className="border border-gray-300">
                     {employee?.employment_info?.probation_period_months}

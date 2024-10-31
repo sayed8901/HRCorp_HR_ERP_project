@@ -9,6 +9,12 @@ const TransferTable = ({
   isTransferNotOutdated,
   all_transfers,
 }) => {
+  // Helper function to format date into dd-mm-yyy form
+  const formatDate = (dateString) => {
+    if (!dateString) return "N/A";
+    return new Date(dateString).toLocaleDateString("en-GB");
+  };
+
   return (
     <div className="overflow-x-auto w-11/12 mx-auto mt-10 mb-16">
       <table className="table table-xs table-pin-rows table-pin-cols">
@@ -65,7 +71,7 @@ const TransferTable = ({
                     {transferData?.transfer_to_department}
                   </td>
                   <td className="border border-gray-300">
-                    {transferData?.transfer_effective_date}
+                    {formatDate(transferData?.transfer_effective_date)}
                   </td>
 
                   {/* Checking if transfer is not outdated and if the user is power_user */}
