@@ -1,8 +1,8 @@
 import useEmployeesData from "../utilities/dataFetches/useAllEmployeesData";
 
 const StatDashboard = () => {
-  const { allActiveEmployeesInfo } = useEmployeesData();
-  // console.log(allActiveEmployeesInfo);
+  const { allEmployeesFullInfo, allActiveEmployeesInfo } = useEmployeesData();
+  // console.log(allEmployeesFullInfo);
 
   // Get the current date and set the current month range
   const today = new Date();
@@ -24,13 +24,13 @@ const StatDashboard = () => {
   };
 
   // Calculate the number of employees who joined this month
-  const staffJoinedThisMonth = allActiveEmployeesInfo.filter((employee) =>
+  const staffJoinedThisMonth = allEmployeesFullInfo.filter((employee) =>
     isDateInCurrentMonth(employee.employment_info.joining_date)
   ).length;
 
   // Calculate the number of employees who separated this month
-  const staffSeparatedThisMonth = allActiveEmployeesInfo.filter((employee) =>
-    isDateInCurrentMonth(employee.separation_info.separation_effective_date)
+  const staffSeparatedThisMonth = allEmployeesFullInfo.filter((employee) =>
+    isDateInCurrentMonth(employee.separation_info.separation_effect_date)
   ).length;
 
   return (

@@ -6,16 +6,17 @@ import "jspdf-autotable";
 
 // For Excel download
 import * as XLSX from "xlsx";
+import { useState } from "react";
 
-const PayrollTable = ({ payrollData }) => {
+const PayrollTable = ({ allEmployeePayrollData }) => {
   // Helper object to format employee data for reuse in PDF or Excel files
   const formatEmployeeData = (employee) => ({
     "Employee ID": employee?.employee,
-    "Name": employee?.employee_name,
-    "Designation": employee?.designation,
-    "Department": employee?.department,
+    Name: employee?.employee_name,
+    Designation: employee?.designation,
+    Department: employee?.department,
     "Job Location": employee?.job_location,
-    "Status": employee?.status,
+    Status: employee?.status,
     "Joining Date": employee?.joining_date,
     "Salary Grade": employee?.salary_grade,
     "Salary Step": employee?.salary_step,
@@ -23,8 +24,8 @@ const PayrollTable = ({ payrollData }) => {
     "Effective Basic": employee?.effective_basic,
     "House Rent": employee?.house_rent,
     "Medical Allowance": employee?.medical_allowance,
-    "Conveyance": employee?.conveyance,
-    "Hardship": employee?.hardship,
+    Conveyance: employee?.conveyance,
+    Hardship: employee?.hardship,
     "PF Contribution": employee?.pf_contribution,
     "Festival Bonus": employee?.festival_bonus,
     "Other Allowance": employee?.other_allowance,
@@ -83,7 +84,7 @@ const PayrollTable = ({ payrollData }) => {
     ];
 
     // Rows of PDF file
-    const rows = payrollData.map((employee) =>
+    const rows = allEmployeePayrollData.map((employee) =>
       Object.values(formatEmployeeData(employee))
     );
 
@@ -105,7 +106,9 @@ const PayrollTable = ({ payrollData }) => {
   // Excel download
   const downloadExcel = () => {
     // Create a new workbook and a worksheet
-    const ws = XLSX.utils.json_to_sheet(payrollData.map(formatEmployeeData)); // Create a new worksheet
+    const ws = XLSX.utils.json_to_sheet(
+      allEmployeePayrollData.map(formatEmployeeData)
+    ); // Create a new worksheet
 
     const wb = XLSX.utils.book_new(); // Create a new workbook for Excel download
 
@@ -115,23 +118,63 @@ const PayrollTable = ({ payrollData }) => {
     XLSX.writeFile(wb, `payroll-data-${monthYear}.xlsx`);
   };
 
+  // for pagination implementations
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
+
+  const totalPages = Math.ceil(allEmployeePayrollData.length / itemsPerPage);
+
+  const currentEmployees = allEmployeePayrollData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // to handle next & prev btn
+  const handleNextPage = () =>
+    currentPage < totalPages && setCurrentPage(currentPage + 1);
+  const handlePrevPage = () =>
+    currentPage > 1 && setCurrentPage(currentPage - 1);
+
+  // function to set the items per page dynamically as the user wants
+  const handleItemsPerPageChange = (event) => {
+    const value = parseInt(event.target.value, 10);
+    setItemsPerPage(value);
+    setCurrentPage(1); // Reset to first page after changing items per page
+  };
+
   return (
     <div>
-      <div className="my-4 mr-8 text-right">
-        <button
-          onClick={downloadPDF}
-          className="btn-sm mr-2 px-4 py-2 bg-indigo-500 text-white rounded transition duration-300 hover:bg-indigo-600"
-        >
-          Download in PDF
-        </button>
-        <button
-          onClick={downloadExcel}
-          className="btn-sm px-4 py-2 bg-green-500 text-white rounded transition duration-300 hover:bg-green-600"
-        >
-          Download in Excel
-        </button>
+      <div className="flex justify-between items-center gap-6 my-4 mx-2 sm:mx-10 text-center">
+        <div>
+          <label>
+            Items per page:
+            <input
+              type="number"
+              min="1"
+              value={itemsPerPage}
+              onChange={handleItemsPerPageChange}
+              className="ml-2 p-1 border rounded w-20"
+            />
+          </label>
+        </div>
+
+        <div>
+          <button
+            onClick={downloadPDF}
+            className="btn-sm mr-2 px-4 py-2 bg-indigo-500 text-white rounded transition duration-300 hover:bg-indigo-600"
+          >
+            Download in PDF
+          </button>
+          <button
+            onClick={downloadExcel}
+            className="btn-sm px-4 py-2 bg-green-500 text-white rounded transition duration-300 hover:bg-green-600"
+          >
+            Download in Excel
+          </button>
+        </div>
       </div>
-      <div className="overflow-x-auto w-11/12 mx-auto mt-4 mb-16">
+
+      <div className="overflow-x-auto w-11/12 mx-auto my-4">
         <table className="table table-xs table-pin-rows table-pin-cols">
           <thead>
             <tr>
@@ -143,11 +186,11 @@ const PayrollTable = ({ payrollData }) => {
             </tr>
           </thead>
           <tbody>
-            {payrollData.map((employee, index) => (
+            {currentEmployees.map((employee, index) => (
               <tr
                 key={employee.employee}
                 className={`hover ${
-                  index < payrollData.length - 1
+                  index < currentEmployees.length - 1
                     ? "border-b-2 border-indigo-300"
                     : ""
                 }`}
@@ -164,13 +207,33 @@ const PayrollTable = ({ payrollData }) => {
           </tbody>
         </table>
       </div>
+
+      <div className="flex justify-center items-center mt-4 sm:mt-8">
+        <button
+          onClick={handlePrevPage}
+          disabled={currentPage === 1}
+          className="btn-sm w-24 px-4 py-1 bg-indigo-500 text-white rounded disabled:bg-gray-300"
+        >
+          Previous
+        </button>
+        <span className="mx-4">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+          className="btn-sm w-24 px-4 py-1 bg-indigo-500 text-white rounded disabled:bg-gray-300"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
 
 // Define propTypes for the PayrollTable component
 PayrollTable.propTypes = {
-  payrollData: PropTypes.array.isRequired,
+  allEmployeePayrollData: PropTypes.array.isRequired,
 };
 
 export default PayrollTable;

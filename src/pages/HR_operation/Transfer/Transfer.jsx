@@ -6,7 +6,7 @@ import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData
 import TransferModal from "./TransferModal";
 import useTitle from "../../../utilities/useTitle";
 
-import MultipleInputFilters from "../../HR_staff_management/AllEmployeeList/CustomMultipleFilters";
+import MultipleEmploymentAndDurationFilters from "../../reports/reports_utility_components/MultipleEmploymentAndDurationFilters";
 import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 import TableForTransfer from "./TableForTransfer";
 
@@ -53,7 +53,7 @@ const Transfer = () => {
       const department =
         employee?.employment_info?.department?.toLowerCase() || "";
       const jobLocation =
-        employee?.employment_info?.jobLocation?.toLowerCase() || "";
+        employee?.employment_info?.job_location?.toLowerCase() || "";
 
       // Apply filters
       return (
@@ -143,7 +143,7 @@ const Transfer = () => {
         </div>
 
         {/* Use CustomMultipleFilters for filtering */}
-        <MultipleInputFilters
+        <MultipleEmploymentAndDurationFilters
           // for ID filtering
           filterID={filterID}
           setFilterID={setFilterID}
@@ -181,14 +181,16 @@ const Transfer = () => {
         )}
       </div>
 
-      <TransferModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        onTransfer={handleTransfer}
-        employee={selectedEmployee}
-        isProcessing={isProcessing}
-        error={modalError}
-      />
+      {isModalOpen && (
+        <TransferModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onTransfer={handleTransfer}
+          employee={selectedEmployee}
+          isProcessing={isProcessing}
+          error={modalError}
+        />
+      )}
     </div>
   );
 };

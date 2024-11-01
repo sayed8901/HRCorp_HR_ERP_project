@@ -2,9 +2,9 @@ import { useState } from "react";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import useTitle from "../../../utilities/useTitle";
-import EmployeeInfoTable from "../../reports/reports_utility_components/EmployeeInfoTable";
 
-import MultipleInputFilters from "./CustomMultipleFilters";
+import EmployeeInfoTable from "./EmployeeInfoTable";
+import MultipleInputFilters from "../../reports/reports_utility_components/MultipleEmploymentAndDurationFilters";
 import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 
 const AllEmployeeList = () => {
@@ -48,7 +48,7 @@ const AllEmployeeList = () => {
       const department =
         employee?.employment_info?.department?.toLowerCase() || "";
       const jobLocation =
-        employee?.employment_info?.jobLocation?.toLowerCase() || "";
+        employee?.employment_info?.job_location?.toLowerCase() || "";
 
       // Apply filters
       return (

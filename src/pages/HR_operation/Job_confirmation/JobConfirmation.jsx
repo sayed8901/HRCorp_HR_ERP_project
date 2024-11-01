@@ -5,9 +5,10 @@ import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import JobConfirmationModal from "./JobConfirmationModal";
 import useTitle from "../../../utilities/useTitle";
+
+import MultipleEmploymentAndDurationFilters from "../../reports/reports_utility_components/MultipleEmploymentAndDurationFilters";
 import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 import TableForJobConfirmation from "./TableForJobConfirmation";
-import MultipleInputFilters from "../../HR_staff_management/AllEmployeeList/CustomMultipleFilters";
 
 const JobConfirmation = () => {
   useTitle("Job Confirmation");
@@ -56,7 +57,7 @@ const JobConfirmation = () => {
       const department =
         employee?.employment_info?.department?.toLowerCase() || "";
       const jobLocation =
-        employee?.employment_info?.jobLocation?.toLowerCase() || "";
+        employee?.employment_info?.job_location?.toLowerCase() || "";
 
       // Apply filters
       return (
@@ -158,7 +159,7 @@ const JobConfirmation = () => {
             </div>
 
             {/* Use CustomMultipleFilters for filtering */}
-            <MultipleInputFilters
+            <MultipleEmploymentAndDurationFilters
               // for ID filtering
               filterID={filterID}
               setFilterID={setFilterID}

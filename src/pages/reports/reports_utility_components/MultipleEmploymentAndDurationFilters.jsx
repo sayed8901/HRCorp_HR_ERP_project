@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import DateSelector from "../../reports/reports_utility_components/DateSelectorComponent";
+import DateSelector from "./DateSelectorComponent";
 
-const MultipleInputFilters = ({
+const MultipleEmploymentAndDurationFilters = ({
   filterID,
   setFilterID,
 
@@ -90,7 +90,7 @@ const MultipleInputFilters = ({
   );
 };
 
-MultipleInputFilters.propTypes = {
+MultipleEmploymentAndDurationFilters.propTypes = {
   filterID: PropTypes.string.isRequired,
   setFilterID: PropTypes.func.isRequired,
 
@@ -113,4 +113,4 @@ MultipleInputFilters.propTypes = {
   setSelectedYear: PropTypes.func.isRequired,
 };
 
-export default MultipleInputFilters;
+export default MultipleEmploymentAndDurationFilters;

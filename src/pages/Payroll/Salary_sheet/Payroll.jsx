@@ -2,6 +2,7 @@ import { useState } from "react";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import PayrollTable from "./PayrollTable";
 import useTitle from "../../../utilities/useTitle";
+import MultipleEmploymentFilters from "../../reports/reports_utility_components/MultipleEmploymentFilters";
 
 const Payroll = () => {
   useTitle("Process Payroll");
@@ -67,10 +68,40 @@ const Payroll = () => {
     setYear(e.target.value);
   };
 
+  // Set up states for each filter
+  const [filterID, setFilterID] = useState("");
+  const [filterName, setFilterName] = useState("");
+  const [filterDepartment, setFilterDepartment] = useState("");
+  const [filterDesignation, setFilterDesignation] = useState("");
+  const [filterJobLocation, setFilterJobLocation] = useState("");
+
+  // Filter employees based on joining date and other filters
+  const filteredEmployees = payrollData?.filter((employee) => {
+    const employee_id = employee?.employee;
+    const name = employee?.employee_name?.toLowerCase() || "";
+    const designation =
+      employee?.designation?.toLowerCase() || "";
+    const department =
+      employee?.department?.toLowerCase() || "";
+    const jobLocation =
+      employee?.job_location?.toLowerCase() || "";
+
+    // Apply filters
+    return (
+      (filterID ? employee_id.toString() === filterID : true) &&
+      name.includes(filterName.toLowerCase()) &&
+      designation.includes(filterDesignation.toLowerCase()) &&
+      department.includes(filterDepartment.toLowerCase()) &&
+      jobLocation.includes(filterJobLocation.toLowerCase())
+    );
+  });
+
+  // console.log(filteredEmployees);
+
   return (
     <div className="overflow-x-auto w-11/12 mx-auto mt-10 mb-16">
       {/* Input fields for month and year */}
-      <div className="month-selector my-4 text-center flex flex-col items-center">
+      <div className="month-selector my-4 text-center flex flex-col sm:flex-row justify-center items-center sm:gap-12">
         <div className="flex justify-center space-x-4">
           <div className="flex flex-row items-center">
             <label htmlFor="month" className="mr-2 font-semibold mb-1">
@@ -123,7 +154,7 @@ const Payroll = () => {
             )?.value; // Get the numerical month value
             handleSearch(monthNumber, year); // Call handleSearch with month number and year
           }}
-          className="mt-4 py-2 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mt-4 sm:mt-0 py-2 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Get Payroll Info
         </button>
@@ -141,15 +172,38 @@ const Payroll = () => {
       {!loading && !error && payrollData.length > 0 ? (
         <>
           {/* Headline with month and year */}
-          <h1 className="text-2xl text-center mt-6 text-gradient">
+          <h1 className="text-2xl text-center my-8 text-gradient">
             <span className="font-bold">Payroll</span> data for the month of:{" "}
             <span className="font-bold">
               {month}-{year}
             </span>
           </h1>
 
+          {/* Use CustomMultipleFilters for filtering */}
+          <div className="my-8">
+            <MultipleEmploymentFilters
+              // for ID filtering
+              filterID={filterID}
+              setFilterID={setFilterID}
+              // for name filtering
+              filterName={filterName}
+              setFilterName={setFilterName}
+              // for description filtering
+              filterDepartment={filterDepartment}
+              setFilterDepartment={setFilterDepartment}
+              // for designation filtering
+              filterDesignation={filterDesignation}
+              setFilterDesignation={setFilterDesignation}
+              // for job location filtering
+              filterJobLocation={filterJobLocation}
+              setFilterJobLocation={setFilterJobLocation}
+            />
+          </div>
+
           {/* Payroll table */}
-          <PayrollTable payrollData={payrollData}></PayrollTable>
+          <PayrollTable
+            allEmployeePayrollData={filteredEmployees}
+          ></PayrollTable>
         </>
       ) : (
         // Display message when no payroll data is found

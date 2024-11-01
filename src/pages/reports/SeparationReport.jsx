@@ -5,7 +5,8 @@ import DateSelector from "./reports_utility_components/DateSelectorComponent";
 import calculateCounts from "../../utilities/CalculateUtils/employeeCalculateCounts";
 import getDatesForDuration from "../../utilities/CalculateUtils/useGetDatesForDuration";
 import StatisticsCard from "./reports_utility_components/StatisticsCard";
-import EmployeeInfoTable from "./reports_utility_components/EmployeeInfoTable";
+
+import EmployeeInfoTable from "../HR_staff_management/AllEmployeeList/EmployeeInfoTable";
 import useTitle from "../../utilities/useTitle";
 
 const SeparationReport = () => {

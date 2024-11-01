@@ -1,10 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const TableForJobConfirmation = ({
-  filteredEmployees,
-  onConfirmationModalClick,
-}) => {
+const TableForSeparation = ({ filteredEmployees, onSeparationModalClick }) => {
   // for pagination implementations
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
@@ -61,27 +58,24 @@ const TableForJobConfirmation = ({
               <td className="border border-gray-300">Department</td>
               <td className="border border-gray-300">Location</td>
               <td className="border border-gray-300">Joining Date</td>
-              <td className="border border-gray-300">Probation (months)</td>
-              <td className="border border-gray-300">Tentative Confirm Date</td>
+
+              <td className="border border-gray-300">
+                Tentative Confirmation Date
+              </td>
               <td className="border border-gray-300">Is Confirmed</td>
               <td className="border border-gray-300">
                 Confirmation Effective Date
               </td>
+              <td className="border border-gray-300">Last Promotion Date</td>
 
-              <td className="border border-gray-300">Salary Grade</td>
-              <td className="border border-gray-300">Starting Basic</td>
-              <td className="border border-gray-300">Salary Step</td>
-              <td className="border border-gray-300">Effective Basic</td>
-              <td className="border border-gray-300">House Rent</td>
-              <td className="border border-gray-300">Medical</td>
-              <td className="border border-gray-300">Conveyance</td>
-              <td className="border border-gray-300">Hardship</td>
-              <td className="border border-gray-300">PF Contribution</td>
-              <td className="border border-gray-300">Gross Salary</td>
-              <td className="border border-gray-300">PF Deduction</td>
-              <td className="border border-gray-300">SWF Deduction</td>
-              <td className="border border-gray-300">Tax Deduction</td>
-              <td className="border border-gray-300">Net Salary</td>
+              <td className="border border-gray-300">Separation Type</td>
+              <td className="border border-gray-300">Cause of Separation</td>
+              <td className="border border-gray-300">
+                Separation Application Date
+              </td>
+              <td className="border border-gray-300">
+                Separation Effective Date
+              </td>
 
               <td className="border border-gray-300">
                 Job Profile Details of The Employee Describing The Full History
@@ -93,7 +87,7 @@ const TableForJobConfirmation = ({
           <tbody>
             {currentEmployees?.map((employee, index) => (
               <tr
-                key={employee?.employee_id} // here, length - 1 is used not to apply bottom border for the very last line of the table
+                key={employee?.employee_id}
                 className={`hover ${
                   index < currentEmployees.length - 1
                     ? "border-b-2 border-indigo-300"
@@ -121,9 +115,7 @@ const TableForJobConfirmation = ({
                 <td className="border border-gray-300">
                   {formatDate(employee?.employment_info?.joining_date)}
                 </td>
-                <td className="border border-gray-300">
-                  {employee?.employment_info?.probation_period_months}
-                </td>
+
                 <td className="border border-gray-300">
                   {formatDate(
                     employee?.employment_info?.tentative_confirmation_date
@@ -137,48 +129,27 @@ const TableForJobConfirmation = ({
                     employee?.employment_info?.confirmation_effective_date
                   )}
                 </td>
+                <td className="border border-gray-300">
+                  {formatDate(
+                    employee?.last_promotion?.promotion_effective_date
+                  )}
+                </td>
 
                 <td className="border border-gray-300">
-                  {employee?.salary_info?.salary_grade}
+                  {employee?.separation_info?.separation_type}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.salary_info?.starting_basic}
+                  {employee?.separation_info?.cause_of_separation}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.salary_info?.salary_step}
+                  {formatDate(
+                    employee?.separation_info?.application_submission_date
+                  )}
                 </td>
                 <td className="border border-gray-300">
-                  {employee?.salary_info?.effective_basic}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.house_rent}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.medical_allowance}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.conveyance}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.hardship}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.pf_contribution}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.gross_salary}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.pf_deduction}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.swf_deduction}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.tax_deduction}
-                </td>
-                <td className="border border-gray-300">
-                  {employee?.salary_info?.net_salary}
+                  {formatDate(
+                    employee?.separation_info?.separation_effect_date
+                  )}
                 </td>
 
                 <td className="border border-gray-300">
@@ -187,9 +158,9 @@ const TableForJobConfirmation = ({
                 <th className="border border-gray-300">
                   <button
                     className="btn btn-xs btn-outline btn-accent h-10"
-                    onClick={() => onConfirmationModalClick(employee)}
+                    onClick={() => onSeparationModalClick(employee)}
                   >
-                    Confirm Job
+                    Separate
                   </button>
                 </th>
               </tr>
@@ -221,9 +192,9 @@ const TableForJobConfirmation = ({
   );
 };
 
-TableForJobConfirmation.propTypes = {
+TableForSeparation.propTypes = {
   filteredEmployees: PropTypes.array.isRequired,
-  onConfirmationModalClick: PropTypes.func.isRequired,
+  onSeparationModalClick: PropTypes.func.isRequired,
 };
 
-export default TableForJobConfirmation;
+export default TableForSeparation;

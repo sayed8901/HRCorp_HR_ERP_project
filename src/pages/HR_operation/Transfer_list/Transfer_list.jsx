@@ -8,7 +8,7 @@ import useTitle from "../../../utilities/useTitle";
 import TransferUpdateModal from "../Transfer_list/UpdateTransferModal";
 import TransferTable from "./TransferListTable";
 
-import MultipleInputFilters from "../../HR_staff_management/AllEmployeeList/CustomMultipleFilters";
+import MultipleEmploymentAndDurationFilters from "../../reports/reports_utility_components/MultipleEmploymentAndDurationFilters";
 import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 
 // Fetching all transfer data from the API
@@ -249,7 +249,7 @@ const TransferList = () => {
         </div>
 
         {/* Filter fields */}
-        <MultipleInputFilters
+        <MultipleEmploymentAndDurationFilters
           // for ID filtering
           filterID={filterID}
           setFilterID={setFilterID}

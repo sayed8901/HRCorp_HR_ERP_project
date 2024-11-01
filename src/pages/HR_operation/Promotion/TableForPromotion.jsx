@@ -1,10 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const TableForJobConfirmation = ({
-  filteredEmployees,
-  onConfirmationModalClick,
-}) => {
+const TableForPromotion = ({ filteredEmployees, onPromotionModalClick }) => {
   // for pagination implementations
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
@@ -61,12 +58,12 @@ const TableForJobConfirmation = ({
               <td className="border border-gray-300">Department</td>
               <td className="border border-gray-300">Location</td>
               <td className="border border-gray-300">Joining Date</td>
-              <td className="border border-gray-300">Probation (months)</td>
-              <td className="border border-gray-300">Tentative Confirm Date</td>
+
               <td className="border border-gray-300">Is Confirmed</td>
               <td className="border border-gray-300">
                 Confirmation Effective Date
               </td>
+              <td className="border border-gray-300">Last Promotion Date</td>
 
               <td className="border border-gray-300">Salary Grade</td>
               <td className="border border-gray-300">Starting Basic</td>
@@ -78,7 +75,7 @@ const TableForJobConfirmation = ({
               <td className="border border-gray-300">Hardship</td>
               <td className="border border-gray-300">PF Contribution</td>
               <td className="border border-gray-300">Gross Salary</td>
-              <td className="border border-gray-300">PF Deduction</td>
+              <td>PF Deduction</td>
               <td className="border border-gray-300">SWF Deduction</td>
               <td className="border border-gray-300">Tax Deduction</td>
               <td className="border border-gray-300">Net Salary</td>
@@ -93,7 +90,8 @@ const TableForJobConfirmation = ({
           <tbody>
             {currentEmployees?.map((employee, index) => (
               <tr
-                key={employee?.employee_id} // here, length - 1 is used not to apply bottom border for the very last line of the table
+                key={employee?.employee_id}
+                // here, length - 1 is used not to apply bottom border for the very last line of the table
                 className={`hover ${
                   index < currentEmployees.length - 1
                     ? "border-b-2 border-indigo-300"
@@ -121,20 +119,18 @@ const TableForJobConfirmation = ({
                 <td className="border border-gray-300">
                   {formatDate(employee?.employment_info?.joining_date)}
                 </td>
-                <td className="border border-gray-300">
-                  {employee?.employment_info?.probation_period_months}
-                </td>
-                <td className="border border-gray-300">
-                  {formatDate(
-                    employee?.employment_info?.tentative_confirmation_date
-                  )}
-                </td>
+
                 <td className="border border-gray-300">
                   {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                 </td>
                 <td className="border border-gray-300">
                   {formatDate(
                     employee?.employment_info?.confirmation_effective_date
+                  )}
+                </td>
+                <td className="border border-gray-300">
+                  {formatDate(
+                    employee?.last_promotion?.promotion_effective_date
                   )}
                 </td>
 
@@ -187,9 +183,9 @@ const TableForJobConfirmation = ({
                 <th className="border border-gray-300">
                   <button
                     className="btn btn-xs btn-outline btn-accent h-10"
-                    onClick={() => onConfirmationModalClick(employee)}
+                    onClick={() => onPromotionModalClick(employee)}
                   >
-                    Confirm Job
+                    Promotion
                   </button>
                 </th>
               </tr>
@@ -221,9 +217,9 @@ const TableForJobConfirmation = ({
   );
 };
 
-TableForJobConfirmation.propTypes = {
+TableForPromotion.propTypes = {
   filteredEmployees: PropTypes.array.isRequired,
-  onConfirmationModalClick: PropTypes.func.isRequired,
+  onPromotionModalClick: PropTypes.func.isRequired,
 };
 
-export default TableForJobConfirmation;
+export default TableForPromotion;
