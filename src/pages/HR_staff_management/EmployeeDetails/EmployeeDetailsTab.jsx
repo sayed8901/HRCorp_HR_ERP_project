@@ -51,7 +51,7 @@ const EmployeeDetailsTab = ({ employee_id }) => {
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
-          <dl className="divide-y divide-gray-200 w-full sm:w-5/6 md:w-4/6 mx-auto">
+          <dl className="divide-y divide-gray-200 w-full md:w-11/12 lg:w-5/6 mx-auto">
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">Name</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
@@ -154,7 +154,13 @@ const EmployeeDetailsTab = ({ employee_id }) => {
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
-          <dl className="divide-y divide-gray-200 w-full sm:w-5/6 md:w-4/6 mx-auto">
+          <dl className="divide-y divide-gray-200 w-full md:w-11/12 lg:w-5/6 mx-auto">
+            <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6">Name</dt>
+              <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
+                {employee?.personal_info?.name}
+              </dd>
+            </div>
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">Status</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
@@ -239,7 +245,7 @@ const EmployeeDetailsTab = ({ employee_id }) => {
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
-          <dl className="divide-y divide-gray-200 w-full sm:w-5/6 md:w-4/6 mx-auto">
+          <dl className="divide-y divide-gray-200 w-full md:w-11/12 lg:w-5/6 mx-auto">
             <div className="px-4 py-2 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
               <dt className="text-sm font-medium leading-6">Salary Grade</dt>
               <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0 font-bold">
@@ -376,7 +382,7 @@ const EmployeeDetailsTab = ({ employee_id }) => {
           role="tabpanel"
           className="tab-content bg-base-100 border-base-300 rounded-box p-6"
         >
-          <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+          <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical w-full md:w-11/12 lg:w-5/6 mx-auto">
             {jobProfileData &&
               jobProfileData.map((jobProfile, index) => (
                 <li key={index}>

@@ -66,7 +66,7 @@ const AllEmployeeList = () => {
     <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
       <h2 className="text-center text-2xl font-semibold leading-8 my-10">
         <span className="text-gradient">
-          All ({allEmployeesFullInfo?.length}) Employee
+          All ({filteredEmployees?.length}) Employee
         </span>{" "}
         Info
       </h2>
