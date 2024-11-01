@@ -30,13 +30,15 @@ const JobConfirmation = () => {
   const [selectedDuration, setSelectedDuration] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
-  // Helper function to filter employees by joining date
-  const filterByJoiningDate = (startDate, endDate) => {
+  // Helper function to filter employees by tentative job confirmation date
+  const filterByTentativeConfirmDate = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
 
     return allNonConfirmedActiveStaffList?.filter((employee) => {
-      const joiningDate = new Date(employee?.employment_info?.joining_date);
+      const joiningDate = new Date(
+        employee?.employment_info?.tentative_confirmation_date
+      );
       return joiningDate >= start && joiningDate <= end;
     });
   };
@@ -47,28 +49,29 @@ const JobConfirmation = () => {
     selectedYear
   );
 
-  // Filter employees based on joining date and other filters
-  const filteredEmployees = filterByJoiningDate(startDate, endDate)?.filter(
-    (employee) => {
-      const employee_id = employee?.employee_id;
-      const name = employee?.personal_info?.name?.toLowerCase() || "";
-      const designation =
-        employee?.employment_info?.designation?.toLowerCase() || "";
-      const department =
-        employee?.employment_info?.department?.toLowerCase() || "";
-      const jobLocation =
-        employee?.employment_info?.job_location?.toLowerCase() || "";
+  // Filter employees based on tentative job confirmation date and other filters
+  const filteredEmployees = filterByTentativeConfirmDate(
+    startDate,
+    endDate
+  )?.filter((employee) => {
+    const employee_id = employee?.employee_id;
+    const name = employee?.personal_info?.name?.toLowerCase() || "";
+    const designation =
+      employee?.employment_info?.designation?.toLowerCase() || "";
+    const department =
+      employee?.employment_info?.department?.toLowerCase() || "";
+    const jobLocation =
+      employee?.employment_info?.job_location?.toLowerCase() || "";
 
-      // Apply filters
-      return (
-        (filterID ? employee_id.toString() === filterID : true) &&
-        name.includes(filterName.toLowerCase()) &&
-        designation.includes(filterDesignation.toLowerCase()) &&
-        department.includes(filterDepartment.toLowerCase()) &&
-        jobLocation.includes(filterJobLocation.toLowerCase())
-      );
-    }
-  );
+    // Apply filters
+    return (
+      (filterID ? employee_id.toString() === filterID : true) &&
+      name.includes(filterName.toLowerCase()) &&
+      designation.includes(filterDesignation.toLowerCase()) &&
+      department.includes(filterDepartment.toLowerCase()) &&
+      jobLocation.includes(filterJobLocation.toLowerCase())
+    );
+  });
 
   // console.log(filteredEmployees);
 
@@ -141,83 +144,67 @@ const JobConfirmation = () => {
 
   return (
     <div>
-      {loading ? (
-        <div className="my-32">
-          <LoadingSpinner />
-        </div>
-      ) : allNonConfirmedActiveStaffList.length > 0 ? (
-        <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
-          <div className="w-full mx-auto px-5 my-10">
-            <div className="px-4 sm:px-0">
-              <h2 className="w-full sm:w-1/2 mx-auto text-center text-3xl font-semibold leading-8 mb-10">
-                <span className="text-gradient">
-                  All ({allNonConfirmedActiveStaffList?.length}) Active
-                  Non-Confirmed Employee
-                </span>{" "}
-                List to Make Job Confirmation
-              </h2>
-            </div>
-
-            {/* Use CustomMultipleFilters for filtering */}
-            <MultipleEmploymentAndDurationFilters
-              // for ID filtering
-              filterID={filterID}
-              setFilterID={setFilterID}
-              // for name filtering
-              filterName={filterName}
-              setFilterName={setFilterName}
-              // for description filtering
-              filterDepartment={filterDepartment}
-              setFilterDepartment={setFilterDepartment}
-              // for designation filtering
-              filterDesignation={filterDesignation}
-              setFilterDesignation={setFilterDesignation}
-              // for job location filtering
-              filterJobLocation={filterJobLocation}
-              setFilterJobLocation={setFilterJobLocation}
-              // for month & duration filtering
-              selectedDuration={selectedDuration}
-              setSelectedDuration={setSelectedDuration}
-              // for year filtering
-              selectedYear={selectedYear}
-              setSelectedYear={setSelectedYear}
-            />
-
-            {loading ? (
-              <LoadingSpinner />
-            ) : error ? (
-              <p className="text-red-500">Error loading data</p>
-            ) : (
-              <div className="my-5">
-                <TableForJobConfirmation
-                  filteredEmployees={filteredEmployees}
-                  onConfirmationModalClick={handleOpenModal}
-                />
-              </div>
-            )}
+      <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
+        <div className="w-full mx-auto px-5 my-10">
+          <div className="px-4 sm:px-0">
+            <h2 className="w-full sm:w-1/2 mx-auto text-center text-3xl font-semibold leading-8 mb-10">
+              <span className="text-gradient">
+                All ({filteredEmployees?.length}) Active Non-Confirmed Employee
+              </span>{" "}
+              List For Job Confirmation
+            </h2>
           </div>
 
-          {isModalOpen && (
-            <JobConfirmationModal
-              isOpen={isModalOpen}
-              onClose={handleCloseModal}
-              onConfirm={handleConfirm}
-              employee={selectedEmployee}
-              isProcessing={isProcessing}
-              error={modalError}
-            />
+          {/* Use CustomMultipleFilters for filtering */}
+          <MultipleEmploymentAndDurationFilters
+            // for ID filtering
+            filterID={filterID}
+            setFilterID={setFilterID}
+            // for name filtering
+            filterName={filterName}
+            setFilterName={setFilterName}
+            // for description filtering
+            filterDepartment={filterDepartment}
+            setFilterDepartment={setFilterDepartment}
+            // for designation filtering
+            filterDesignation={filterDesignation}
+            setFilterDesignation={setFilterDesignation}
+            // for job location filtering
+            filterJobLocation={filterJobLocation}
+            setFilterJobLocation={setFilterJobLocation}
+            // for month & duration filtering
+            selectedDuration={selectedDuration}
+            setSelectedDuration={setSelectedDuration}
+            // for year filtering
+            selectedYear={selectedYear}
+            setSelectedYear={setSelectedYear}
+          />
+
+          {loading ? (
+            <LoadingSpinner />
+          ) : error ? (
+            <p className="text-red-500">Error loading data</p>
+          ) : (
+            <div className="my-5">
+              <TableForJobConfirmation
+                filteredEmployees={filteredEmployees}
+                onConfirmationModalClick={handleOpenModal}
+              />
+            </div>
           )}
         </div>
-      ) : (
-        <div className="hero flex items-center justify-center min-h-[calc(100vh-200px)]">
-          <div className="text-center text-3xl font-semibold leading-8 space-y-5">
-            <p className="text-gradient">No Active Employees </p>
-            <p>
-              to <span className="text-gradient">confirm</span> right now!
-            </p>
-          </div>
-        </div>
-      )}
+
+        {isModalOpen && (
+          <JobConfirmationModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            onConfirm={handleConfirm}
+            employee={selectedEmployee}
+            isProcessing={isProcessing}
+            error={modalError}
+          />
+        )}
+      </div>
     </div>
   );
 };
