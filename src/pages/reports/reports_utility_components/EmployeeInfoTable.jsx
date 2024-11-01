@@ -9,8 +9,8 @@ import "jspdf-autotable";
 // For Excel download
 import * as XLSX from "xlsx";
 
-const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
-  // console.log(allEmployeesFullInfo);
+const EmployeeInfoTable = ({ filteredEmployees, reportType }) => {
+  console.log(filteredEmployees);
 
   // Helper object to format employee data for reuse in PDF or Excel files
   const formatEmployeeData = (employee) => ({
@@ -82,7 +82,7 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
     ];
 
     // Rows of PDF file
-    const rows = allEmployeesFullInfo.map((employee) =>
+    const rows = filteredEmployees.map((employee) =>
       Object.values(formatEmployeeData(employee))
     );
 
@@ -105,7 +105,7 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
   const downloadExcel = () => {
     // Create a new workbook and a worksheet
     const ws = XLSX.utils.json_to_sheet(
-      allEmployeesFullInfo.map(formatEmployeeData)
+      filteredEmployees.map(formatEmployeeData)
     ); // Create a new worksheet
 
     const wb = XLSX.utils.book_new(); // Create a new workbook for Excel download
@@ -127,9 +127,9 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
 
-  const totalPages = Math.ceil(allEmployeesFullInfo.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredEmployees.length / itemsPerPage);
 
-  const currentEmployees = allEmployeesFullInfo.slice(
+  const currentEmployees = filteredEmployees.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -503,7 +503,7 @@ const EmployeeInfoTable = ({ allEmployeesFullInfo, reportType }) => {
 };
 
 EmployeeInfoTable.propTypes = {
-  allEmployeesFullInfo: PropTypes.array.isRequired,
+  filteredEmployees: PropTypes.array.isRequired,
   reportType: PropTypes.string.isRequired,
 };
 

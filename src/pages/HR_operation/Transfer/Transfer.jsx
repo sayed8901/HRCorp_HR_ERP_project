@@ -6,11 +6,67 @@ import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData
 import TransferModal from "./TransferModal";
 import useTitle from "../../../utilities/useTitle";
 
+import MultipleInputFilters from "../../HR_staff_management/AllEmployeeList/CustomMultipleFilters";
+import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
+
 const Transfer = () => {
   useTitle("Transfer");
 
   const navigate = useNavigate();
+
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
+
+  // Set up states for each filter
+  const [filterID, setFilterID] = useState("");
+  const [filterName, setFilterName] = useState("");
+  const [filterDepartment, setFilterDepartment] = useState("");
+  const [filterDesignation, setFilterDesignation] = useState("");
+  const [filterJobLocation, setFilterJobLocation] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState("");
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
+  // Helper function to filter employees by joining date
+  const filterByJoiningDate = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    return allActiveEmployeesInfo?.filter((employee) => {
+      const joiningDate = new Date(employee?.employment_info?.joining_date);
+      return joiningDate >= start && joiningDate <= end;
+    });
+  };
+
+  // Get startDate and endDate for selected duration and year
+  const { startDate, endDate } = getDatesForDuration(
+    selectedDuration,
+    selectedYear
+  );
+
+  // Filter employees based on joining date and other filters
+  const filteredEmployees = filterByJoiningDate(startDate, endDate)?.filter(
+    (employee) => {
+      const employee_id = employee?.employee_id;
+      const name = employee?.personal_info?.name?.toLowerCase() || "";
+      const designation =
+        employee?.employment_info?.designation?.toLowerCase() || "";
+      const department =
+        employee?.employment_info?.department?.toLowerCase() || "";
+      const jobLocation =
+        employee?.employment_info?.jobLocation?.toLowerCase() || "";
+
+      // Apply filters
+      return (
+        (filterID ? employee_id.toString() === filterID : true) &&
+        name.includes(filterName.toLowerCase()) &&
+        designation.includes(filterDesignation.toLowerCase()) &&
+        department.includes(filterDepartment.toLowerCase()) &&
+        jobLocation.includes(filterJobLocation.toLowerCase())
+      );
+    }
+  );
+
+  // console.log(filteredEmployees);
+
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -20,9 +76,9 @@ const Transfer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
 
-  const totalPages = Math.ceil(allActiveEmployeesInfo.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredEmployees.length / itemsPerPage);
 
-  const currentEmployees = allActiveEmployeesInfo.slice(
+  const currentEmployees = filteredEmployees.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -83,7 +139,8 @@ const Transfer = () => {
 
       // Delay page refresh to allow toast to be shown
       setTimeout(() => {
-        navigate(0);
+        // navigate('/transfer_list');    // redirect to 'transfer_list' page
+        navigate(0); // refresh the current page
       }, 1000); // Adjust delay as needed
     } catch (error) {
       setModalError(
@@ -108,11 +165,36 @@ const Transfer = () => {
         <div className="px-4 sm:px-0">
           <h2 className="text-center text-3xl font-semibold leading-8 mb-10">
             <span className="text-gradient">
-              All ({allActiveEmployeesInfo?.length}) Active Employee
+              All ({filteredEmployees?.length}) Active Employee
             </span>{" "}
             Info
           </h2>
         </div>
+
+        {/* Use CustomMultipleFilters for filtering */}
+        <MultipleInputFilters
+          // for ID filtering
+          filterID={filterID}
+          setFilterID={setFilterID}
+          // for name filtering
+          filterName={filterName}
+          setFilterName={setFilterName}
+          // for description filtering
+          filterDepartment={filterDepartment}
+          setFilterDepartment={setFilterDepartment}
+          // for designation filtering
+          filterDesignation={filterDesignation}
+          setFilterDesignation={setFilterDesignation}
+          // for job location filtering
+          filterJobLocation={filterJobLocation}
+          setFilterJobLocation={setFilterJobLocation}
+          // for month & duration filtering
+          selectedDuration={selectedDuration}
+          setSelectedDuration={setSelectedDuration}
+          // for year filtering
+          selectedYear={selectedYear}
+          setSelectedYear={setSelectedYear}
+        />
 
         <div className="my-6 flex justify-end mx-2 sm:mr-10">
           <label>

@@ -3,7 +3,8 @@ import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import useTitle from "../../../utilities/useTitle";
 import EmployeeInfoTable from "../../reports/reports_utility_components/EmployeeInfoTable";
-import CustomMultipleFilters from "./CustomMultipleFilters";
+
+import MultipleInputFilters from "./CustomMultipleFilters";
 import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 
 const AllEmployeeList = () => {
@@ -78,7 +79,7 @@ const AllEmployeeList = () => {
         )}
 
         {/* Use CustomMultipleFilters for filtering */}
-        <CustomMultipleFilters
+        <MultipleInputFilters
           // for ID filtering
           filterID={filterID}
           setFilterID={setFilterID}
@@ -107,7 +108,7 @@ const AllEmployeeList = () => {
         ) : (
           <div className="my-5">
             <EmployeeInfoTable
-              allEmployeesFullInfo={filteredEmployees}
+              filteredEmployees={filteredEmployees}
               reportType="all_employees"
             />
           </div>

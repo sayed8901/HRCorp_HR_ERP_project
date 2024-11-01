@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useFetch from "../../../utilities/dataFetches/useDataFetchHooks";
+import useTitle from "../../../utilities/useTitle";
 
 import TransferUpdateModal from "../Transfer_list/UpdateTransferModal";
-import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 import TransferTable from "./TransferListTable";
+
 import MultipleInputFilters from "../../HR_staff_management/AllEmployeeList/CustomMultipleFilters";
-import useTitle from "../../../utilities/useTitle";
+import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 
 // Fetching all transfer data from the API
 const TransferList = () => {
@@ -180,7 +181,7 @@ const TransferList = () => {
 
       // Delay page refresh to allow toast to be shown
       setTimeout(() => {
-        navigate(0);
+        navigate(0); // refresh the current page
       }, 1000); // Adjust delay as needed
     } catch (error) {
       setModalError(
