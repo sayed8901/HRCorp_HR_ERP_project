@@ -236,6 +236,7 @@ const Separation = () => {
                   <td className="border border-gray-300">Location</td>
                   <td className="border border-gray-300">Joining Date</td>
 
+                  <td className="border border-gray-300">Tentative Confirmation Date</td>
                   <td className="border border-gray-300">Is Confirmed</td>
                   <td className="border border-gray-300">
                     Confirmation Effective Date
@@ -294,6 +295,11 @@ const Separation = () => {
                       {formatDate(employee?.employment_info?.joining_date)}
                     </td>
 
+                    <td className="border border-gray-300">
+                      {formatDate(
+                        employee?.employment_info?.tentative_confirmation_date
+                      )}
+                    </td>
                     <td className="border border-gray-300">
                       {employee?.salary_info?.is_confirmed ? "Yes" : "No"}
                     </td>

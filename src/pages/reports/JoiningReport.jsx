@@ -51,11 +51,11 @@ const JoiningReport = () => {
     selectedDuration,
     selectedYear
   );
-  const filteredStaff = filterByJoiningDate(startDate, endDate);
+  const filteredEmployees = filterByJoiningDate(startDate, endDate);
 
   // Destructure the returned counts from the function to use them separately
   const { departmentCount, designationCount, jobLocationCount } =
-    calculateCounts(filteredStaff);
+    calculateCounts(filteredEmployees);
 
   return (
     <div className="mt-16 mb-10 mx-10">
@@ -108,16 +108,16 @@ const JoiningReport = () => {
       </div>
 
       {/* Filtered Employee table */}
-      {filteredStaff.length > 0 && (
+      {filteredEmployees.length > 0 && (
         <div>
           <h2 className="text-center text-2xl font-semibold leading-8 mt-10 mb-4">
             <span className="text-gradient">
-              All ({filteredStaff?.length}) Employee
+              All ({filteredEmployees?.length}) Employee
             </span>{" "}
             Info
           </h2>
           <EmployeeInfoTable
-            allEmployeesFullInfo={filteredStaff}
+            filteredEmployees={filteredEmployees}
             reportType="joining"
           ></EmployeeInfoTable>
         </div>

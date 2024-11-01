@@ -10,7 +10,7 @@ import "jspdf-autotable";
 import * as XLSX from "xlsx";
 
 const EmployeeInfoTable = ({ filteredEmployees, reportType }) => {
-  console.log(filteredEmployees);
+  // console.log(filteredEmployees);
 
   // Helper object to format employee data for reuse in PDF or Excel files
   const formatEmployeeData = (employee) => ({

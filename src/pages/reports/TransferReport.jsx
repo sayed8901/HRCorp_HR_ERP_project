@@ -58,11 +58,11 @@ const TransferReport = () => {
     selectedDuration,
     selectedYear
   );
-  const filteredStaff = filterByTransferDate(startDate, endDate);
+  const filteredEmployees = filterByTransferDate(startDate, endDate);
 
   // Destructure the returned counts from the function to use them separately
   const { departmentCount, designationCount, jobLocationCount } =
-    calculateCounts(filteredStaff);
+    calculateCounts(filteredEmployees);
 
   return (
     <div className="mt-16 mb-10 mx-10">
@@ -112,16 +112,16 @@ const TransferReport = () => {
         />
       </div>
 
-      {filteredStaff.length > 0 && (
+      {filteredEmployees.length > 0 && (
         <div>
           <h2 className="text-center text-2xl font-semibold leading-8 mt-10 mb-4">
             <span className="text-gradient">
-              All ({filteredStaff?.length}) Employee
+              All ({filteredEmployees?.length}) Employee
             </span>{" "}
             Info
           </h2>
           <EmployeeInfoTable
-            allEmployeesFullInfo={filteredStaff}
+            filteredEmployees={filteredEmployees}
             reportType="transfer"
           ></EmployeeInfoTable>
         </div>

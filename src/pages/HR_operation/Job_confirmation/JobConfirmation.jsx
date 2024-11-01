@@ -35,7 +35,7 @@ const JobConfirmation = () => {
     const start = new Date(startDate);
     const end = new Date(endDate);
 
-    return allActiveEmployeesInfo?.filter((employee) => {
+    return allNonConfirmedActiveStaffList?.filter((employee) => {
       const joiningDate = new Date(employee?.employment_info?.joining_date);
       return joiningDate >= start && joiningDate <= end;
     });
