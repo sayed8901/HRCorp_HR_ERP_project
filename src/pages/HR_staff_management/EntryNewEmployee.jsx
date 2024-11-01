@@ -721,7 +721,7 @@ const EntryNewEmployee = () => {
               className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
               disabled={isLoading}
             >
-              {isLoading ? <LoadingSpinner></LoadingSpinner> : "Create Account"}
+              {isLoading ? <LoadingSpinner></LoadingSpinner> : "Add To Employee Database"}
             </button>
           </div>
         </div>
