@@ -5,19 +5,75 @@ import LoadingSpinner from "../../../utilities/LoadingSpinner";
 import useEmployeesData from "../../../utilities/dataFetches/useAllEmployeesData";
 import EntryLeaveModal from "./EntryLeaveModal";
 import useTitle from "../../../utilities/useTitle";
+import EntryLeaveTable from "./EntryLeaveTable";
+import MultipleEmploymentAndDurationFilters from "../../reports/reports_utility_components/MultipleEmploymentAndDurationFilters";
+import getDatesForDuration from "../../../utilities/CalculateUtils/useGetDatesForDuration";
 
 const EntryLeave = () => {
   useTitle("Entry Leave info");
 
   const navigate = useNavigate();
+
   const { allActiveEmployeesInfo, loading, error } = useEmployeesData();
+
+  // Set up states for each filter
+  const [filterID, setFilterID] = useState("");
+  const [filterName, setFilterName] = useState("");
+  const [filterDepartment, setFilterDepartment] = useState("");
+  const [filterDesignation, setFilterDesignation] = useState("");
+  const [filterJobLocation, setFilterJobLocation] = useState("");
+  const [selectedDuration, setSelectedDuration] = useState("");
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
+  // Helper function to filter employees by joining date
+  const filterByJoiningDate = (startDate, endDate) => {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    return allActiveEmployeesInfo?.filter((employee) => {
+      const joiningDate = new Date(employee?.employment_info?.joining_date);
+      return joiningDate >= start && joiningDate <= end;
+    });
+  };
+
+  // Get startDate and endDate for selected duration and year
+  const { startDate, endDate } = getDatesForDuration(
+    selectedDuration,
+    selectedYear
+  );
+
+  // Filter employees based on joining date and other filters
+  const filteredEmployees = filterByJoiningDate(startDate, endDate)?.filter(
+    (employee) => {
+      const employee_id = employee?.employee_id;
+      const name = employee?.personal_info?.name?.toLowerCase() || "";
+      const designation =
+        employee?.employment_info?.designation?.toLowerCase() || "";
+      const department =
+        employee?.employment_info?.department?.toLowerCase() || "";
+      const jobLocation =
+        employee?.employment_info?.job_location?.toLowerCase() || "";
+
+      // Apply filters
+      return (
+        (filterID ? employee_id.toString() === filterID : true) &&
+        name.includes(filterName.toLowerCase()) &&
+        designation.includes(filterDesignation.toLowerCase()) &&
+        department.includes(filterDepartment.toLowerCase()) &&
+        jobLocation.includes(filterJobLocation.toLowerCase())
+      );
+    }
+  );
+
+  // console.log(filteredEmployees);
+
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [modalError, setModalError] = useState("");
 
-  // console.log(allActiveEmployeesInfo);
 
+  // for modal activity
   const handleOpenModal = (employee) => {
     setSelectedEmployee(employee);
     setModalError(""); // Clear any previous errors when opening the modal
@@ -85,118 +141,43 @@ const EntryLeave = () => {
           </h2>
         </div>
 
-        {/* to show loading spinner while loading */}
-        {loading && <LoadingSpinner />}
+        {/* Use CustomMultipleFilters for filtering */}
+        <MultipleEmploymentAndDurationFilters
+          // for ID filtering
+          filterID={filterID}
+          setFilterID={setFilterID}
+          // for name filtering
+          filterName={filterName}
+          setFilterName={setFilterName}
+          // for description filtering
+          filterDepartment={filterDepartment}
+          setFilterDepartment={setFilterDepartment}
+          // for designation filtering
+          filterDesignation={filterDesignation}
+          setFilterDesignation={setFilterDesignation}
+          // for job location filtering
+          filterJobLocation={filterJobLocation}
+          setFilterJobLocation={setFilterJobLocation}
+          // for month & duration filtering
+          selectedDuration={selectedDuration}
+          setSelectedDuration={setSelectedDuration}
+          // for year filtering
+          selectedYear={selectedYear}
+          setSelectedYear={setSelectedYear}
+        />
 
-        {/* showing error messages */}
-        {error && (
-          <div className="mt-6 text-center text-base text-red-600">{error}</div>
+        {loading ? (
+          <LoadingSpinner />
+        ) : error ? (
+          <p className="text-red-500">Error loading data</p>
+        ) : (
+          <div className="my-5">
+            <EntryLeaveTable
+              filteredEmployees={filteredEmployees}
+              onLeaveModalClick={handleOpenModal}
+            />
+          </div>
         )}
-
-        <div className="overflow-x-auto w-11/12 mx-auto">
-          <table className="table table-xs table-pin-rows table-pin-cols">
-            <thead>
-              <tr>
-                <th className="border border-gray-300">ID</th>
-                <td className="border border-gray-300">Status</td>
-                <td className="border border-gray-300">Name</td>
-                <td className="border border-gray-300">Designation</td>
-                <td className="border border-gray-300">Department</td>
-                <td className="border border-gray-300">Location</td>
-
-                <td className="border border-gray-300">Joining Date</td>
-                <td className="border border-gray-300">
-                  Probation <br /> (months)
-                </td>
-                <td className="border border-gray-300">Is_confirmed</td>
-
-                <td className="border border-gray-300">
-                  Sick <br /> leave <br /> balance
-                </td>
-                <td className="border border-gray-300">
-                  Casual <br /> leave <br /> balance
-                </td>
-
-                <td className="border border-gray-300">Permanent Address</td>
-                <td className="border border-gray-300">Present Address</td>
-
-                <td className="border border-gray-300">
-                  Job Profile Details of The Employee Describing The Full
-                  History of The Employee During His Employment
-                </td>
-                <th className="border border-gray-300">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allActiveEmployeesInfo?.map((employee, index) => (
-                <tr
-                  key={employee?.employee_id}
-                  // here, length - 1 is used not to apply bottom border for the very last line of the table
-                  className={`hover ${
-                    index < allActiveEmployeesInfo.length - 1
-                      ? "border-b-2 border-indigo-300"
-                      : ""
-                  }`}
-                >
-                  <th className="border border-gray-300">
-                    {employee?.employee_id}
-                  </th>
-                  <td className="border border-gray-300">
-                    {employee?.employment_info?.status}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.personal_info?.name}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.employment_info?.designation}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.employment_info?.department}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.employment_info?.job_location}
-                  </td>
-
-                  <td className="border border-gray-300">
-                    {employee?.employment_info?.joining_date}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.employment_info?.probation_period_months}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.employment_info?.is_confirmed ? "Yes" : "No"}
-                  </td>
-
-                  <td className="border border-gray-300">
-                    {employee?.salary_info?.sick_leave_balance}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.salary_info?.casual_leave_balance}
-                  </td>
-
-                  <td className="border border-gray-300">
-                    {employee?.personal_info?.permanent_address}
-                  </td>
-                  <td className="border border-gray-300">
-                    {employee?.personal_info?.present_address}
-                  </td>
-
-                  <td className="border border-gray-300">
-                    {employee?.job_profile_details}
-                  </td>
-                  <th className="border border-gray-300">
-                    <button
-                      className="btn btn-xs btn-outline btn-accent h-10"
-                      onClick={() => handleOpenModal(employee)}
-                    >
-                      Process Leave_Info
-                    </button>
-                  </th>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </div>
 
       <EntryLeaveModal

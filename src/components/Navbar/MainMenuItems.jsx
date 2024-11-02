@@ -274,7 +274,7 @@ const MainMenuItems = ({ user }) => {
                     to="/entry_leave_data"
                     className="rounded-md px-2 py-1 sm:py-0 lg:py-2 text-sm font-medium btn-ghost border-0"
                   >
-                    Entry leave_data
+                    Entry_leave_data
                   </NavLink>
                 </li>
               </>
