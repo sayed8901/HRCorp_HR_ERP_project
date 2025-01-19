@@ -11,23 +11,23 @@ const HomePage = () => {
   useTitle();
 
   return (
-    <div className="container mx-auto">
+    <div>
       <LazyLoad>
         <HeroSection></HeroSection>
       </LazyLoad>
-      <LazyLoad>
+      <LazyLoad className="container mx-auto">
         <StatDashboard></StatDashboard>
       </LazyLoad>
-      <LazyLoad>
+      <LazyLoad className="container mx-auto">
         <ManpowerStatus></ManpowerStatus>
       </LazyLoad>
-      <LazyLoad>
+      <LazyLoad className="container mx-auto">
         <AllEmployeeSlider></AllEmployeeSlider>
       </LazyLoad>
-      <LazyLoad className="mb-28">
+      <LazyLoad className="container mx-auto mb-28">
         <EmployeeDetails></EmployeeDetails>
       </LazyLoad>
-      <LazyLoad>
+      <LazyLoad className="container mx-auto">
         <FAQSection></FAQSection>
       </LazyLoad>
     </div>

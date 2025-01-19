@@ -15,7 +15,7 @@ function App() {
       className="mx-auto flex flex-col min-h-screen"
     >
       <Navbar></Navbar>
-      <div className="container mx-auto flex-grow">
+      <div>
         <Outlet></Outlet>
       </div>
       <Footer></Footer>
