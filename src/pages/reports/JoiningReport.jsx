@@ -59,7 +59,7 @@ const JoiningReport = () => {
     calculateCounts(filteredEmployees);
 
   return (
-    <div className="mt-16 mb-10 mx-10">
+    <div className="container mx-auto px-2 sm:px-0 mt-16 mb-10">
       <div className="sm:mx-auto">
         <h2 className="my-10 text-center text-2xl font-semibold leading-9 tracking-tight">
           You can get <span className="text-gradient">Joining Report</span> by

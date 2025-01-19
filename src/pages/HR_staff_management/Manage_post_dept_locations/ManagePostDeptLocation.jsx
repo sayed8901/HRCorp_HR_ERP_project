@@ -119,7 +119,7 @@ const ManagePostDeptLocation = () => {
   };
 
   return (
-    <div className="mt-16 mb-10 mx-2 sm:mx-5 lg:mx-10">
+    <div className="container mx-auto px-2 lg:px-6 xl:px-10 mt-16 mb-10">
       <div className="sm:mx-auto my-10 text-center text-xl md:text-2xl font-semibold leading-9 tracking-tight">
         <p>
           Here you can view all the available{" "}

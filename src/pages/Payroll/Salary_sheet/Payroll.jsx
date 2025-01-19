@@ -99,7 +99,7 @@ const Payroll = () => {
   // console.log(filteredEmployees);
 
   return (
-    <div className="overflow-x-auto w-11/12 mx-auto mt-10 mb-16">
+    <div className="overflow-x-auto container mx-auto px-2 sm:px-0 mt-10 mb-16">
       {/* Input fields for month and year */}
       <div className="month-selector my-4 text-center flex flex-col sm:flex-row justify-center items-center sm:gap-12">
         <div className="flex justify-center space-x-4">
