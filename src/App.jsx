@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-// import Navbar from "./navbar/components/Navbar/Navbar";
 import { useContext } from "react";
 import { ThemeContext } from "./contextProviders/ThemeContextProvider";
 import Navbar from "./components/Navbar/Navbar";
