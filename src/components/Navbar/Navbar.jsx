@@ -68,7 +68,7 @@ const Navbar = () => {
           : "opacity-0 pointer-events-none"
       } transition-opacity duration-300}`}
     >
-      <div className="navbar container mx-auto">
+      <div className="navbar px-2 lg:px-6 xl:px-10">
         <div className="navbar-start">
           <div className="lg:hidden dropdown">
             <div
